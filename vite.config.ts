@@ -12,6 +12,9 @@ export default defineConfig({
       ],
     }),
   ],
+  server: {
+    port: 8888,
+  },
   resolve: {
     alias: {
       "@": "/src",

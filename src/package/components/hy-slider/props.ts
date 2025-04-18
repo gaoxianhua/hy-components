@@ -1,4 +1,4 @@
-import IProps from "./typing";
+import type IProps from "./typing";
 import { ColorConfig } from "../../config";
 
 const defaultProps: IProps = {
@@ -15,7 +15,7 @@ const defaultProps: IProps = {
   useNative: false,
   height: "2px",
   rangeValue: [0, 0],
-  isRange: false
+  isRange: false,
 };
 
 export default defaultProps;

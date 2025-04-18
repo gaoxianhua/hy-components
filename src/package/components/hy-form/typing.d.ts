@@ -1,4 +1,4 @@
-import { FormColumnsType } from "../../typing";
+import type { FormColumnsType } from "../../typing";
 
 export default interface IProps {
   /**

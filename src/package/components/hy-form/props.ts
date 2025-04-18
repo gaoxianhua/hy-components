@@ -1,4 +1,4 @@
-import IProps from "./typing";
+import type IProps from "./typing";
 
 const defaultProps: IProps = {
   labelPosition: "left",
@@ -9,7 +9,7 @@ const defaultProps: IProps = {
   shape: "square",
   border: "surround",
   columns: [],
-  formData: {}
+  formData: {},
 };
 
 export default defaultProps;

@@ -14,7 +14,7 @@
           height:
             isRange && showValue
               ? addUnit(Number(blockSize) + 24)
-              : addUnit(blockSize)
+              : addUnit(blockSize),
         }"
       >
         <view
@@ -23,8 +23,8 @@
           :style="[
             {
               height: height,
-              backgroundColor: inactiveColor
-            }
+              backgroundColor: inactiveColor,
+            },
           ]"
         >
         </view>
@@ -36,8 +36,8 @@
             {
               height: height,
               marginTop: '-' + height,
-              backgroundColor: activeColor
-            }
+              backgroundColor: activeColor,
+            },
           ]"
         >
         </view>
@@ -49,8 +49,8 @@
             {
               height: height,
               marginTop: '-' + height,
-              backgroundColor: inactiveColor
-            }
+              backgroundColor: inactiveColor,
+            },
           ]"
         >
         </view>
@@ -58,7 +58,7 @@
           v-if="isRange && showValue"
           class="hy-slider__show-range-value"
           :style="{
-            left: blockLeft(barStyle?.width, blockSize)
+            left: blockLeft(barStyle?.width, blockSize),
           }"
         >
           {{ rangeValue[0] }}
@@ -67,7 +67,7 @@
           v-if="isRange && showValue"
           class="hy-slider__show-range-value"
           :style="{
-            left: blockLeft(barStyle?.width, blockSize)
+            left: blockLeft(barStyle?.width, blockSize),
           }"
         >
           {{ rangeValue[1] }}
@@ -80,7 +80,7 @@
             @touchend="onTouchEnd($event, 0)"
             @touchcancel="onTouchEnd($event, 0)"
             :style="{
-              left: blockLeft(barStyle?.width, blockSize)
+              left: blockLeft(barStyle?.width, blockSize),
             }"
           >
             <slot name="min" v-if="$slots.min || $slots.$min" />
@@ -92,8 +92,8 @@
                 {
                   height: addUnit(blockSize),
                   width: addUnit(blockSize),
-                  backgroundColor: blockColor
-                }
+                  backgroundColor: blockColor,
+                },
               ]"
             ></view>
           </view>
@@ -105,7 +105,7 @@
           @touchend="onTouchEnd"
           @touchcancel="onTouchEnd"
           :style="{
-            left: blockLeft(barStyle?.width, blockSize)
+            left: blockLeft(barStyle?.width, blockSize),
           }"
         >
           <slot name="max" v-if="isRange && ($slots.max || $slots.$max)" />
@@ -118,8 +118,8 @@
               {
                 height: addUnit(blockSize),
                 width: addUnit(blockSize),
-                backgroundColor: blockColor
-              }
+                backgroundColor: blockColor,
+              },
             ]"
           ></view>
         </view>
@@ -154,12 +154,11 @@ import {
   onMounted,
   ref,
   toRefs,
-  watch
+  watch,
 } from "vue";
 import defaultProps from "./props";
-import IProps from "./typing";
+import type IProps from "./typing";
 import { addUnit, error, getRect, sleep } from "../../utils";
-import NodeInfo = UniNamespace.NodeInfo;
 
 const props = withDefaults(defineProps<IProps>(), defaultProps);
 const { modelValue, rangeValue, useNative, isRange, disabled, step, min, max } =
@@ -174,20 +173,20 @@ const startValue0 = ref(0);
 const startValue = ref(0);
 const barStyle0 = ref<CSSProperties>();
 const barStyle = ref<CSSProperties>();
-const sliderRect = ref<NodeInfo>({
+const sliderRect = ref<UniNamespace.NodeInfo>({
   left: 0,
-  width: 0
+  width: 0,
 });
 
 const blockLeft = computed(() => {
   return (
     slideWidth: string | number | undefined,
-    blockWidth: string | number
+    blockWidth: string | number,
   ): string => {
     if (slideWidth) {
       return addUnit(
         parseInt(slideWidth.toString().replace("px", "")) +
-          Number(blockWidth) / 2
+          Number(blockWidth) / 2,
       );
     }
     return "0px";
@@ -199,7 +198,7 @@ watch(
   (newValue) => {
     // 只有在非滑动状态时，才可以通过value更新滑块值，这里监听，是为了让用户触发
     if (status.value === "end") updateValue(newValue, false);
-  }
+  },
 );
 
 watch(
@@ -210,14 +209,16 @@ watch(
       updateValue(newValue[1], false, 1);
     }
   },
-  { deep: true }
+  { deep: true },
 );
 
 onMounted(async () => {
   // 获取滑块条的尺寸信息
   if (!useNative.value) {
     // #ifndef APP-NVUE
-    sliderRect.value = (await getRect(".hy-slider__base")) as NodeInfo;
+    sliderRect.value = (await getRect(
+      ".hy-slider__base",
+    )) as UniNamespace.NodeInfo;
     // console.log('sliderRect', sliderRect.value)
     if (sliderRect.value.width == 0) {
       error("如在弹窗等元素中使用，请使用v-if来显示滑块，否则无法计算长度。");
@@ -359,10 +360,10 @@ const updateValue = (value: number, drag: boolean, index: number = 1) => {
   let width = Math.min(
     ((valueFormat - min.value) / (max.value - min.value)) *
       sliderRect.value.width!,
-    sliderRect.value.width!
+    sliderRect.value.width!,
   );
   let barStyle_1: CSSProperties = {
-    width: width + "px"
+    width: width + "px",
   };
   // 移动期间无需过渡动画
   if (drag == true) {
@@ -404,8 +405,8 @@ const format = (value: number, index = 1): number => {
           Math.round(
             Math.max(
               min.value,
-              Math.min(value, rangeValue.value[1] - step.value, max.value)
-            ) / step.value
+              Math.min(value, rangeValue.value[1] - step.value, max.value),
+            ) / step.value,
           ) * step.value
         );
       case 1:
@@ -414,8 +415,8 @@ const format = (value: number, index = 1): number => {
             Math.max(
               min.value,
               rangeValue.value[0] + step.value,
-              Math.min(value, max.value)
-            ) / step.value
+              Math.min(value, max.value),
+            ) / step.value,
           ) * step.value
         );
       default:

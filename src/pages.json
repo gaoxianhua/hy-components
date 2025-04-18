@@ -86,7 +86,7 @@
   },
     "easycom": {
       "custom": {
-        "^hy-(.*)": "hfyk-app/components/hy-$1/hy-$1.vue",
+//        "^hy-(.*)": "hfyk-app/components/hy-$1/hy-$1.vue",
         "^up-(.*)": "uview-plus/components/u-$1/u-$1.vue"
       }
     }

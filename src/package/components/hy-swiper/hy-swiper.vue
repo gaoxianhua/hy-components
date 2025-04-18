@@ -27,7 +27,7 @@
       :previousMargin="addUnit(previousMargin)"
       :nextMargin="addUnit(nextMargin)"
       :acceleration="acceleration"
-      :displayMultipleItems="displayMultipleItems"
+      :displayMultipleItems="list.length > 0 ? displayMultipleItems : 0"
       :easingFunction="easingFunction"
     >
       <swiper-item
@@ -36,7 +36,10 @@
         :key="index"
       >
         <slot :record="item" :index="index">
-          <view class="hy-swiper__wrapper__item__wrapper">
+          <view
+            class="hy-swiper__wrapper__item__wrapper"
+            :style="[itemStyle(index)]"
+          >
             <!-- 在nvue中，image图片的宽度默认为屏幕宽度，需要通过flex:1撑开，另外必须设置高度才能显示图片 -->
             <image
               class="hy-swiper__wrapper__item__wrapper__image"
@@ -89,17 +92,27 @@
 </template>
 
 <script setup lang="ts">
-import { computed, toRefs, ref, watch, getCurrentInstance } from "vue";
+import {
+  computed,
+  toRefs,
+  ref,
+  watch,
+  getCurrentInstance,
+  type CSSProperties,
+} from "vue";
 import { addUnit, isVideo } from "../../utils";
 import defaultProps from "./props";
-import HyIcon from "../hy-icon/hy-icon.vue";
 import { IconConfig } from "../../config";
 import type IProps from "./typing";
 import type { SwiperVo } from "./typing";
+
+// 组件
+import HyIcon from "../hy-icon/hy-icon.vue";
 import HySwiperIndicator from "./hy-swiper-indicator.vue";
 
 const props = withDefaults(defineProps<IProps>(), defaultProps);
-const { keyName, list, current } = toRefs(props);
+const { keyName, list, current, nextMargin, previousMargin, radius } =
+  toRefs(props);
 const emit = defineEmits(["click", "update:current", "change"]);
 
 const instance = getCurrentInstance();
@@ -121,6 +134,25 @@ const hasTitle = computed(() => {
     }
   };
 });
+
+/**
+ * @description 轮播图3D效果
+ * */
+const itemStyle = computed(() => {
+  return (index: number): CSSProperties => {
+    const style: CSSProperties = {};
+    // #ifndef APP-NVUE || MP-TOUTIAO
+    // 左右流出空间的写法不支持nvue和头条
+    // 只有配置了此二值，才加上对应的圆角，以及缩放
+    if (nextMargin.value && previousMargin.value) {
+      style.borderRadius = addUnit(radius.value);
+      if (index !== currentIndex.value) style.transform = "scale(0.92)";
+    }
+    // #endif
+    return style;
+  };
+});
+
 /**
  * @description 获取目标路径，可能数组中为字符串，对象的形式，额外可指定对象的目标属性名keyName
  * */

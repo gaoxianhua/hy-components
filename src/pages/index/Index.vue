@@ -54,28 +54,68 @@ const list_2 = ref([
     url: "/pages/components/form/form",
   },
   {
-    title: "Image 图片",
-    url: "pages/components/image/Index",
+    title: "Calendar 日历",
+    url: "pages/components/calendar/calendar",
   },
   {
-    title: "Button 按钮",
-    url: "pages/components/button/Index",
+    title: "Select 下拉框",
+    url: "pages/components/select/select",
   },
   {
-    title: "Cell 单元格",
-    url: "pages/components/cell/Index",
+    title: "Picker 选择器",
+    url: "pages/components/picker/picker",
   },
   {
-    title: "Badge 徽标数",
-    url: "pages/components/badge/Index",
+    title: "DatetimePicker 时间选择器",
+    url: "pages/components/datetimePicker/datetimePicker",
   },
   {
-    title: "Tag 标签",
-    url: "pages/components/tag/Index",
+    title: "AddressPicker 地址选择器",
+    url: "pages/components/addressPicker/addressPicker",
   },
   {
-    title: "Swiper 轮播图",
-    url: "pages/components/swiper/Index",
+    title: "Search 搜索",
+    url: "pages/components/search/search",
+  },
+  {
+    title: "Rate 评分",
+    url: "pages/components/rate/rate",
+  },
+  {
+    title: "NumberBox 步进器",
+    url: "pages/components/numberBox/numberBox",
+  },
+  {
+    title: "Input 输入框",
+    url: "pages/components/input/input",
+  },
+  {
+    title: "Textarea 文本域",
+    url: "pages/components/textarea/textarea",
+  },
+  {
+    title: "CheckButton 复选框按钮",
+    url: "pages/components/checkButton/checkButton",
+  },
+  {
+    title: "Checkbox 复选框",
+    url: "pages/components/checkbox/checkbox",
+  },
+  {
+    title: "Radio 单选框",
+    url: "pages/components/radio/radio",
+  },
+  {
+    title: "Slider 滑动选择器",
+    url: "pages/components/slider/slider",
+  },
+  {
+    title: "Switch 开关选择器",
+    url: "pages/components/switch/switch",
+  },
+  {
+    title: "Upload 上传",
+    url: "pages/components/upload/upload",
   },
 ]);
 </script>

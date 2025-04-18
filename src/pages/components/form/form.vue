@@ -5,7 +5,7 @@
     :form-data="formData"
     labelWidth="90"
   >
-    <template #default="{ record, errorStyle }">
+    <template #custom="{ record, errorStyle }">
       <HyInput
         v-model="formData[record.field]"
         :custom-style="errorStyle"
@@ -18,9 +18,9 @@
 <script setup lang="ts">
 import { FormTypeEnum } from "hfyk-app";
 import type { FormColumnsType } from "hfyk-app";
-import HyForm from "hfyk-app/components/hy-form/hy-form.vue";
-import HyInput from "hfyk-app/components/hy-input/hy-input.vue";
-import HyButton from "hfyk-app/components/hy-button/hy-button.vue";
+import HyForm from "hy-app/components/hy-form/hy-form.vue";
+import HyInput from "hy-app/components/hy-input/hy-input.vue";
+import HyButton from "hy-app/components/hy-button/hy-button.vue";
 import { reactive, ref } from "vue";
 
 const formData: AnyObject = reactive({

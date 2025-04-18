@@ -8,9 +8,8 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
-    HyAvatar: typeof import('hfyk-app')['HyAvatar']
-    HyBadge: typeof import('hfyk-app')['HyBadge']
+    HySlider: typeof import('hfyk-app')['HySlider']
+    HySubsection: typeof import('hfyk-app')['HySubsection']
     HySwiper: typeof import('hfyk-app')['HySwiper']
-    HyTag: typeof import('hfyk-app')['HyTag']
   }
 }

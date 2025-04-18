@@ -157,11 +157,11 @@
 </template>
 
 <script setup lang="ts">
-import { computed, CSSProperties, reactive, toRefs } from "vue";
-import IProps from "./typing";
+import { computed, type CSSProperties, reactive, toRefs } from "vue";
+import type IProps from "./typing";
 import defaultProps from "./props";
 import { addUnit, error } from "../../utils";
-import { FormColumnsType, RulesVo, FormTypeEnum } from "../../typing";
+import type { FormColumnsType, RulesVo, FormTypeEnum } from "../../typing";
 
 // 组件
 import HyInput from "../hy-input/hy-input.vue";
@@ -213,7 +213,7 @@ const errors: AnyObject = reactive({});
 const labelStyle = computed(() => {
   return {
     textAlign: labelAlign.value,
-    width: addUnit(labelWidth.value)
+    width: addUnit(labelWidth.value),
   };
 });
 
@@ -260,7 +260,7 @@ const validateField = (
   rules: RulesVo | RulesVo[] | undefined,
   value: string,
   field: string,
-  event?: "blur" | "change"
+  event?: "blur" | "change",
 ) => {
   if (!rules) return;
 
@@ -335,7 +335,7 @@ const handleBlur = (event: string, temp: FormColumnsType) => {
 
 defineExpose({
   validateField,
-  handleSubmit
+  handleSubmit,
 });
 </script>
 

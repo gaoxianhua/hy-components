@@ -1,0 +1,301 @@
+<template>
+  <view
+    ref="hy-subsection"
+    :class="[`hy-subsection--${mode}`, 'hy-subsection']"
+    :style="[customStyle, wrapperStyle]"
+  >
+    <view ref="hy-subsection__bar" :style="barStyle" :class="barClass"></view>
+    <view
+      :class="wrapperClass"
+      :ref="`hy-subsection__item--${index}`"
+      :style="itemStyle"
+      @tap="clickHandler(item, index)"
+      v-for="(item, index) in list"
+      :key="index"
+    >
+      <text class="hy-subsection__item__text" :style="[textStyle(index)]">{{
+        getName(item)
+      }}</text>
+    </view>
+  </view>
+</template>
+
+<script setup lang="ts">
+import { computed, toRefs, ref, onMounted, watch } from "vue";
+import type { CSSProperties } from "vue";
+import defaultProps from "./props";
+import type IProps from "./typing";
+import type { SubSectionListVo } from "./typing";
+import { addUnit, getRect, guid } from "../../utils";
+
+const props = withDefaults(defineProps<IProps>(), defaultProps);
+const {
+  modelValue,
+  list,
+  mode,
+  activeColor,
+  fontSize,
+  bold,
+  bgColor,
+  inactiveColor,
+  fieldNames,
+} = toRefs(props);
+const emit = defineEmits(["change", "update:modelValue"]);
+
+// 组件尺寸
+const itemRect = ref<UniApp.NodeInfo>({
+  width: 0,
+  height: 0,
+});
+const innerCurrent = ref<number>(0);
+const guidClass = guid();
+
+watch(
+  () => modelValue.value,
+  (newVal: string) => {},
+  { immediate: true },
+);
+
+/**
+ * @description 容器样式
+ * */
+const wrapperStyle = computed<CSSProperties>(() => {
+  const style: CSSProperties = {};
+  // button模式时，设置背景色
+  if (mode.value === "button") {
+    style.backgroundColor = bgColor.value;
+  }
+  return style;
+});
+/**
+ * @description 容器类名
+ * */
+const wrapperClass = computed(() => {
+  return [
+    "hy-subsection__item",
+    "cursor-pointer",
+    `hy-subsection__item--${innerCurrent.value}__${guidClass}`,
+    innerCurrent.value < list.value.length - 1 &&
+      "hy-subsection__item--no-border-right",
+    innerCurrent.value === 0 && "hy-subsection__item--first",
+    innerCurrent.value === list.value.length - 1 && "hy-subsection__item--last",
+  ];
+});
+/**
+ * @description 滑块的样式
+ * */
+const barStyle = computed<CSSProperties>(() => {
+  const style: CSSProperties = {};
+  style.width = `${itemRect.value.width}px`;
+  style.height = `${itemRect.value.height}px`;
+  // 通过translateX移动滑块，其移动的距离为索引*item的宽度
+  style.transform = `translateX(${
+    innerCurrent.value * itemRect.value.width!
+  }px)`;
+  if (mode.value === "subsection") {
+    // 在subsection模式下，需要动态设置滑块的圆角，因为移动滑块使用的是translateX，无法通过父元素设置overflow: hidden隐藏滑块的直角
+    style.backgroundColor = activeColor.value;
+  }
+  return style;
+});
+/**
+ * @description 滑块的类目
+ * */
+const barClass = computed(() => {
+  let className: string[] = ["hy-subsection__bar", "cursor-pointer"];
+  const className_2 = [
+    mode.value === "button" && "hy-subsection--button__bar",
+    innerCurrent.value === 0 &&
+      mode.value === "subsection" &&
+      "hy-subsection__bar--first",
+    innerCurrent.value > 0 &&
+      innerCurrent.value < list.value.length - 1 &&
+      mode.value === "subsection" &&
+      "hy-subsection__bar--center",
+    innerCurrent.value === list.value.length - 1 &&
+      mode.value === "subsection" &&
+      "hy-subsection__bar--last",
+  ].filter(Boolean) as string[];
+  className = className.concat(className_2);
+
+  return className;
+});
+/**
+ * @description 分段器item的样式
+ * */
+const itemStyle = computed(() => {
+  return (): CSSProperties => {
+    const style: CSSProperties = {};
+    if (mode.value === "subsection") {
+      // 设置border的样式
+      style.borderColor = activeColor.value;
+      style.borderWidth = "1px";
+      style.borderStyle = "solid";
+    }
+    return style;
+  };
+});
+/**
+ * @description 分段器文字颜色
+ * */
+const textStyle = computed(() => {
+  return (index: number): CSSProperties => {
+    const style: CSSProperties = {};
+    style.fontWeight =
+      bold.value && innerCurrent.value === index ? "bold" : "normal";
+    style.fontSize = addUnit(fontSize.value);
+    // subsection模式下，激活时默认为白色的文字
+    if (mode.value === "subsection") {
+      style.color = innerCurrent.value === index ? "#fff" : inactiveColor.value;
+    } else {
+      // button模式下，激活时文字颜色默认为activeColor
+      style.color =
+        innerCurrent.value === index ? activeColor.value : inactiveColor.value;
+    }
+    return style;
+  };
+});
+
+onMounted(() => {
+  init();
+});
+
+/**
+ * @description 初始化
+ * */
+const init = () => {
+  innerCurrent.value = list.value.findIndex(
+    (item: string | SubSectionListVo) => {
+      if (typeof item === "string") {
+        return item === modelValue.value;
+      } else {
+        return item[fieldNames.value.value] === modelValue.value;
+      }
+    },
+  );
+
+  // TODO： 多个数组在一起计算宽度， 宽度不一样会有问题，所以必须加guidClass随机数
+  getRect(`.hy-subsection__item--0__${guidClass}`).then((size) => {
+    itemRect.value = size as UniApp.NodeInfo;
+  });
+};
+
+/**
+ * @description 判断值
+ * */
+const getValue = (item: string | SubSectionListVo) => {
+  return typeof item === "object" ? item[fieldNames.value.value] : item;
+};
+
+/**
+ * @description 判断展示文本
+ * */
+const getName = (item: string | SubSectionListVo) => {
+  return typeof item === "object" ? item[fieldNames.value.label] : item;
+};
+
+/**
+ * @description 点击事件
+ * */
+const clickHandler = (temp: string | SubSectionListVo, index: number) => {
+  // 值改变才触发
+  if (innerCurrent.value !== index) {
+    emit("change", index);
+    emit("update:modelValue", getValue(temp));
+  }
+  innerCurrent.value = index;
+};
+</script>
+
+<style lang="scss" scoped>
+@import "../../libs/css/mixin.scss";
+
+.hy-subsection {
+  @include flex;
+  position: relative;
+  overflow: hidden;
+  /* #ifndef APP-NVUE */
+  width: 100%;
+  box-sizing: border-box;
+  /* #endif */
+
+  &--button {
+    height: 35px;
+    background-color: rgb(238, 238, 239);
+    padding: 3px;
+    border-radius: 4px;
+    align-items: stretch;
+
+    &__bar {
+      background-color: #ffffff;
+      border-radius: 4px !important;
+    }
+  }
+
+  &--subsection {
+    height: 32px;
+  }
+
+  &__bar {
+    position: absolute;
+    /* #ifndef APP-NVUE */
+    transition-property: transform, color;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-in-out;
+    /* #endif */
+
+    &--first {
+      border-top-left-radius: 4px;
+      border-bottom-left-radius: 4px;
+      border-top-right-radius: 0px;
+      border-bottom-right-radius: 0px;
+    }
+
+    &--center {
+      border-top-left-radius: 0px;
+      border-bottom-left-radius: 0px;
+      border-top-right-radius: 0px;
+      border-bottom-right-radius: 0px;
+    }
+
+    &--last {
+      border-top-left-radius: 0px;
+      border-bottom-left-radius: 0px;
+      border-top-right-radius: 4px;
+      border-bottom-right-radius: 4px;
+    }
+  }
+
+  &__item {
+    @include flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    // vue环境下，需要设置相对定位，因为滑块为绝对定位，item需要在滑块的上面
+    position: relative;
+
+    &--no-border-right {
+      border-right-width: 0 !important;
+    }
+
+    &--first {
+      border-top-left-radius: 4px;
+      border-bottom-left-radius: 4px;
+    }
+
+    &--last {
+      border-top-right-radius: 4px;
+      border-bottom-right-radius: 4px;
+    }
+
+    &__text {
+      font-size: 12px;
+      line-height: 14px;
+      @include flex;
+      align-items: center;
+      transition-property: color;
+      transition-duration: 0.3s;
+    }
+  }
+}
+</style>

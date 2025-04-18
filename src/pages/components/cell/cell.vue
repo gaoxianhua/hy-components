@@ -1,0 +1,56 @@
+<template>
+  <view>
+    <hy-cell
+      title="设置icon"
+      :list="list"
+      :arrange="arrange"
+      :size="size"
+      :arrowDirection="arrowDirection"
+    ></hy-cell>
+
+    <view class="hy-title">value定位</view>
+    <hy-subsection :list="list_1" v-model="arrange"></hy-subsection>
+
+    <view class="hy-title">单元格大小</view>
+    <hy-subsection :list="list_2" v-model="size"></hy-subsection>
+
+    <view class="hy-title">右侧icon方向</view>
+    <hy-subsection :list="list_3" v-model="arrowDirection"></hy-subsection>
+  </view>
+</template>
+
+<script setup lang="ts">
+import HyCell from "@/package/components/hy-cell/hy-cell.vue";
+import HySubsection from "@/package/components/hy-subsection/hy-subsection.vue";
+import { reactive, ref } from "vue";
+import { IconConfig } from "hy-app";
+const arrange = ref<HyApp.LeftRightType | "center">("right");
+const size = ref<HyApp.SizeType>("medium");
+const arrowDirection = ref<HyApp.RotateType>("right");
+
+const list = reactive([
+  { title: "我的", icon: IconConfig.MINE, subhead: "我是小二郎" },
+  { title: "设置", icon: IconConfig.SETTING, value: "返回" },
+]);
+
+const list_1 = reactive([
+  { name: "左边", value: "left" },
+  { name: "中间", value: "center" },
+  { name: "右边", value: "right" },
+]);
+
+const list_2 = reactive([
+  { name: "大", value: "large" },
+  { name: "默认", value: "medium" },
+  { name: "小", value: "small" },
+]);
+
+const list_3 = reactive([
+  { name: "向左", value: "left" },
+  { name: "向右", value: "right" },
+  { name: "向上", value: "up" },
+  { name: "向下", value: "down" },
+]);
+</script>
+
+<style scoped lang="scss"></style>

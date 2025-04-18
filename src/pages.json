@@ -1,0 +1,93 @@
+{
+  "pages": [
+    //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+    {
+      "path": "pages/index/Index",
+      "style": {
+        "navigationBarTitleText": "uni-app"
+      }
+    }
+  ],
+  "subPackages": [
+    {
+      "root": "pages/components",
+      "pages": [
+        {
+          "path": "Icon/Icon",
+          "style": {
+            "navigationBarTitleText": "图标",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "list/list",
+          "style": {
+            "navigationBarTitleText": "虚拟列表",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "upload/upload",
+          "style": {
+            "navigationBarTitleText": "上传组件",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "form/form",
+          "style": {
+            "navigationBarTitleText": "表单组件",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "button/button",
+          "style": {
+            "navigationBarTitleText": "按钮",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "cell/cell",
+          "style": {
+            "navigationBarTitleText": "单元格",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "badge/badge",
+          "style": {
+            "navigationBarTitleText": "徽标",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "tag/tag",
+          "style": {
+            "navigationBarTitleText": "标签",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "swiper/swiper",
+          "style": {
+            "navigationBarTitleText": "轮播图",
+            "enablePullDownRefresh": false
+          }
+        }
+      ]
+    }
+  ],
+  "globalStyle": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "uni-app",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8"
+  },
+    "easycom": {
+      "custom": {
+        "^hy-(.*)": "hfyk-app/components/hy-$1/hy-$1.vue",
+        "^up-(.*)": "uview-plus/components/u-$1/u-$1.vue"
+      }
+    }
+}

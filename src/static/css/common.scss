@@ -1,0 +1,11 @@
+.hy-title {
+  padding: $hy-border-margin-padding-base;
+  color: $hy-info;
+}
+.hy-flex {
+  display: flex;
+  justify-content: space-around;
+}
+.hy-container {
+  flex-wrap: wrap;
+}

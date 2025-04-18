@@ -1,0 +1,122 @@
+<template>
+  <view class="hy-empty" v-if="show" :style="emptyStyle">
+    <view class="hy-empty__img" :style="imgStyle">
+      <HyIcon
+        :name="imageUrl"
+        :width="width"
+        :height="height"
+        img-mode="widthFix"
+      ></HyIcon>
+    </view>
+    <view v-if="$slots.default">
+      <slot></slot>
+    </view>
+    <view class="hy-empty__description" v-else>
+      <slot v-if="$slots.description" name="description"></slot>
+      <text v-else :style="descriptionStyle">{{ emptyDescription }}</text>
+      <HyButton
+        class="hy-empty__button"
+        v-if="btnText"
+        :text="btnText"
+        :size="btnSize"
+        :type="btnType"
+        :shape="btnShape"
+        :plain="btnPlain"
+        @click="handleClick"
+      ></HyButton>
+    </view>
+  </view>
+</template>
+
+<script setup lang="ts">
+import { computed, CSSProperties, toRefs } from "vue";
+import defaultProps from "./props";
+import IProps from "./typing";
+import { addUnit } from "../../utils";
+
+// 组件
+import HyButton from "../hy-button/hy-button.vue";
+import HyIcon from "../hy-icon/hy-icon.vue";
+
+const props = withDefaults(defineProps<IProps>(), defaultProps);
+const {
+  zIndex,
+  width,
+  height,
+  imgMargin,
+  navigateUrl,
+  desSize,
+  desColor,
+  customStyle
+} = toRefs(props);
+const emit = defineEmits(["click"]);
+
+const emptyDescription = computed(() => {
+  return props.description;
+});
+
+/**
+ * @description 整体样式
+ * */
+const emptyStyle = computed<CSSProperties>(() => {
+  const style: CSSProperties = {
+    zIndex: zIndex.value
+  };
+  return Object.assign(style, customStyle.value);
+});
+
+/**
+ * @description 提示信息样式
+ * */
+const descriptionStyle = computed<CSSProperties>(() => {
+  const style: CSSProperties = {
+    fontSize: addUnit(desSize.value),
+    color: desColor.value
+  };
+  return style;
+});
+
+/**
+ * @description 图片样式
+ * */
+const imgStyle = computed<CSSProperties>(() => {
+  return {
+    width: addUnit(width.value),
+    height: addUnit(height.value),
+    margin: imgMargin.value
+  };
+});
+
+/**
+ * @description 点击按钮，跳转页面
+ * */
+const handleClick = () => {
+  emit("click");
+  if (navigateUrl.value) {
+    uni.navigateTo({
+      url: navigateUrl.value
+    });
+  }
+};
+</script>
+<style scoped lang="scss">
+.hy-empty {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background: rgb(255, 255, 255);
+  &__description {
+    width: 70%;
+    text-align: center;
+  }
+
+  &__button {
+    margin-top: 80rpx;
+  }
+}
+</style>

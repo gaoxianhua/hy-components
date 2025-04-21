@@ -55,67 +55,67 @@ const list_2 = ref([
   },
   {
     title: "Calendar 日历",
-    url: "pages/components/calendar/calendar",
+    url: "/pages/components/calendar/calendar",
   },
   {
     title: "Select 下拉框",
-    url: "pages/components/select/select",
+    url: "/pages/components/select/select",
   },
   {
     title: "Picker 选择器",
-    url: "pages/components/picker/picker",
+    url: "/pages/components/picker/picker",
   },
   {
     title: "DatetimePicker 时间选择器",
-    url: "pages/components/datetimePicker/datetimePicker",
+    url: "/pages/components/datetimePicker/datetimePicker",
   },
   {
     title: "AddressPicker 地址选择器",
-    url: "pages/components/addressPicker/addressPicker",
+    url: "/pages/components/addressPicker/addressPicker",
   },
   {
     title: "Search 搜索",
-    url: "pages/components/search/search",
+    url: "/pages/components/search/search",
   },
   {
     title: "Rate 评分",
-    url: "pages/components/rate/rate",
+    url: "/pages/components/rate/rate",
   },
   {
     title: "NumberBox 步进器",
-    url: "pages/components/numberBox/numberBox",
+    url: "/pages/components/numberBox/numberBox",
   },
   {
     title: "Input 输入框",
-    url: "pages/components/input/input",
+    url: "/pages/components/input/input",
   },
   {
     title: "Textarea 文本域",
-    url: "pages/components/textarea/textarea",
+    url: "/pages/components/textarea/textarea",
   },
   {
     title: "CheckButton 复选框按钮",
-    url: "pages/components/checkButton/checkButton",
+    url: "/pages/components/checkButton/checkButton",
   },
   {
     title: "Checkbox 复选框",
-    url: "pages/components/checkbox/checkbox",
+    url: "/pages/components/checkbox/checkbox",
   },
   {
     title: "Radio 单选框",
-    url: "pages/components/radio/radio",
+    url: "/pages/components/radio/radio",
   },
   {
     title: "Slider 滑动选择器",
-    url: "pages/components/slider/slider",
+    url: "/pages/components/slider/slider",
   },
   {
     title: "Switch 开关选择器",
-    url: "pages/components/switch/switch",
+    url: "/pages/components/switch/switch",
   },
   {
     title: "Upload 上传",
-    url: "pages/components/upload/upload",
+    url: "/pages/components/upload/upload",
   },
 ]);
 </script>

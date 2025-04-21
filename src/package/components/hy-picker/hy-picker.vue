@@ -1,5 +1,5 @@
 <template>
-  <view class="hy-picker-warrper">
+  <view class="hy-picker">
     <view
       v-if="hasInput"
       class="hy-picker-input cursor-pointer"
@@ -7,7 +7,7 @@
     >
       <slot>
         <HyInput
-          v-model="inputLabel"
+          v-model="inputLabelValue"
           :disabled="disabled"
           :readonly="true"
           :shape="shape"
@@ -58,7 +58,7 @@
           :value="innerIndex"
           :immediateChange="immediateChange"
           :style="{
-            height: `${addUnit(visibleItemCount * itemHeight)}`
+            height: `${addUnit(visibleItemCount * itemHeight)}`,
           }"
           @change="changeHandler"
         >
@@ -72,7 +72,7 @@
               class="hy-picker__view__column__item u-line-1"
               :class="[
                 index1 === innerIndex[index] &&
-                  'hy-picker__view__column__item--selected'
+                  'hy-picker__view__column__item--selected',
               ]"
               v-for="(item1, index1) in item"
               :key="index1"
@@ -80,7 +80,7 @@
                 height: addUnit(itemHeight),
                 lineHeight: addUnit(itemHeight),
                 fontWeight: index1 === innerIndex[index] ? 'bold' : 'normal',
-                display: 'block'
+                display: 'block',
               }"
               >{{ getItemText(item1) }}</view
             >
@@ -102,7 +102,7 @@
 import { computed, ref, toRefs, watch } from "vue";
 import { deepClone, sleep, addUnit } from "../../utils";
 import { IconConfig } from "../../config";
-import IProps from "./typing";
+import type IProps from "./typing";
 import defaultProps from "./props";
 
 // 组件
@@ -118,7 +118,8 @@ const {
   hasInput,
   defaultIndex,
   modelValue,
-  columns
+  columns,
+  separator,
 } = toRefs(props);
 const emit = defineEmits([
   "update:show",
@@ -126,7 +127,7 @@ const emit = defineEmits([
   "cancel",
   "update:modelValue",
   "confirm",
-  "change"
+  "change",
 ]);
 
 // 上一次选择的列索引
@@ -158,7 +159,7 @@ watch(
   () => defaultIndex.value,
   (newValue, oldValue) => {
     setIndexs(newValue, true);
-  }
+  },
 );
 
 /**
@@ -169,13 +170,13 @@ watch(
   (newValue) => {
     setColumns(newValue);
   },
-  { deep: true, immediate: true }
+  { deep: true, immediate: true },
 );
 
 /**
  * @description 已选&&已确认的值显示在input上面的文案
  * */
-const inputLabel = computed((): string => {
+const inputLabelValue = computed((): string => {
   let firstItem = innerColumns.value[0] && innerColumns.value[0][0];
   // //区分是不是对象数组
   if (
@@ -187,15 +188,15 @@ const inputLabel = computed((): string => {
       res.push(
         ...innerColumns.value[i]?.filter((item) => {
           return modelValue.value.includes(item["id"]);
-        })
+        }),
       );
     });
     res = res.map((item) => item[keyName.value]);
-    return res.join("/");
+    return res.join(separator.value);
   } else {
     //用户确定的值，才显示到输入框
     if (modelValue.value.length && Array.isArray(modelValue.value)) {
-      return modelValue.value.join("/");
+      return modelValue.value.join(separator.value);
     }
     return modelValue.value as string;
   }
@@ -206,7 +207,7 @@ const inputLabel = computed((): string => {
  * */
 const inputValue = computed(() => {
   let items = innerColumns.value.map(
-    (item, index) => item[innerIndex.value[index]]
+    (item, index) => item[innerIndex.value[index]],
   );
   let res: any[] = [];
   //区分是不是对象数组
@@ -302,9 +303,9 @@ const onConfirm = () => {
   emit("confirm", {
     indexs: innerIndex.value,
     value: innerColumns.value.map(
-      (item, index) => item[innerIndex.value[index]]
+      (item, index) => item[innerIndex.value[index]],
     ),
-    values: innerColumns.value
+    values: innerColumns.value,
   });
 };
 
@@ -349,7 +350,7 @@ const changeHandler = (e) => {
     indexs: value,
     // values为当前变化列的数组内容
     values,
-    columnIndex: columnI
+    columnIndex: columnI,
   });
 };
 
@@ -423,7 +424,7 @@ const getValues = () => {
 };
 
 defineExpose({
-  setColumnValues
+  setColumnValues,
 });
 </script>
 

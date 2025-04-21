@@ -22,11 +22,11 @@
               disabled
                 ? '#c8c9cc'
                 : Math.floor(activeIndex) > index
-                ? activeColor
-                : inactiveColor
+                  ? activeColor
+                  : inactiveColor
             "
             :custom-style="{
-              padding: `0 ${addUnit(gutter / 2)}`
+              padding: `0 ${addUnit(gutter / 2)}`,
             }"
             :size="size"
           ></HyIcon>
@@ -37,8 +37,8 @@
           class="hy-rate__content__item__icon-wrap hy-rate__content__item__icon-wrap--half"
           :style="[
             {
-              width: addUnit(rateWidth / 2)
-            }
+              width: addUnit(rateWidth / 2),
+            },
           ]"
           ref="hy-rate__content__item__icon-wrap"
         >
@@ -48,11 +48,11 @@
               disabled
                 ? '#c8c9cc'
                 : Math.ceil(activeIndex) > index
-                ? activeColor
-                : inactiveColor
+                  ? activeColor
+                  : inactiveColor
             "
             :custom-style="{
-              padding: `0 ${addUnit(gutter / 2)}`
+              padding: `0 ${addUnit(gutter / 2)}`,
             }"
             :size="size"
           ></HyIcon>
@@ -64,8 +64,8 @@
 
 <script setup lang="ts">
 import { addUnit, getRect, guid, range, sleep } from "../../utils";
-import { ref, watch, toRefs, onMounted, nextTick } from "vue";
-import IProps from "./typing";
+import { ref, watch, toRefs, onMounted, getCurrentInstance } from "vue";
+import type IProps from "./typing";
 import defaultProps from "./props";
 
 // 组件
@@ -79,7 +79,7 @@ const {
   count,
   disabled,
   readonly,
-  allowHalf
+  allowHalf,
 } = toRefs(props);
 const emit = defineEmits(["update:modelValue", "change"]);
 
@@ -96,40 +96,52 @@ watch(
   () => modelValue.value,
   (newValue) => {
     activeIndex.value = newValue;
-  }
+  },
 );
 watch(
   () => activeIndex.value,
   (newVal) => {
     emitEvent();
-  }
+  },
 );
+const instance = getCurrentInstance();
 
 onMounted(() => {
   init();
 });
 
 const init = () => {
-  sleep(200).then(() => {
-    getRateItemRect();
-    getRateIconWrapRect();
+  sleep(300).then(async () => {
+    await getRateItemRect();
+    await getRateIconWrapRect();
   });
 };
 
-// 获取评分组件盒子的布局信息
+/**
+ * @description 获取评分组件盒子的布局信息
+ * */
 const getRateItemRect = async () => {
   await sleep();
   // #ifndef APP-NVUE
-  const res: UniApp.NodeInfo = (await getRect(`#${elId}`)) as UniApp.NodeInfo;
+  const res: UniApp.NodeInfo = (await getRect(
+    `#${elId}`,
+    false,
+    instance,
+  )) as UniApp.NodeInfo;
   rateBoxLeft.value = res.left || 0;
   // #endif
 };
-// 获取单个星星的尺寸
+
+/**
+ * @description 获取单个星星的尺寸
+ * */
 const getRateIconWrapRect = async () => {
   // uView封装的获取节点的方法，详见文档
   // #ifndef APP-NVUE
   const res: UniApp.NodeInfo = (await getRect(
-    `.${elClass}`
+    `.${elClass}`,
+    false,
+    instance,
   )) as UniApp.NodeInfo;
   rateWidth.value = res.width || 0;
   // #endif

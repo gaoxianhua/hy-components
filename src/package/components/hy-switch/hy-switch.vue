@@ -23,11 +23,18 @@
 </template>
 
 <script setup lang="ts">
-import { toRefs, watch, ref, nextTick, computed, CSSProperties } from "vue";
+import {
+  toRefs,
+  watch,
+  ref,
+  nextTick,
+  computed,
+  type CSSProperties,
+} from "vue";
 import { IconConfig } from "../../config";
 import { addUnit, error } from "../../utils";
 import defaultProps from "./props";
-import IProps from "./typing";
+import type IProps from "./typing";
 
 import HyIcon from "../hy-icon/hy-icon.vue";
 
@@ -42,7 +49,7 @@ const {
   disabled,
   loading,
   asyncChange,
-  inactiveColor
+  inactiveColor,
 } = toRefs(props);
 const emit = defineEmits(["update:modelValue", "change"]);
 const bgColor = ref("#ffffff");
@@ -54,7 +61,7 @@ watch(
       error("v-model绑定的值必须为inactiveValue、activeValue二者之一");
     }
   },
-  { immediate: true }
+  { immediate: true },
 );
 
 const isActive = computed(() => {

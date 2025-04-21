@@ -1,5 +1,4 @@
-import { DateModeEnum } from "../../typing";
-import { CSSProperties } from "vue";
+import type { CSSProperties } from "vue";
 
 export default interface IProps {
   /**

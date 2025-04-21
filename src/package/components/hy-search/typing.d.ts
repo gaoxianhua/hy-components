@@ -1,5 +1,4 @@
-import { CSSProperties } from "vue";
-import { b } from "vite/dist/node/types.d-aGj9QkWt";
+import type { CSSProperties } from "vue";
 
 export default interface IProps {
   /**

@@ -1,4 +1,4 @@
-import IProps from "./typing";
+import type IProps from "./typing";
 
 const defaultProps: IProps = {
   show: false,
@@ -15,7 +15,7 @@ const defaultProps: IProps = {
   closeIconPos: "top-right",
   round: 0,
   zoom: true,
-  bgColor: ""
+  bgColor: "",
 };
 
 export default defaultProps;

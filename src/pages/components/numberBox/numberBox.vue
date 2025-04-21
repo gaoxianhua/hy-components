@@ -1,0 +1,67 @@
+<template>
+  <view>
+    <view class="hy-title">基本使用</view>
+    <hy-number-step v-model="value"></hy-number-step>
+
+    <view class="hy-title">步长设置</view>
+    <hy-number-step v-model="value" :step="3"></hy-number-step>
+
+    <view class="hy-title">现在范围</view>
+    <hy-number-step v-model="value" :min="10" :max="20"></hy-number-step>
+
+    <view class="hy-title">自定义样式</view>
+    <hy-number-step v-model="value" :showMinus="!!value" :min="0">
+      <template #minus>
+        <view class="minus">
+          <hy-icon :name="IconConfig.MINUS" size="12"></hy-icon>
+        </view>
+      </template>
+      <template #input>
+        <text style="width: 30px; text-align: center" class="input">{{
+          value
+        }}</text>
+      </template>
+      <template #plus>
+        <view class="plus">
+          <hy-icon :name="IconConfig.PLUS" color="#FFFFFF" size="12"></hy-icon>
+        </view>
+      </template>
+    </hy-number-step>
+  </view>
+</template>
+
+<script setup lang="ts">
+import { ref } from "vue";
+import { IconConfig } from "hy-app";
+
+import hyIcon from "@/package/components/hy-icon/hy-icon.vue";
+import HyNumberStep from "@/package/components/hy-number-step/hy-number-step.vue";
+const value = ref(10);
+</script>
+
+<style scoped lang="scss">
+.minus {
+  width: 22px;
+  height: 22px;
+  border: 1px solid black;
+  box-sizing: border-box;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.input {
+  padding: 0 10px;
+}
+
+.plus {
+  width: 22px;
+  height: 22px;
+  background-color: #ff0000;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+</style>

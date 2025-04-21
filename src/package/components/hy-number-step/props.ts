@@ -1,4 +1,4 @@
-import IProps from "./typing";
+import type IProps from "./typing";
 
 const defaultProps: IProps = {
   modelValue: 0,
@@ -23,7 +23,7 @@ const defaultProps: IProps = {
   cursorSpacing: 100,
   disableMinus: false,
   disablePlus: false,
-  miniMode: false
+  miniMode: false,
 };
 
 export default defaultProps;

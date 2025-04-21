@@ -1,10 +1,11 @@
-import IProps from "./typing";
+import type IProps from "./typing";
 
 const defaultProps: IProps = {
   modelValue: "",
   disabled: false,
   show: false,
   popupMode: "bottom",
+  separator: "/",
   showToolbar: true,
   title: "",
   columns: [],
@@ -24,7 +25,7 @@ const defaultProps: IProps = {
   placeholder: "请选择",
   toolbarRightSlot: false,
   shape: "square",
-  border: "surround"
+  border: "surround",
 };
 
 export default defaultProps;

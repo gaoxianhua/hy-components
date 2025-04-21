@@ -1,4 +1,4 @@
-import IProps from "./typing";
+import type IProps from "./typing";
 import { ColorConfig } from "../../config";
 
 const defaultProps: IProps = {
@@ -7,10 +7,10 @@ const defaultProps: IProps = {
   fieldNames: {
     label: "label",
     value: "value",
-    checked: "checked"
+    checked: "checked",
   },
   shape: "square",
-  size: 18,
+  size: "medium",
   disabled: false,
   activeColor: ColorConfig.primary,
   inactiveColor: "#c8c9cc",
@@ -18,11 +18,10 @@ const defaultProps: IProps = {
   iconColor: "",
   iconPlacement: "left",
   borderBottom: false,
-  label: "",
   labelSize: "",
   labelColor: "",
   labelDisabled: "",
-  placement: "row"
+  placement: "row",
 };
 
 export default defaultProps;

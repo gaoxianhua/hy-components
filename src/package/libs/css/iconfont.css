@@ -1,8 +1,8 @@
 @font-face {
   font-family: "iconfont"; /* Project id 4305932 */
-  src: url('iconfont.woff2?t=1742867873549') format('woff2'),
-       url('iconfont.woff?t=1742867873549') format('woff'),
-       url('iconfont.ttf?t=1742867873549') format('truetype');
+  src: url('iconfont.woff2?t=1745201408280') format('woff2'),
+       url('iconfont.woff?t=1745201408280') format('woff'),
+       url('iconfont.ttf?t=1745201408280') format('truetype');
 }
 
 .iconfont {
@@ -61,7 +61,7 @@
   content: "\e739";
 }
 
-.hy-icon-warning_fill:before {
+.hy-icon-warning-fill:before {
   content: "\e73d";
 }
 

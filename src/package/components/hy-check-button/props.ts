@@ -1,4 +1,4 @@
-import IProps from "./typing";
+import type IProps from "./typing";
 
 const defaultProps: IProps = {
   modelValue: "",
@@ -6,7 +6,7 @@ const defaultProps: IProps = {
   fieldNames: {
     label: "label",
     value: "value",
-    checked: "checked"
+    checked: "checked",
   },
   selectType: "checkbox",
   disabled: false,
@@ -14,7 +14,7 @@ const defaultProps: IProps = {
   gap: "10px",
   type: "primary",
   size: "medium",
-  shape: "square"
+  shape: "square",
 };
 
 export default defaultProps;

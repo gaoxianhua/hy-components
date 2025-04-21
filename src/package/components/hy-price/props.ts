@@ -1,4 +1,4 @@
-import IProps from "./typing";
+import type IProps from "./typing";
 
 const defaultProps: IProps = {
   text: "0.00",
@@ -7,7 +7,7 @@ const defaultProps: IProps = {
   textColor: "#FE3232",
   fontSize: 22,
   weight: 500,
-  slant: false
+  slant: false,
 };
 
 export default defaultProps;

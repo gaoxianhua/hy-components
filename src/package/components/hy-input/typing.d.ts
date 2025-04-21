@@ -8,8 +8,7 @@ export default interface IProps {
   /**
    * @description 输入框类型，见上方说明 （ 默认 'text' ）
    * */
-  type?: "text" | "idcard" | "number" | "digit" | "password";
-
+  type?: HyApp.InputType;
   /**
    * @description 如果 textarea 是在一个 position:fixed 的区域，需要显示指定属性 fixed 为 true，兼容性：微信小程序、百度小程序、字节跳动小程序、QQ小程序 （ 默认 false ）
    * */

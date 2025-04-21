@@ -55,7 +55,7 @@
 <script setup lang="ts">
 import { computed, onMounted, ref, toRefs, watch } from "vue";
 import defaultProps from "./props";
-import IProps from "./typing";
+import type IProps from "./typing";
 import dayjs from "dayjs/esm";
 import { error, padZero } from "../../utils";
 import { DateModeEnum } from "../../typing";
@@ -79,14 +79,14 @@ const {
   minHour,
   maxHour,
   minMinute,
-  maxMinute
+  maxMinute,
 } = toRefs(props);
 const emit = defineEmits([
   "close",
   "cancel",
   "confirm",
   "change",
-  "update:modelValue"
+  "update:modelValue",
 ]);
 
 // 原来的日期选择器不方便，这里增加一个hasInput选项支持类似element的自带输入框的功能。
@@ -100,7 +100,7 @@ const validModes = new Set([
   DateModeEnum.TIME,
   DateModeEnum.MONTH_DAY,
   DateModeEnum.HOUR_MINUTE,
-  DateModeEnum.MINUTE_SECOND
+  DateModeEnum.MINUTE_SECOND,
 ]);
 
 /**
@@ -110,7 +110,7 @@ const updateColumns = () => {
   const formatterFn = formatter.value || innerFormatter;
   // 获取各列的值，并且map后，对各列的具体值进行补0操作
   columns.value = getOriginColumns().map((column) =>
-    column.values.map((value) => formatterFn(column.type, value))
+    column.values.map((value) => formatterFn(column.type, value)),
   );
 };
 
@@ -122,7 +122,7 @@ const updateColumnValue = (value: string | number) => {
   updateColumns();
   // 延迟执行,等待u-picker组件列数据更新完后再设置选中值索引
   setTimeout(() => {
-    updateIndexs(value);
+    updateIndexes(value);
   }, 100);
 };
 
@@ -142,12 +142,12 @@ watch(
     if (newValue) {
       updateColumnValue(innerValue.value);
     }
-  }
+  },
 );
 
 watch(
   () => modelValue.value,
-  () => init()
+  () => init(),
 );
 
 const propsChange = computed(() => {
@@ -159,13 +159,13 @@ const propsChange = computed(() => {
     maxHour.value,
     minMinute.value,
     maxMinute.value,
-    filter.value
+    filter.value,
   ];
 });
 
 watch(
   () => propsChange.value,
-  () => init()
+  () => init(),
 );
 
 onMounted(() => {
@@ -254,7 +254,7 @@ const confirm = () => {
   }
   emit("confirm", {
     value: innerValue.value,
-    mode: mode.value
+    mode: mode.value,
   });
 };
 
@@ -287,12 +287,12 @@ const change = (e: any) => {
   if (validModes.has(mode.value) && mode.value !== DateModeEnum.MONTH_DAY) {
     // 根据value各列索引，从各列数组中，取出当前时间的选中值
     selectValue = `${intercept(values[0][indexs[0]])}:${intercept(
-      values[1][indexs[1]]
+      values[1][indexs[1]],
     )}`;
   } else if (mode.value === DateModeEnum.MONTH_DAY) {
     // 根据value各列索引，从各列数组中，取出当前时间的选中值
     selectValue = `${intercept(values[0][indexs[0]])}-${intercept(
-      values[1][indexs[1]]
+      values[1][indexs[1]],
     )}`;
   } else {
     // 将选择的值转为数值，比如'03'转为数值的3，'2019'转为数值的2019
@@ -325,15 +325,15 @@ const change = (e: any) => {
     // 微信小程序不能传递this实例，会因为循环引用而报错
     // picker: this.$refs.picker,
     // #endif
-    mode: mode.value
+    mode: mode.value,
   });
 };
 
 /**
  * @description 更新索引
  * */
-const updateIndexs = (value: number | string) => {
-  let values = [];
+const updateIndexes = (value: number | string) => {
+  let values: string[] = [];
   let timeArr: string[] = [];
   const formatterFn = formatter.value || innerFormatter;
 
@@ -343,7 +343,7 @@ const updateIndexs = (value: number | string) => {
       // 使用formatter格式化方法进行管道处理
       values = [
         formatterFn("hour", timeArr[0]),
-        formatterFn("minute", timeArr[1])
+        formatterFn("minute", timeArr[1]),
       ];
       break;
     case DateModeEnum.MONTH_DAY:
@@ -351,7 +351,7 @@ const updateIndexs = (value: number | string) => {
       // 使用formatter格式化方法进行管道处理
       values = [
         formatterFn("month", timeArr[0]),
-        formatterFn("day", timeArr[1])
+        formatterFn("day", timeArr[1]),
       ];
       break;
     case DateModeEnum.HOUR_MINUTE:
@@ -359,7 +359,7 @@ const updateIndexs = (value: number | string) => {
       // 使用formatter格式化方法进行管道处理
       values = [
         formatterFn("hour", timeArr[0]),
-        formatterFn("minute", timeArr[1])
+        formatterFn("minute", timeArr[1]),
       ];
       break;
     case DateModeEnum.MINUTE_SECOND:
@@ -367,14 +367,14 @@ const updateIndexs = (value: number | string) => {
       // 使用formatter格式化方法进行管道处理
       values = [
         formatterFn("minute", timeArr[0]),
-        formatterFn("second", timeArr[1])
+        formatterFn("second", timeArr[1]),
       ];
       break;
     default:
       values = [
         formatterFn("year", `${dayjs(value).year()}`),
         // 月份补0
-        formatterFn("month", padZero(dayjs(value).month() + 1))
+        formatterFn("month", padZero(dayjs(value).month() + 1)),
       ];
       if (mode.value === DateModeEnum.DATE) {
         // date模式，需要添加天列
@@ -386,7 +386,7 @@ const updateIndexs = (value: number | string) => {
           formatterFn("day", padZero(dayjs(value).date())),
           formatterFn("hour", padZero(dayjs(value).hour())),
           formatterFn("minute", padZero(dayjs(value).minute())),
-          formatterFn("second", padZero(dayjs(value).second()))
+          formatterFn("second", padZero(dayjs(value).second())),
         );
       }
       break;
@@ -396,7 +396,7 @@ const updateIndexs = (value: number | string) => {
     // 通过取大值，可以保证不会出现找不到索引的"-1"情况
     return Math.max(
       0,
-      column.findIndex((item: string) => item === values[index])
+      column.findIndex((item: string) => item === values[index]),
     );
   });
 };
@@ -456,47 +456,47 @@ const getRanges = () => {
     return [
       {
         type: "hour",
-        range: [props.minHour, props.maxHour]
+        range: [props.minHour, props.maxHour],
       },
       {
         type: "minute",
-        range: [props.minMinute, props.maxMinute]
-      }
+        range: [props.minMinute, props.maxMinute],
+      },
     ];
   }
   const { maxYear, maxDate, maxMonth, maxHour, maxMinute } = getBoundary(
     "max",
-    innerValue.value
+    innerValue.value,
   );
   const { minYear, minDate, minMonth, minHour, minMinute } = getBoundary(
     "min",
-    innerValue.value
+    innerValue.value,
   );
   const result = [
     {
       type: "year",
-      range: [minYear, maxYear]
+      range: [minYear, maxYear],
     },
     {
       type: "month",
-      range: [minMonth, maxMonth]
+      range: [minMonth, maxMonth],
     },
     {
       type: "day",
-      range: [minDate, maxDate]
+      range: [minDate, maxDate],
     },
     {
       type: "hour",
-      range: [minHour, maxHour]
+      range: [minHour, maxHour],
     },
     {
       type: "minute",
-      range: [minMinute, maxMinute]
+      range: [minMinute, maxMinute],
     },
     {
       type: "second",
-      range: [minMinute, maxMinute]
-    }
+      range: [minMinute, maxMinute],
+    },
   ];
   let arr = result;
   // 截取对应的列数
@@ -543,7 +543,7 @@ const getBoundary = (type: string, innerVal: string | number) => {
     [`${type}Month`]: month,
     [`${type}Date`]: date,
     [`${type}Hour`]: hour,
-    [`${type}Minute`]: minute
+    [`${type}Minute`]: minute,
   };
 };
 const onShowByClickInput = () => {

@@ -1,4 +1,4 @@
-import { CSSProperties } from "vue";
+import type { CSSProperties } from "vue";
 
 interface PickerColumnVo extends AnyObject {
   /**
@@ -32,6 +32,10 @@ export default interface IProps {
    * @description 弹窗弹出模式
    * */
   popupMode?: HyApp.LayoutType;
+  /**
+   * @description 分割数组条件
+   * */
+  separator?: string;
   /**
    * @description 是否显示顶部的操作栏（默认 true ）
    * */

@@ -7,7 +7,7 @@
         :style="radioStyle"
         :class="[
           `hy-radio-label--${iconPlacement}`,
-          borderBottom && placement === 'column' && 'hy-border-bottom'
+          borderBottom && placement === 'column' && 'hy-border-bottom',
         ]"
       >
         <view
@@ -19,12 +19,12 @@
           <slot
             name="icon"
             :iconColor="iconColor"
-            :iconSize="addUnit(iconSize)"
+            :iconSize="addUnit(sizeType[size] ?? iconSize)"
           >
             <HyIcon
               class="hy-radio__icon-wrap__icon"
               :name="IconConfig.CHECK_MASK"
-              :size="addUnit(iconSize)"
+              :size="addUnit(sizeType[size] ?? iconSize)"
               :color="iconColorCom(item.checked)"
             />
           </slot>
@@ -38,7 +38,7 @@
               class="hy-radio__text"
               :style="{
                 color: labelColor,
-                fontSize: labelSize
+                fontSize: addUnit(sizeType[size] ?? labelSize),
               }"
               >{{ item[fieldNames.label] }}</text
             >
@@ -50,10 +50,17 @@
 </template>
 
 <script setup lang="ts">
-import IProps from "./typing";
-import { CheckboxColumnsVo } from "../hy-check-button/typing";
+import type IProps from "./typing";
+import type { CheckboxColumnsVo } from "../hy-check-button/typing";
 import defaultProps from "./props";
-import { computed, CSSProperties, ref, toRefs, watch } from "vue";
+import {
+  computed,
+  type CSSProperties,
+  reactive,
+  ref,
+  toRefs,
+  watch,
+} from "vue";
 import { addUnit, bem, error } from "../../utils";
 import { IconConfig } from "../../config";
 
@@ -73,21 +80,27 @@ const {
   customStyle,
   borderBottom,
   placement,
-  iconColor
+  iconColor,
 } = toRefs(props);
 const emit = defineEmits(["change", "update:modelValue"]);
 
 const columns_1 = ref();
+const sizeType: AnyObject = reactive({
+  small: 14,
+  medium: 18,
+  large: 22,
+});
 
 watch(
   () => modelValue.value,
   (newValue) => {
     columns_1.value = columns.value.map((item: any) => {
-      item[fieldNames.value.checked] = newValue == item[fieldNames.value.value];
+      item[fieldNames.value.checked] =
+        newValue === item[fieldNames.value.value];
       return item;
     });
   },
-  { immediate: true }
+  { immediate: true },
 );
 
 const isDisabled = (disabledVal?: boolean): boolean =>
@@ -116,7 +129,7 @@ const radioStyle = computed(() => {
   const style: CSSProperties = {};
   if (borderBottom.value && placement.value === "row") {
     error(
-      "检测到您将borderBottom设置为true，需要同时将u-checkbox-group的placement设置为column才有效"
+      "检测到您将borderBottom设置为true，需要同时将u-checkbox-group的placement设置为column才有效",
     );
   }
   // 当父组件设置了显示下边框并且排列形式为纵向时，给内容和边框之间加上一定间隔
@@ -162,8 +175,8 @@ const iconWrapStyle = computed(() => {
       temp[fieldNames.value.checked] && !isDisabled(temp?.disabled)
         ? activeColor.value
         : inactiveColor.value;
-    style.width = addUnit(size.value);
-    style.height = addUnit(size.value);
+    style.width = addUnit(sizeType[size.value] ?? size.value);
+    style.height = addUnit(sizeType[size.value] ?? size.value);
     return style;
   };
 });

@@ -11,9 +11,9 @@
 </template>
 
 <script setup lang="ts">
-import { computed, CSSProperties, toRefs } from "vue";
+import { computed, type CSSProperties, toRefs } from "vue";
 import defaultProps from "./props";
-import IProps from "./typing";
+import type IProps from "./typing";
 import HyTransition from "../hy-transition/hy-transition.vue";
 
 const props = withDefaults(defineProps<IProps>(), defaultProps);
@@ -28,7 +28,7 @@ const overlayStyle = computed<CSSProperties>(() => {
     right: 0,
     zIndex: zIndex?.value,
     bottom: 0,
-    "background-color": `rgba(0, 0, 0, ${opacity.value})`
+    "background-color": `rgba(0, 0, 0, ${opacity.value})`,
   };
   return Object.assign(style, customStyle.value || {});
 });

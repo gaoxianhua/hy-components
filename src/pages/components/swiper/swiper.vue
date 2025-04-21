@@ -25,17 +25,19 @@
     ></hy-swiper>
   </view>
 
-  <view class="hy-title">指示点</view>
-  <hy-subsection :list="list_1" v-model="mode"></hy-subsection>
+  <view class="hy-setting__box">
+    <view class="hy-title">指示点</view>
+    <hy-subsection :list="list_1" v-model="mode"></hy-subsection>
 
-  <view class="hy-title">轮播图高度</view>
-  <hy-slider v-model="height" :max="500"></hy-slider>
+    <view class="hy-title">轮播图高度</view>
+    <hy-slider v-model="height" :max="500"></hy-slider>
 
-  <view class="hy-title">轮播图切换时间</view>
-  <hy-slider v-model="duration" :min="100" :max="1000"></hy-slider>
+    <view class="hy-title">轮播图切换时间</view>
+    <hy-slider v-model="duration" :min="100" :max="1000"></hy-slider>
 
-  <view class="hy-title">轮播图自动切换间隔</view>
-  <hy-slider v-model="interval" :min="1000" :max="5000"></hy-slider>
+    <view class="hy-title">轮播图自动切换间隔</view>
+    <hy-slider v-model="interval" :min="1000" :max="5000"></hy-slider>
+  </view>
 </template>
 
 <script setup lang="ts">

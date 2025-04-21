@@ -18,7 +18,8 @@
 <script setup lang="ts">
 import { toRefs, watch, ref } from "vue";
 import defaultProps from "./props";
-import IProps, { CheckboxColumnsVo } from "./typing";
+import type IProps from "./typing";
+import type { CheckboxColumnsVo } from "./typing";
 import HyTag from "../hy-tag/hy-tag.vue";
 
 const props = withDefaults(defineProps<IProps>(), defaultProps);
@@ -32,16 +33,21 @@ const columns_1 = ref<CheckboxColumnsVo[]>();
 
 watch(
   () => modelValue.value,
-  (newValue: string | (string | number)[]) => {
+  (newValue: string | number | (string | number)[]) => {
     if (!columns.value.length) return;
     columns_1.value = columns.value.map((item) => {
-      item[fieldNames.value.checked] = newValue.includes(
-        item[fieldNames.value.value] as string
-      );
+      if (Array.isArray(newValue)) {
+        item[fieldNames.value.checked] = newValue.includes(
+          item[fieldNames.value.value] as string,
+        );
+      } else {
+        item[fieldNames.value.checked] =
+          newValue === item[fieldNames.value.value];
+      }
       return item;
     });
   },
-  { immediate: true }
+  { immediate: true },
 );
 
 const onCheckbox = ({ name }: { name: number }) => {
@@ -52,7 +58,7 @@ const onCheckbox = ({ name }: { name: number }) => {
       "update:modelValue",
       columns.value
         .filter((item) => item[fieldNames.value.checked])
-        .map((item) => item[fieldNames.value.value])
+        .map((item) => item[fieldNames.value.value]),
     );
   } else {
     emit("update:modelValue", columns.value[name][fieldNames.value.value]);

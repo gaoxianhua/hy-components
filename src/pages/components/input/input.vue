@@ -1,0 +1,64 @@
+<template>
+  <view>
+    <view class="hy-title">基本使用</view>
+    <hy-input
+      v-model="value"
+      :shape="shape"
+      :border="border"
+      :type="type"
+    ></hy-input>
+
+    <view class="hy-title">icon</view>
+    <hy-input
+      v-model="value"
+      :prefixIcon="IconConfig.LOCK"
+      :suffix-icon="IconConfig.DOWN"
+      border="bottom"
+    ></hy-input>
+
+    <view class="hy-setting__box">
+      <view class="hy-title">形状</view>
+      <hy-subsection :list="list_1" v-model="shape"></hy-subsection>
+
+      <view class="hy-title">大小</view>
+      <hy-subsection :list="list_2" v-model="type"></hy-subsection>
+
+      <view class="hy-title">边框</view>
+      <hy-subsection :list="list_3" v-model="border"></hy-subsection>
+    </view>
+  </view>
+</template>
+
+<script setup lang="ts">
+import { reactive, ref } from "vue";
+
+import HyInput from "@/package/components/hy-input/hy-input.vue";
+import HySubsection from "@/package/components/hy-subsection/hy-subsection.vue";
+import { IconConfig } from "hy-app";
+
+const value = ref("");
+const shape = ref<HyApp.ShapeType>("square");
+const type = ref("text");
+const border = ref<HyApp.BorderType>("surround");
+
+const list_1 = reactive([
+  { name: "半圆", value: "circle" },
+  { name: "方形", value: "square" },
+]);
+
+const list_2 = reactive([
+  { name: "文本", value: "text" },
+  { name: "数字", value: "number" },
+  { name: "身份证id", value: "idcard" },
+  { name: "方形", value: "digit" },
+  { name: "密码", value: "password" },
+]);
+
+const list_3 = reactive([
+  { name: "四周边框", value: "surround" },
+  { name: "底部边框", value: "bottom" },
+  { name: "无边框", value: "none" },
+]);
+</script>
+
+<style scoped lang="scss"></style>

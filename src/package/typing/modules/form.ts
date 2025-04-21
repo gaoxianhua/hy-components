@@ -1,5 +1,5 @@
-import { DateModeEnum } from "./enum";
-import { CheckboxColumnsVo } from "../../components/hy-check-button/typing";
+import type { DateModeEnum } from "./enum";
+import type { CheckboxColumnsVo } from "../../components/hy-check-button/typing";
 
 /**
  * 类型
@@ -56,7 +56,7 @@ export enum FormTypeEnum {
   /**
    * 自定义
    * */
-  CUSTOM = "custom"
+  CUSTOM = "custom",
 }
 
 export interface FormColumnsType {

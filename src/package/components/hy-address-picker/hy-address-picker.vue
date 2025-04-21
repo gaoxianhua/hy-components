@@ -50,15 +50,13 @@
         <slot name="toolbar-bottom"> </slot>
       </template>
     </HyPicker>
-
-    <HyList container-height="" list=""></HyList>
   </view>
 </template>
 
 <script setup lang="ts">
 import { onMounted, ref, toRefs } from "vue";
 import defaultProps from "./props";
-import IProps from "./typing";
+import type IProps from "./typing";
 import address from "../../utils/address.json";
 
 // 组件
@@ -73,7 +71,7 @@ const emit = defineEmits([
   "cancel",
   "confirm",
   "change",
-  "update:modelValue"
+  "update:modelValue",
 ]);
 
 // 原来的日期选择器不方便，这里增加一个hasInput选项支持类似element的自带输入框的功能。
@@ -111,16 +109,16 @@ const updateColumnValue = (value: string) => {
     const addressArr = value.split(separator.value);
     // 查出省索引
     provinceIndex = address.findIndex((item) =>
-      areCitiesEqual(item.name, addressArr[0])
+      areCitiesEqual(item.name, addressArr[0]),
     );
     // 查出市索引
     cityIndex = address[provinceIndex].areas.findIndex((item) =>
-      areCitiesEqual(item.name, addressArr[1])
+      areCitiesEqual(item.name, addressArr[1]),
     );
 
     // 查出县/区索引
     countyIndex = address[provinceIndex].areas[cityIndex].areas.findIndex(
-      (item) => areCitiesEqual(item.name, addressArr[2])
+      (item) => areCitiesEqual(item.name, addressArr[2]),
     );
   } else {
     provinceIndex = 0;
@@ -130,12 +128,12 @@ const updateColumnValue = (value: string) => {
   // 省级数组
   const provinceData = address.map((item) => ({
     name: item.name,
-    code: item.code
+    code: item.code,
   }));
   // 市级数组
   const cityData = address[provinceIndex].areas.map((item) => ({
     name: item.name,
-    code: item.code
+    code: item.code,
   }));
   // 县/区级数组
   const areaData = address[provinceIndex].areas[cityIndex].areas;
@@ -188,7 +186,7 @@ const confirm = ({ value }: { value: Record<string, any>[] }) => {
   showByClickInput.value = false;
   emit("update:modelValue", inputValue.value);
   emit("confirm", {
-    value: inputValue.value
+    value: inputValue.value,
   });
 };
 
@@ -205,7 +203,7 @@ const change = (e: any) => {
     uPickerRef.value?.setColumnValues(1, children1);
     //更换 第二列数据
     const children2 = address[index].areas[indexs[1]].areas.map((item) => ({
-      ...item
+      ...item,
     }));
     uPickerRef.value?.setColumnValues(2, children2);
     //更换 第三列数据
@@ -213,14 +211,14 @@ const change = (e: any) => {
   if (columnIndex === 1) {
     //如果改变的是第二列
     const children3 = address[indexs[0]].areas[indexs[1]].areas.map((item) => ({
-      ...item
+      ...item,
     }));
     uPickerRef.value?.setColumnValues(2, children3);
   }
 
   // 发出change时间，value为当前选中的时间戳
   emit("change", {
-    ...e
+    ...e,
   });
 };
 

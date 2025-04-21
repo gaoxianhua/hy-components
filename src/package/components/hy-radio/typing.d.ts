@@ -1,5 +1,6 @@
 import type { CSSProperties } from "vue";
 import { CheckboxColumnsVo, IFieldNames } from "../hy-check-button/typing";
+import { HyApp } from "@/package/typing/modules/common";
 
 export default interface IProps {
   /**
@@ -25,7 +26,7 @@ export default interface IProps {
   /**
    * @description 整体的大小
    * */
-  size?: string | number;
+  size?: HyApp.SizeType | string | number;
   /**
    * @description 是否默认选中
    * */

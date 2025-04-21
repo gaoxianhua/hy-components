@@ -49,6 +49,15 @@ declare namespace HyApp {
    * */
   type SwiperIndicatorModeType = "line" | "dot";
   /**
+   * @description 输入框输入类型
+   * @desc text - 文本
+   * @desc idcard - 身份证id
+   * @desc number - 数字
+   * @desc digit - 数字输入框，不支持小数点和复数
+   * @desc password - 密码
+   * */
+  type InputType = "text" | "idcard" | "number" | "digit" | "password";
+  /**
    * @description 图片mode,详细见uniApp
    * */
   type ImageModeVo =

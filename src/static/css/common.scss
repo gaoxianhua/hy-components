@@ -13,3 +13,10 @@
 .hy-margin {
   padding: 10px 0 20px;
 }
+
+.hy-setting__box {
+  box-shadow: $hy-box-shadow;
+  margin: 120px $hy-border-margin-padding-base 0;
+  border-radius: $hy-border-radius-base;
+  padding: $hy-border-margin-padding-lg;
+}

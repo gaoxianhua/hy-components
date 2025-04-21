@@ -8,8 +8,8 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
-    HySlider: typeof import('hfyk-app')['HySlider']
-    HySubsection: typeof import('hfyk-app')['HySubsection']
-    HySwiper: typeof import('hfyk-app')['HySwiper']
+    HyCheckbox: typeof import('hfyk-app')['HyCheckbox']
+    HyInput: typeof import('hfyk-app')['HyInput']
+    HyRadio: typeof import('hfyk-app')['HyRadio']
   }
 }

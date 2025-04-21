@@ -43,9 +43,9 @@
 </template>
 
 <script setup lang="ts">
-import { computed, CSSProperties, ref, toRefs, watch } from "vue";
+import { computed, type CSSProperties, ref, toRefs, watch } from "vue";
 import defaultProps from "./props";
-import IProps from "./typing";
+import type IProps from "./typing";
 import { addUnit, getWindowInfo } from "../../utils";
 import { IconConfig } from "../../config";
 
@@ -64,7 +64,7 @@ const {
   bgColor,
   round,
   customStyle,
-  zoom
+  zoom,
 } = toRefs(props);
 const emit = defineEmits(["open", "close", "click", "update:show"]);
 
@@ -79,14 +79,14 @@ watch(
       // retryComputedComponentRect(children)
       // #endif
     }
-  }
+  },
 );
 
 const transitionStyle = computed(() => {
   const style: CSSProperties = {
     zIndex: zIndex.value,
     position: "fixed",
-    display: "flex"
+    display: "flex",
   };
   if (mode.value !== "center") {
     style[mode.value] = 0;
@@ -109,7 +109,7 @@ const transitionStyle = computed(() => {
         top: 0,
         left: 0,
         right: 0,
-        bottom: 0
+        bottom: 0,
       });
       break;
     default:

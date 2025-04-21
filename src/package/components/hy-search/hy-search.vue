@@ -4,9 +4,9 @@
     @tap="clickHandler"
     :style="[
       {
-        margin: margin
+        margin: margin,
       },
-      customStyle
+      customStyle,
     ]"
   >
     <view
@@ -14,7 +14,7 @@
       :style="{
         backgroundColor: bgColor,
         borderRadius: shape == 'circle' ? '100px' : '4px',
-        borderColor: borderColor
+        borderColor: borderColor,
       }"
     >
       <template v-if="$slots.label || label !== null">
@@ -53,9 +53,9 @@
             textAlign: inputAlign,
             color: color,
             backgroundColor: bgColor,
-            height: addUnit(height)
+            height: addUnit(height),
           },
-          inputStyle
+          inputStyle,
         ]"
       />
       <view
@@ -68,7 +68,7 @@
           size="11"
           color="#ffffff"
           :customStyle="{
-            lineHeight: '12px'
+            lineHeight: '12px',
           }"
         ></HyIcon>
       </view>
@@ -86,8 +86,8 @@
 <script setup lang="ts">
 import { computed, nextTick, toRefs, ref, watch } from "vue";
 import defaultProps from "./props";
-import IProps from "./typing";
-import { addUnit, sleep } from "../../utils";
+import type IProps from "./typing";
+import { sleep, addUnit } from "../../utils";
 import { IconConfig } from "../../config";
 import HyIcon from "../hy-icon/hy-icon.vue";
 
@@ -103,7 +103,7 @@ const emit = defineEmits([
   "confirm",
   "change",
   "focus",
-  "blur"
+  "blur",
 ]);
 
 const keyword = ref<string>("");
@@ -118,7 +118,7 @@ watch(
   (newValue: string) => {
     emit("update:modelValue", newValue);
     emit("change", newValue);
-  }
+  },
 );
 
 watch(
@@ -126,7 +126,7 @@ watch(
   (newValue: string) => {
     keyword.value = newValue;
   },
-  { immediate: true }
+  { immediate: true },
 );
 
 const showActionBtn = computed<boolean>(() => {

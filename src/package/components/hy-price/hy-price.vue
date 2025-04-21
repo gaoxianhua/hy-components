@@ -8,7 +8,7 @@
     <text
       class="hy-price__text"
       :style="[
-        { 'font-size': `${Number(fontSize) + Number(fontSize) * 0.8}rpx` }
+        { 'font-size': `${Number(fontSize) + Number(fontSize) * 0.8}rpx` },
       ]"
       >{{ priceOne[0] }}
     </text>
@@ -19,9 +19,9 @@
 </template>
 
 <script setup lang="ts">
-import { computed, CSSProperties, toRefs } from "vue";
+import { computed, type CSSProperties, toRefs } from "vue";
 import defaultProps from "./props";
-import IProps from "./typing";
+import type IProps from "./typing";
 import { addUnit } from "../../utils";
 
 const props = withDefaults(defineProps<IProps>(), defaultProps);
@@ -36,7 +36,7 @@ const priceStyle = computed<CSSProperties>(() => {
     color: textColor.value,
     fontWeight: weight.value,
     fontStyle: slant.value ? "oblique" : "",
-    fontSize: addUnit(fontSize.value)
+    fontSize: addUnit(fontSize.value),
   };
 
   return Object.assign(style, customStyle);

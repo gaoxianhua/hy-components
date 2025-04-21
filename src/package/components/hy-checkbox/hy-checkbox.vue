@@ -3,7 +3,7 @@
     <template v-for="(item, i) in columns_1" :key="i">
       <view
         class="hy-checkbox cursor-pointer"
-        @tap.stop="wrapperClickHandler"
+        @tap.stop="wrapperClickHandler($event, item)"
         :style="checkboxStyle"
         :class="[
           `hy-checkbox-label--${iconPlacement}`,
@@ -24,7 +24,7 @@
             <HyIcon
               class="hy-checkbox__icon-wrap__icon"
               :name="IconConfig.CHECK_MASK"
-              :size="addUnit(iconSize)"
+              :size="addUnit(sizeType[size] ?? iconSize)"
               :color="iconColor || '#ffffff'"
             />
           </slot>
@@ -37,7 +37,7 @@
             <text
               :style="{
                 color: labelColor,
-                fontSize: labelSize,
+                fontSize: addUnit(sizeType[size] ?? labelSize),
               }"
               >{{ item[fieldNames.label] }}</text
             >
@@ -52,7 +52,7 @@
 import defaultProps from "./props";
 import type { CheckboxColumnsVo } from "./typing";
 import type IProps from "./typing";
-import { computed, toRefs, watch, ref } from "vue";
+import { computed, toRefs, watch, ref, reactive } from "vue";
 import type { CSSProperties } from "vue";
 import { addUnit, bem, error } from "../../utils";
 import { IconConfig } from "../../config";
@@ -76,6 +76,11 @@ const {
 const emit = defineEmits(["change", "update:modelValue"]);
 
 const columns_1 = ref();
+const sizeType: AnyObject = reactive({
+  small: 14,
+  medium: 18,
+  large: 22,
+});
 
 watch(
   () => modelValue.value,
@@ -147,8 +152,8 @@ const iconWrapStyle = computed(() => {
       temp[fieldNames.value.checked] && !isDisabled(temp?.disabled)
         ? activeColor.value
         : inactiveColor.value;
-    style.width = addUnit(size.value);
-    style.height = addUnit(size.value);
+    style.width = addUnit(sizeType[size.value] ?? size.value);
+    style.height = addUnit(sizeType[size.value] ?? size.value);
     return style;
   };
 });
@@ -162,6 +167,9 @@ const iconClickHandler = (e: Event, temp: CheckboxColumnsVo) => {
     setRadioCheckedStatus(temp);
   }
 };
+/**
+ * @description 点击整行
+ * */
 const wrapperClickHandler = (e: Event, temp: CheckboxColumnsVo) => {
   e.stopPropagation();
   if (!isDisabled(temp?.disabled)) {

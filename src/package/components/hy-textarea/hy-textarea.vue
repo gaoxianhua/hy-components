@@ -36,7 +36,7 @@
     <text
       class="hy-textarea__count"
       :style="{
-        'background-color': disabled ? 'transparent' : '#fff'
+        'background-color': disabled ? 'transparent' : '#fff',
       }"
       v-if="count"
       >{{ innerValue.length }}/{{ maxlength }}</text
@@ -46,8 +46,15 @@
 </template>
 
 <script setup lang="ts">
-import { computed, CSSProperties, ref, toRefs, watch, nextTick } from "vue";
-import IProps from "./typing";
+import {
+  computed,
+  type CSSProperties,
+  ref,
+  toRefs,
+  watch,
+  nextTick,
+} from "vue";
+import type IProps from "./typing";
 import defaultProps from "./props";
 import { ColorConfig } from "../../config";
 import { addUnit } from "../../utils";
@@ -61,7 +68,7 @@ const emit = defineEmits([
   "blur",
   "change",
   "confirm",
-  "keyboardheightchange"
+  "keyboardheightchange",
 ]);
 
 // 输入框的值
@@ -91,7 +98,7 @@ watch(
     // 重置changeFromInner的值为false，标识下一次引起默认为外部引起的
     changeFromInner.value = false;
   },
-  { immediate: true }
+  { immediate: true },
 );
 
 // 组件的类名

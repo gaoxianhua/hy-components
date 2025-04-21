@@ -1,4 +1,4 @@
-import IProps from "./typing";
+import type IProps from "./typing";
 const defaultProps: IProps = {
   modelValue: "",
   placeholder: "",
@@ -20,7 +20,7 @@ const defaultProps: IProps = {
   holdKeyboard: false,
   maxlength: 140,
   border: "surround",
-  formatter: null
+  formatter: null,
 };
 
 export default defaultProps;

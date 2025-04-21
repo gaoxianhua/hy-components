@@ -1,4 +1,4 @@
-import IProps from "./typing";
+import type IProps from "./typing";
 import { ColorConfig } from "../../config";
 
 const defaultProps: IProps = {
@@ -11,6 +11,6 @@ const defaultProps: IProps = {
   activeValue: true,
   inactiveValue: false,
   asyncChange: false,
-  space: 0
+  space: 0,
 };
 export default defaultProps;

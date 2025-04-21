@@ -74,6 +74,83 @@
             "navigationBarTitleText": "轮播图",
             "enablePullDownRefresh": false
           }
+        },
+        {
+          "path": "picker/picker",
+          "style": {
+            "navigationBarTitleText": "选择器",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "datetimePicker/datetimePicker",
+          "style": {
+            "navigationBarTitleText": "时间选择器",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "addressPicker/addressPicker",
+          "style": {
+            "navigationBarTitleText": "地址选择器",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "search/search",
+          "style": {
+            "navigationBarTitleText": "搜索",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "rate/rate",
+          "style": {
+            "navigationBarTitleText": "评分",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "numberBox/numberBox",
+          "style": {
+            "navigationBarTitleText": "步进器",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "input/input",
+          "style": {
+            "navigationBarTitleText": "输入框",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "textarea/textarea",
+          "style": {
+            "navigationBarTitleText": "文本域",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "checkButton/checkButton",
+          "style": {
+            "navigationBarTitleText": "按钮选择",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "checkbox/checkbox",
+          "style": {
+            "navigationBarTitleText": "复选框",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "radio/radio",
+          "style": {
+            "navigationBarTitleText": "单选框",
+            "enablePullDownRefresh": false
+          }
         }
       ]
     }
@@ -84,10 +161,10 @@
     "navigationBarBackgroundColor": "#F8F8F8",
     "backgroundColor": "#F8F8F8"
   },
-    "easycom": {
-      "custom": {
-//        "^hy-(.*)": "hfyk-app/components/hy-$1/hy-$1.vue",
-        "^up-(.*)": "uview-plus/components/u-$1/u-$1.vue"
-      }
+  "easycom": {
+    "custom": {
+      //        "^hy-(.*)": "hfyk-app/components/hy-$1/hy-$1.vue",
+      "^up-(.*)": "uview-plus/components/u-$1/u-$1.vue"
     }
+  }
 }

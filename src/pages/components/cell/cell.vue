@@ -1,21 +1,23 @@
 <template>
   <view>
     <hy-cell
-      title="设置icon"
+      title="设置cell"
       :list="list"
       :arrange="arrange"
       :size="size"
       :arrowDirection="arrowDirection"
     ></hy-cell>
 
-    <view class="hy-title">value定位</view>
-    <hy-subsection :list="list_1" v-model="arrange"></hy-subsection>
+    <view class="hy-setting__box">
+      <view class="hy-title">value定位</view>
+      <hy-subsection :list="list_1" v-model="arrange"></hy-subsection>
 
-    <view class="hy-title">单元格大小</view>
-    <hy-subsection :list="list_2" v-model="size"></hy-subsection>
+      <view class="hy-title">单元格大小</view>
+      <hy-subsection :list="list_2" v-model="size"></hy-subsection>
 
-    <view class="hy-title">右侧icon方向</view>
-    <hy-subsection :list="list_3" v-model="arrowDirection"></hy-subsection>
+      <view class="hy-title">右侧icon方向</view>
+      <hy-subsection :list="list_3" v-model="arrowDirection"></hy-subsection>
+    </view>
   </view>
 </template>
 

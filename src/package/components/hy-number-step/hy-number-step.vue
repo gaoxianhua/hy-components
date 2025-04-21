@@ -1,7 +1,17 @@
 <template>
   <view class="hy-number-box">
+    <!-- 减号 -->
     <view
-      v-if="showMinus && !hideMinus"
+      v-if="showMinus && !hideMinus && $slots.minus"
+      class="hy-number-box__slot cursor-pointer"
+      @tap.stop="clickHandler('minus')"
+      @touchstart="onTouchStart('minus')"
+      @touchend.stop="onClearTimeout"
+    >
+      <slot name="minus" />
+    </view>
+    <view
+      v-else-if="showMinus && !hideMinus"
       @tap.stop="clickHandler('minus')"
       @touchstart="onTouchStart('minus')"
       @touchend.stop="onClearTimeout"
@@ -10,20 +20,19 @@
       :class="[
         { 'hy-number-box__minus--disabled': isDisabled('minus') },
         'hy-number-box__minus',
-        'cursor-pointer'
+        'cursor-pointer',
       ]"
       :style="buttonStyle('minus')"
     >
-      <slot name="minus">
-        <HyICon
-          :name="IconConfig.MINUS"
-          :color="isDisabled('minus') ? '#c8c9cc' : '#323233'"
-          size="15"
-          bold
-          :customStyle="iconStyle"
-        ></HyICon>
-      </slot>
+      <HyICon
+        :name="IconConfig.MINUS"
+        :color="isDisabled('minus') ? '#c8c9cc' : '#323233'"
+        size="15"
+        bold
+        :customStyle="iconStyle"
+      ></HyICon>
     </view>
+    <!-- 减号 -->
 
     <template v-if="!hideMinus">
       <slot name="input" :record="currentValue">
@@ -33,9 +42,9 @@
           :cursor-spacing="getCursorSpacing"
           :class="[
             {
-              'hy-number-box__input--disabled': disabled || disabledInput
+              'hy-number-box__input--disabled': disabled || disabledInput,
             },
-            'hy-number-box__input'
+            'hy-number-box__input',
           ]"
           :value="currentValue"
           @blur="onBlur"
@@ -51,9 +60,9 @@
           :cursor-spacing="getCursorSpacing"
           :class="[
             {
-              'hy-number-box__input--disabled': disabled || disabledInput
+              'hy-number-box__input--disabled': disabled || disabledInput,
             },
-            'hy-number-box__input'
+            'hy-number-box__input',
           ]"
           v-model="currentValue"
           @blur="onBlur"
@@ -65,8 +74,19 @@
         <!-- #endif -->
       </slot>
     </template>
+
+    <!-- 加号 -->
     <view
-      v-if="showPlus"
+      class="hy-number-box__slot cursor-pointer"
+      @tap.stop="clickHandler('plus')"
+      @touchstart="onTouchStart('plus')"
+      v-if="showPlus && $slots.plus"
+      @touchend.stop="onClearTimeout"
+    >
+      <slot name="plus" />
+    </view>
+    <view
+      v-else-if="showPlus"
       @tap.stop="clickHandler('plus')"
       @touchstart="onTouchStart('plus')"
       @touchend.stop="onClearTimeout"
@@ -75,35 +95,34 @@
       :class="[
         { 'hy-number-box__minus--disabled': isDisabled('plus') },
         'hy-number-box__plus',
-        'cursor-pointer'
+        'cursor-pointer',
       ]"
       :style="[buttonStyle('plus')]"
     >
-      <slot name="plus">
-        <HyICon
-          :name="IconConfig.PLUS"
-          :color="isDisabled('plus') ? '#c8c9cc' : '#323233'"
-          size="15"
-          bold
-          :customStyle="iconStyle"
-        ></HyICon>
-      </slot>
+      <HyICon
+        :name="IconConfig.PLUS"
+        :color="isDisabled('plus') ? '#c8c9cc' : '#323233'"
+        size="15"
+        bold
+        :customStyle="iconStyle"
+      ></HyICon>
     </view>
+    <!-- 加号 -->
   </view>
 </template>
 
 <script setup lang="ts">
 import {
   computed,
-  CSSProperties,
+  type CSSProperties,
   toRefs,
   ref,
   watch,
   onMounted,
-  nextTick
+  nextTick,
 } from "vue";
 import defaultProps from "./props";
-import IProps from "./typing";
+import type IProps from "./typing";
 import { addUnit } from "../../utils";
 import { IconConfig } from "../../config";
 import HyICon from "../hy-icon/hy-icon.vue";
@@ -130,7 +149,7 @@ const {
   disableMinus,
   longPress,
   asyncChange,
-  step
+  step,
 } = toRefs(props);
 const emit = defineEmits([
   "update:modelValue",
@@ -139,7 +158,7 @@ const emit = defineEmits([
   "overLimit",
   "change",
   "plus",
-  "minus"
+  "minus",
 ]);
 type StepType = "plus" | "minus";
 
@@ -173,7 +192,7 @@ const watchChange = computed(() => {
 
 watch(
   () => watchChange.value,
-  () => check()
+  () => check(),
 );
 watch(
   () => modelValue.value,
@@ -182,7 +201,7 @@ watch(
       currentValue.value = format(modelValue.value);
     }
   },
-  { immediate: true }
+  { immediate: true },
 );
 
 const hideMinus = computed(() => {
@@ -200,7 +219,7 @@ const buttonStyle = computed(() => {
       width: addUnit(buttonWidth.value),
       height: addUnit(buttonSize.value),
       color: color.value,
-      borderRadius: buttonRadius.value
+      borderRadius: buttonRadius.value,
     };
     if (isDisabled.value(type)) {
       style.backgroundColor = "#f7f8fa";
@@ -215,7 +234,7 @@ const inputStyle = computed<CSSProperties>(() => {
     color: color.value,
     backgroundColor: inputBgColor.value || bgColor.value,
     height: addUnit(buttonSize.value),
-    width: addUnit(inputWidth.value)
+    width: addUnit(inputWidth.value),
   };
 });
 

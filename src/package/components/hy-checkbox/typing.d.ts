@@ -1,5 +1,6 @@
 import type { CSSProperties } from "vue";
-import { CheckboxColumnsVo, IFieldNames } from "../hy-check-button/typing";
+import type { CheckboxColumnsVo, IFieldNames } from "../hy-check-button/typing";
+import { HyApp } from "@/package/typing/modules/common";
 
 export default interface IProps {
   /**
@@ -21,7 +22,7 @@ export default interface IProps {
   /**
    * @description 复选框大小
    * */
-  size?: string | number;
+  size?: HyApp.SizeType | string | number;
   /**
    * @description 是否禁用
    * */
@@ -42,10 +43,6 @@ export default interface IProps {
    * @description 图标颜色
    * */
   iconColor?: string;
-  /**
-   * @description label提示文字，因为nvue下，直接slot进来的文字，由于特殊的结构，无法修改样式
-   * */
-  label?: string;
   /**
    * @description label的字体大小，px单位
    * */

@@ -366,7 +366,10 @@ const random = (min: number | string, max: number | string): number => {
 const range = (min = 0, max = 0, value = 0) => {
   return Math.max(min, Math.min(max, Number(value)));
 };
-
+let instance: any;
+// #ifndef H5
+instance = getCurrentInstance();
+// #endif
 /**
  * 查询节点信息
  * 目前此方法在支付宝小程序中无法获取组件跟接点的尺寸，为支付宝的bug(2020-07-21)
@@ -375,9 +378,13 @@ const range = (min = 0, max = 0, value = 0) => {
 const getRect = (
   selector: string,
   all?: boolean,
+  ins?: any,
 ): Promise<UniApp.NodeInfo | UniApp.NodeInfo[]> => {
-  const instance = getCurrentInstance();
   return new Promise((resolve) => {
+    // TODO: 在微信小程序里，因为utils文件里面获取不到instance值所以必须通过ins这个传过来
+    // #ifndef H5
+    instance = instance || ins;
+    // #endif
     // #ifndef APP-NVUE
     uni
       .createSelectorQuery()

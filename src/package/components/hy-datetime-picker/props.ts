@@ -1,4 +1,4 @@
-import IProps from "./typing";
+import type IProps from "./typing";
 import { DateModeEnum } from "../../typing";
 
 const defaultProps: IProps = {
@@ -30,7 +30,7 @@ const defaultProps: IProps = {
   format: "",
   placeholder: "请选择日期",
   disabledColor: "#F5F5F5",
-  toolbarRightSlot: false
+  toolbarRightSlot: false,
 };
 
 export default defaultProps;

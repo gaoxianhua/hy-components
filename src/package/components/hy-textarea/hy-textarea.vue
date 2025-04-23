@@ -187,50 +187,5 @@ const onKeyboardheightchange = (e: Event) => {
 </script>
 
 <style lang="scss" scoped>
-@import "../../libs/css/mixin.scss";
-@import "../../theme.scss";
-
-.hy-textarea {
-  border-radius: 4px;
-  background-color: #fff;
-  position: relative;
-  @include flex;
-  flex: 1;
-  padding: 9px;
-
-  &--radius {
-    border-radius: 4px;
-  }
-
-  &--no-radius {
-    border-radius: 0;
-  }
-
-  &--disabled {
-    background-color: $hy-color-disable-bg;
-  }
-
-  &__field {
-    flex: 1;
-    font-size: 15px;
-    color: #606266ff;
-    width: 100%;
-  }
-
-  &__count {
-    position: absolute;
-    right: 5px;
-    bottom: 2px;
-    font-size: 12px;
-    color: $hy-tips-color;
-    background-color: #ffffff;
-    padding: 1px 4px;
-  }
-}
-.hy-border {
-  border: $hy-border-line;
-  &__bottom {
-    border-bottom: $hy-border-line;
-  }
-}
+@import "./index.scss";
 </style>

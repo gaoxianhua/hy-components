@@ -30,12 +30,12 @@ const backTopStyle = computed<CSSProperties>(() => {
     width: "40px",
     height: "40px",
     position: "fixed",
-    zIndex: 10
+    zIndex: 10,
   };
 });
 const contentStyle = computed<CSSProperties>(() => {
   const style: CSSProperties = {
-    borderRadius: mode.value === "circle" ? "50%" : "4px"
+    borderRadius: mode.value === "circle" ? "50%" : "4px",
   };
   return Object.assign(style, customStyle.value);
 });
@@ -45,27 +45,12 @@ const show = computed<boolean>(() => {
 const backToTop = () => {
   uni.pageScrollTo({
     scrollTop: 0,
-    duration: duration.value
+    duration: duration.value,
   });
   emit("click");
 };
 </script>
 
 <style lang="scss" scoped>
-@import "../../libs/css/mixin.scss";
-
-.hy-back-top {
-  @include flex;
-  flex-direction: column;
-  align-items: center;
-  flex: 1;
-  height: 100%;
-  justify-content: center;
-  background-color: #e1e1e1;
-
-  &__tips {
-    font-size: 12px;
-    transform: scale(0.8);
-  }
-}
+@use "./index.scss";
 </style>

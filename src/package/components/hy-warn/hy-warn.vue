@@ -13,8 +13,8 @@
         class="hy-alert__content"
         :style="[
           {
-            paddingRight: closable ? '20px' : 0
-          }
+            paddingRight: closable ? '20px' : 0,
+          },
         ]"
       >
         <text
@@ -23,13 +23,13 @@
           :style="[
             {
               fontSize: addUnit(fontSize),
-              textAlign: center ? 'center' : 'left'
-            }
+              textAlign: center ? 'center' : 'left',
+            },
           ]"
           :class="[
             effect === 'dark'
               ? 'hy-alert__text--dark'
-              : `hy-alert__text--${type}--light`
+              : `hy-alert__text--${type}--light`,
           ]"
           >{{ title }}</text
         >
@@ -39,13 +39,13 @@
           :style="[
             {
               fontSize: addUnit(fontSize),
-              textAlign: center ? 'center' : 'left'
-            }
+              textAlign: center ? 'center' : 'left',
+            },
           ]"
           :class="[
             effect === 'dark'
               ? 'hy-alert__text--dark'
-              : `hy-alert__text--${type}--light`
+              : `hy-alert__text--${type}--light`,
           ]"
           >{{ description }}</text
         >
@@ -116,113 +116,5 @@ const closeHandler = () => {
 </script>
 
 <style lang="scss" scoped>
-@import "../../libs/css/mixin.scss";
-@import "../../theme.scss";
-
-.hy-alert {
-  position: relative;
-  background-color: $hy-primary;
-  padding: 8px 10px;
-  @include flex(row);
-  align-items: center;
-  border-radius: 4px;
-
-  &--primary--dark {
-    background-color: $hy-primary;
-  }
-
-  &--primary--light {
-    background-color: #ecf5ff;
-  }
-
-  &--error--dark {
-    background-color: $hy-error;
-  }
-
-  &--error--light {
-    background-color: #fef0f0;
-  }
-
-  &--success--dark {
-    background-color: $hy-success;
-  }
-
-  &--success--light {
-    background-color: #f5fff0;
-  }
-
-  &--warning--dark {
-    background-color: $hy-warning;
-  }
-
-  &--warning--light {
-    background-color: #fdf6ec;
-  }
-
-  &--info--dark {
-    background-color: $hy-info;
-  }
-
-  &--info--light {
-    background-color: #f4f4f5;
-  }
-
-  &__icon {
-    margin-right: 5px;
-  }
-
-  &__content {
-    @include flex(column);
-    flex: 1;
-
-    &__title {
-      font-size: 14px;
-      font-weight: bold;
-      color: #fff;
-      margin-bottom: 2px;
-    }
-
-    &__desc {
-      font-size: 14px;
-      flex-wrap: wrap;
-      color: #fff;
-    }
-  }
-
-  &__title--dark,
-  &__desc--dark {
-    color: #ffffff;
-  }
-
-  &__text--primary--light,
-  &__text--primary--light {
-    color: $hy-primary;
-  }
-
-  &__text--success--light,
-  &__text--success--light {
-    color: $hy-success;
-  }
-
-  &__text--warning--light,
-  &__text--warning--light {
-    color: $hy-warning;
-  }
-
-  &__text--error--light,
-  &__text--error--light {
-    color: $hy-error;
-  }
-
-  &__text--info--light,
-  &__text--info--light {
-    color: $hy-info;
-  }
-
-  &__close {
-    position: absolute;
-    top: 11px;
-    right: 10px;
-  }
-}
+@import "./index.scss";
 </style>

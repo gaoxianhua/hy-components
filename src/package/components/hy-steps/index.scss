@@ -1,0 +1,131 @@
+@use "../../theme.scss" as *;
+@use "../../libs/css/mixin.scss" as *;
+
+
+.hy-steps {
+  @include flex;
+
+  &--column {
+    flex-direction: column;
+  }
+
+  &--row {
+    flex-direction: row;
+    flex: 1;
+    /* #ifdef MP */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    /* #endif */
+  }
+
+  &-item {
+    flex: 1;
+    @include flex;
+
+    &--row {
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+    }
+
+    &--column {
+      position: relative;
+      flex-direction: row;
+      justify-content: flex-start;
+      padding-bottom: 5px;
+    }
+
+    &__wrapper {
+      @include flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      background-color: #fff;
+      border-radius: $hy-border-radius-semicircle;
+
+      &--column {
+        width: 20px;
+        height: 20px;
+
+        &--dot {
+          height: 20px;
+          width: 20px;
+        }
+      }
+
+      &--row {
+        width: 20px;
+        height: 20px;
+
+        &--dot {
+          width: 20px;
+          height: 20px;
+        }
+      }
+
+      &__circle {
+        width: 20px;
+        height: 20px;
+        /* #ifndef APP-NVUE */
+        box-sizing: border-box;
+        flex-shrink: 0;
+        /* #endif */
+        border-radius: $hy-border-radius-semicircle;
+        border: 1px solid $hy-tips-color;
+        @include flex(row);
+        align-items: center;
+        justify-content: center;
+        transition: background-color 0.3s;
+
+        &__text {
+          color: $hy-tips-color;
+          font-size: 11px;
+          @include flex(row);
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          line-height: 11px;
+        }
+      }
+
+      &__dot {
+        width: 10px;
+        height: 10px;
+        border-radius: $hy-border-radius-semicircle;
+        background-color: $hy-color-subtitle;
+      }
+    }
+
+    &__content {
+      @include flex;
+      flex: 1;
+
+      &--row {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      &--column {
+        flex-direction: column;
+        justify-content: flex-start;
+        margin-left: $hy-border-margin-padding-sm;
+        min-height: 60px;
+      }
+    }
+
+    &__line {
+      position: absolute;
+      background: $hy-tips-color;
+
+      &--row {
+        top: $hy-border-margin-padding-base;
+        height: 1px;
+      }
+
+      &--column {
+        width: 1px;
+        left: $hy-border-margin-padding-base;
+      }
+    }
+  }
+}

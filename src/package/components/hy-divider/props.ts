@@ -1,4 +1,4 @@
-import IProps from "./typing";
+import type IProps from "./typing";
 import { IconConfig } from "../../config";
 
 const defaultProps: IProps = {
@@ -15,7 +15,7 @@ const defaultProps: IProps = {
   loadingText: "正在加载...",
   noMoreText: "没有更多了",
   marginTop: "0",
-  marginBottom: "0"
+  marginBottom: "0",
 };
 
 export default defaultProps;

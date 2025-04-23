@@ -27,13 +27,13 @@
     :class="bemClass"
   >
     <template v-if="loading">
-      <hy-icon
+      <HyIcon
         :mode="loadingMode"
         :is-rotate="true"
         :name="IconConfig.LOADING"
-        :size="loadingSize * 1.15"
+        :size="loadingSize"
         :color="loadingColor"
-      ></hy-icon>
+      ></HyIcon>
       <text
         class="hy-button__loading-text"
         :style="[{ fontSize: textSize + 'px' }]"
@@ -41,13 +41,13 @@
       >
     </template>
     <template v-else>
-      <hy-icon
+      <HyIcon
         v-if="icon"
         :name="icon"
         :color="iconColorCom"
         :size="textSize * 1.35"
         :customStyle="{ marginRight: '2px' }"
-      ></hy-icon>
+      ></HyIcon>
       <slot>
         <text
           class="hy-button__text"
@@ -169,7 +169,7 @@ const bemClass = computed(() => {
 const loadingColor = computed(() => {
   if (plain.value) {
     // 如果有设置color值，则用color值，否则使用type主题颜色
-    return color.value ? color.value : (ColorConfig as any)[type.value];
+    return color.value ? color.value : textColor;
   }
   if (type.value === "info") {
     return "#c9c9c9";
@@ -182,7 +182,7 @@ const iconColorCom = computed((): string => {
   // u-icon的color能接受一个主题颜色的值
   if (iconColor.value) return iconColor.value;
   if (plain.value) {
-    return color.value ? color.value : type.value;
+    return color.value ? color.value : textColor;
   } else {
     return type.value === "info" ? "#000000" : "#ffffff";
   }
@@ -213,6 +213,9 @@ const baseColor = computed((): CSSProperties => {
       style.borderWidth = "1px";
       style.borderStyle = "solid";
     }
+  } else {
+    // 针对自定义了color颜色的情况，镂空状态下，就是用自定义的颜色
+    style.color = plain.value ? textColor : "";
   }
   return style;
 });
@@ -236,7 +239,7 @@ const nvueTextStyle = computed((): CSSProperties => {
 const textSize = computed((): number => {
   let fontSize = 14;
   if (size.value === "large") fontSize = 16;
-  if (size.value === "normal") fontSize = 14;
+  if (size.value === "medium") fontSize = 14;
   if (size.value === "small") fontSize = 12;
   if (size.value === "mini") fontSize = 10;
   return fontSize;
@@ -275,120 +278,5 @@ const agreeprivacyauthorization = (e: any) => {
 </script>
 
 <style lang="scss" scoped>
-@import "../../libs/css/mixin.scss";
-@import "../../theme.scss";
-
-.hy-button {
-  height: 40px;
-  position: relative;
-  align-items: center;
-  justify-content: center;
-  @include flex;
-  /* #ifndef APP-NVUE */
-  box-sizing: border-box;
-  /* #endif */
-  flex-direction: row;
-
-  &__text {
-    font-size: 15px;
-  }
-
-  &__loading-text {
-    font-size: 15px;
-    margin-left: 4px;
-  }
-
-  &--large {
-    /* #ifndef APP-NVUE */
-    width: 100%;
-    /* #endif */
-    height: 50px;
-    padding: 0 15px;
-  }
-
-  &--medium {
-    padding: 0 12px;
-    font-size: 14px;
-  }
-
-  &--small {
-    /* #ifndef APP-NVUE */
-    min-width: 60px;
-    /* #endif */
-    height: 30px;
-    padding: 0 8px;
-    font-size: 12px;
-  }
-
-  &--mini {
-    height: 22px;
-    font-size: 10px;
-    /* #ifndef APP-NVUE */
-    min-width: 50px;
-    /* #endif */
-    padding: 0 8px;
-  }
-
-  &--disabled {
-    opacity: 0.5;
-  }
-
-  &--info {
-    color: #323233;
-    background-color: #fff;
-    border: 1px solid #ebedf0;
-  }
-
-  &--success {
-    color: #fff;
-    background-color: $hy-success;
-    border: 1px solid $hy-success;
-  }
-
-  &--primary {
-    color: #fff;
-    background-color: $hy-primary;
-    border: 1px solid $hy-primary;
-  }
-
-  &--error {
-    color: #fff;
-    background-color: $hy-error;
-    border: 1px solid $hy-error;
-  }
-
-  &--warning {
-    color: #fff;
-    background-color: $hy-warning;
-    border: 1px solid $hy-warning;
-  }
-
-  &--block {
-    @include flex;
-    width: 100%;
-  }
-
-  &--circle {
-    border-radius: 100px;
-  }
-
-  &--square {
-    border-radius: 3px;
-  }
-
-  &__icon {
-    min-width: 1em;
-    line-height: inherit !important;
-    vertical-align: top;
-  }
-
-  &--plain {
-    color: v-bind(textColor);
-    background-color: #fff;
-  }
-
-  &--hairline {
-    border-width: 0.5;
-  }
-}
+@import "./index.scss";
 </style>

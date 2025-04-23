@@ -25,7 +25,7 @@ export const bem = (
   name: string,
   props: Record<string, any>,
   fixed: string[],
-  change?: string[]
+  change?: string[],
 ): string | string[] => {
   // 类名前缀
   const prefix = `hy-${name}--`;
@@ -141,7 +141,7 @@ function pickExclude(obj, keys) {
   // 某些情况下，type可能会为
   if (
     !["[object Object]", "[object File]"].includes(
-      Object.prototype.toString.call(obj)
+      Object.prototype.toString.call(obj),
     )
   ) {
     return {};
@@ -163,7 +163,7 @@ function formatImage(res) {
     size: item.size,
     // #ifdef H5
     name: item.name,
-    file: item
+    file: item,
     // #endif
   }));
 }
@@ -178,9 +178,9 @@ function formatVideo(res) {
       size: res.size,
       // #ifdef H5
       name: res.name,
-      file: res
+      file: res,
       // #endif
-    }
+    },
   ];
 }
 
@@ -192,7 +192,7 @@ function formatMedia(res) {
     thumb: res.type === "video" ? item.thumbTempFilePath : item.tempFilePath,
     size: item.size,
     // #ifdef H5
-    file: item
+    file: item,
     // #endif
   }));
 }
@@ -205,7 +205,7 @@ function formatFile(res) {
     // #ifdef H5
     name: item.name,
     type: item.type,
-    file: item
+    file: item,
     // #endif
   }));
 }
@@ -219,7 +219,7 @@ export function chooseFile({
   sizeType,
   camera,
   maxCount,
-  extension
+  extension,
 }: any) {
   return new Promise((resolve, reject) => {
     switch (accept) {
@@ -229,7 +229,7 @@ export function chooseFile({
           sourceType: capture,
           sizeType,
           success: (res) => resolve(formatImage(res)),
-          fail: reject
+          fail: reject,
         });
         break;
       // #ifdef MP-WEIXIN
@@ -242,7 +242,7 @@ export function chooseFile({
           sizeType,
           camera,
           success: (res) => resolve(formatMedia(res)),
-          fail: reject
+          fail: reject,
         });
         break;
       // #endif
@@ -253,7 +253,7 @@ export function chooseFile({
           maxDuration,
           camera,
           success: (res) => resolve(formatVideo(res)),
-          fail: reject
+          fail: reject,
         });
         break;
       // #ifdef MP-WEIXIN || H5
@@ -264,7 +264,7 @@ export function chooseFile({
           count: multiple ? maxCount : 1,
           type: accept,
           success: (res) => resolve(formatFile(res)),
-          fail: reject
+          fail: reject,
         });
         // #endif
         // #ifdef H5
@@ -273,7 +273,7 @@ export function chooseFile({
           count: multiple ? maxCount : 1,
           type: accept,
           success: (res) => resolve(formatFile(res)),
-          fail: reject
+          fail: reject,
         };
         if (extension.length && extension.length > 0) {
           params.extension = extension;
@@ -289,7 +289,7 @@ export function chooseFile({
           count: multiple ? maxCount : 1,
           type: "all",
           success: (res) => resolve(formatFile(res)),
-          fail: reject
+          fail: reject,
         });
         // #endif
         // #ifdef H5
@@ -298,7 +298,7 @@ export function chooseFile({
           count: multiple ? maxCount : 1,
           type: "all",
           success: (res) => resolve(formatFile(res)),
-          fail: reject
+          fail: reject,
         };
         if (extension.length && extension.length > 0) {
           paramsFile.extension = extension;

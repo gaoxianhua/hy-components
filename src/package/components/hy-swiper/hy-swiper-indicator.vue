@@ -4,11 +4,11 @@
       v-if="indicatorMode === 'line'"
       :class="[
         'hy-swiper-indicator__wrapper',
-        `hy-swiper-indicator__wrapper--${indicatorMode}`
+        `hy-swiper-indicator__wrapper--${indicatorMode}`,
       ]"
       :style="{
         width: addUnit(lineWidth * length),
-        backgroundColor: indicatorInactiveColor
+        backgroundColor: indicatorInactiveColor,
       }"
     >
       <view
@@ -22,7 +22,7 @@
         v-for="(item, index) in length"
         :key="index"
         :class="[
-          index === current && 'hy-swiper-indicator__wrapper__dot--active'
+          index === current && 'hy-swiper-indicator__wrapper__dot--active',
         ]"
         :style="[dotStyle(index)]"
       >
@@ -52,7 +52,7 @@ const lineStyle = computed<CSSProperties>(() => {
   let style: CSSProperties = {};
   style.width = addUnit(lineWidth.value);
   style.transform = `translateX(${addUnit(
-    Number(current.value) * lineWidth.value
+    Number(current.value) * lineWidth.value,
   )})`;
   style.backgroundColor = indicatorActiveColor.value;
   return style;
@@ -71,35 +71,5 @@ const dotStyle = computed(() => {
 </script>
 
 <style lang="scss" scoped>
-@import "../../libs/css/mixin.scss";
-
-.hy-swiper-indicator {
-  &__wrapper {
-    @include flex;
-
-    &--line {
-      border-radius: 100px;
-      height: 4px;
-
-      &__bar {
-        width: 22px;
-        height: 4px;
-        border-radius: 100px;
-        background-color: #ffffff;
-        transition: transform 0.3s;
-      }
-    }
-
-    &__dot {
-      width: 5px;
-      height: 5px;
-      border-radius: 100px;
-      margin: 0 4px;
-
-      &--active {
-        width: 12px;
-      }
-    }
-  }
-}
+@import "./index.scss";
 </style>

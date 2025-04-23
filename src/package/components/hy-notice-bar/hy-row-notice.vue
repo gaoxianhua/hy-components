@@ -76,7 +76,7 @@ watch(
     await sleep(10);
     animationPlayState.value = "running";
   },
-  { immediate: true }
+  { immediate: true },
 );
 
 /**
@@ -127,56 +127,5 @@ const close = () => {
 </script>
 
 <style lang="scss" scoped>
-@import "../../libs/css/mixin.scss";
-@import "../../theme.scss";
-
-.hy-notice {
-  @include flex;
-  align-items: center;
-  justify-content: space-between;
-
-  &__left-icon {
-    align-items: center;
-    margin-right: 5px;
-  }
-
-  &__right-icon {
-    margin-left: 5px;
-    align-items: center;
-  }
-
-  &__content {
-    text-align: right;
-    flex: 1;
-    @include flex;
-    flex-wrap: nowrap;
-    overflow: hidden;
-
-    &__text {
-      font-size: 14px;
-      color: $hy-warning;
-      /* #ifndef APP-NVUE */
-      // 这一句很重要，为了能让滚动左右连接起来
-      padding-left: 100%;
-      word-break: keep-all;
-      white-space: nowrap;
-      animation: hy-loop-animation 10s linear infinite both;
-      /* #endif */
-      @include flex(row);
-      line-height: 100%;
-    }
-  }
-}
-
-/* #ifndef APP-NVUE */
-@keyframes hy-loop-animation {
-  0% {
-    transform: translate3d(0, 0, 0);
-  }
-
-  100% {
-    transform: translate3d(-100%, 0, 0);
-  }
-}
-/* #endif */
+@import "./index.scss";
 </style>

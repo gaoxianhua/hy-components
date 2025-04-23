@@ -62,13 +62,13 @@ const initQrCode = () => {
       cbResult: function (res: any) {
         // 生成二维码的回调
         _result(res);
-      }
+      },
     });
   } else {
     uni.showToast({
       title: "二维码内容不能为空",
       icon: "none",
-      duration: 2000
+      duration: 2000,
     });
   }
 };
@@ -87,9 +87,9 @@ const _saveCode = () => {
         uni.showToast({
           title: "二维码保存成功",
           icon: "success",
-          duration: 2000
+          duration: 2000,
         });
-      }
+      },
     });
   }
 };
@@ -114,8 +114,8 @@ const preview = (e) => {
         },
         fail: function (err) {
           console.error(err.errMsg);
-        }
-      }
+        },
+      },
     });
   }
   emit("preview", result.value, e);
@@ -127,27 +127,5 @@ const onLongPress = () => {
 </script>
 
 <style lang="scss" scoped>
-.hy-qrcode {
-  &__loading {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #f7f7f7;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-  }
-  &__content {
-    position: relative;
-
-    &__canvas {
-      position: fixed;
-      top: -99999rpx;
-      left: -99999rpx;
-      z-index: -99999;
-    }
-  }
-}
+@import "./index.scss";
 </style>

@@ -67,8 +67,8 @@
 <script lang="ts">
 export default {
   options: {
-    virtualHost: true
-  }
+    virtualHost: true,
+  },
 };
 </script>
 
@@ -82,7 +82,7 @@ import {
   ref,
   toRefs,
   useSlots,
-  watch
+  watch,
 } from "vue";
 import { addUnit, debounce, getPx, getRect } from "../../utils";
 import HyDivider from "../hy-divider/hy-divider.vue";
@@ -100,7 +100,7 @@ const {
   padding,
   borderRadius,
   background,
-  border
+  border,
 } = toRefs(props);
 const emit = defineEmits(["scrollButton", "click"]);
 
@@ -111,7 +111,7 @@ const scrollTop = ref(0);
 const viewHeight = ref(0);
 const waterfall: { left: AnyObject[]; right: AnyObject[] } = reactive({
   left: [],
-  right: []
+  right: [],
 });
 // 排列方式
 const arrange = computed(() => (line.value === 1 ? "column" : "row"));
@@ -132,7 +132,7 @@ const itemStyle = computed((): CSSProperties => {
     marginBottom: addUnit(marginBottom.value),
     borderRadius: addUnit(borderRadius.value),
     background: background.value,
-    border: border.value ? "1px solid #dadbde" : ""
+    border: border.value ? "1px solid #dadbde" : "",
   };
 });
 
@@ -149,7 +149,7 @@ const start = computed(() => {
  */
 const over = computed(() => {
   const o = Math.floor(
-    (scrollTop.value + viewHeight.value + 1) / boxHeight + 5
+    (scrollTop.value + viewHeight.value + 1) / boxHeight + 5,
   );
   return Math.min(list.value.length, o * line.value);
 });
@@ -185,7 +185,7 @@ watch(
       });
     }
   },
-  { immediate: true, deep: true }
+  { immediate: true, deep: true },
 );
 
 /**
@@ -216,35 +216,5 @@ const slotDefault = useSlots().default;
 </script>
 
 <style lang="scss" scoped>
-@import "../../theme.scss";
-@import "../../libs/css/mixin.scss";
-.hy-virtual-container {
-  height: v-bind(listHeight);
-  padding: 0 $hy-border-margin-padding-base;
-  box-sizing: border-box;
-
-  &__list {
-    padding: v-bind(paddingAttr);
-    @include flex(v-bind(arrange));
-    overflow-anchor: none;
-    &--item {
-      box-sizing: border-box;
-    }
-
-    &--left {
-      margin-right: $hy-border-margin-padding-base;
-    }
-    &--box {
-      box-sizing: border-box;
-      width: 50%;
-      display: flex;
-      flex-direction: column;
-      &-item {
-        box-sizing: border-box;
-        position: relative;
-        overflow: hidden;
-      }
-    }
-  }
-}
+@import "./index.scss";
 </style>

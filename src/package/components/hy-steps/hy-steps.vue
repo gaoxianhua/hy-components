@@ -15,7 +15,7 @@
           :class="[
             `hy-steps-item__wrapper--${direction}`,
             dot && `hy-steps-item__wrapper--${direction}--dot`,
-            'hy-steps-item__wrapper'
+            'hy-steps-item__wrapper',
           ]"
           :style="itemStyleInner"
         >
@@ -24,7 +24,7 @@
               class="hy-steps-item__wrapper__dot"
               v-if="dot"
               :style="{
-                backgroundColor: statusColor(i, item.error)
+                backgroundColor: statusColor(i, item.error),
               }"
             >
             </view>
@@ -46,7 +46,7 @@
                   statusClass(i, item.error) === 'process'
                     ? activeColor
                     : 'transparent',
-                borderColor: statusColor(i, item?.error)
+                borderColor: statusColor(i, item?.error),
               }"
               class="hy-steps-item__wrapper__circle"
             >
@@ -57,7 +57,7 @@
                 "
                 class="hy-steps-item__wrapper__circle__text"
                 :style="{
-                  color: i == current ? '#ffffff' : inactiveColor
+                  color: i == current ? '#ffffff' : inactiveColor,
                 }"
                 >{{ i + 1 }}</text
               >
@@ -90,7 +90,7 @@
                   :style="{
                     lineHeight: '20px',
                     fontSize: current == i ? '14px' : '13px',
-                    color: i == current ? '#2c405a' : '#555555'
+                    color: i == current ? '#2c405a' : '#555555',
                   }"
                   >{{ item.title }}</text
                 >
@@ -125,7 +125,7 @@ const emit = defineEmits(["click", "update:current"]);
 const showLine = ref(false);
 const size = ref<UniApp.NodeInfo>({
   height: 0,
-  width: 0
+  width: 0,
 });
 
 const lineStyle = computed(() => {
@@ -141,8 +141,8 @@ const lineStyle = computed(() => {
     style.backgroundColor = temp.error
       ? ColorConfig.error
       : index < current.value
-      ? activeColor.value
-      : inactiveColor.value;
+        ? activeColor.value
+        : inactiveColor.value;
     return style;
   };
 });
@@ -217,136 +217,5 @@ const getStepsItemRect = () => {
 </script>
 
 <style lang="scss" scoped>
-@import "../../libs/css/mixin.scss";
-@import "../../theme.scss";
-
-.hy-steps {
-  @include flex;
-
-  &--column {
-    flex-direction: column;
-  }
-
-  &--row {
-    flex-direction: row;
-    flex: 1;
-    /* #ifdef MP */
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-    /* #endif */
-  }
-
-  &-item {
-    flex: 1;
-    @include flex;
-
-    &--row {
-      flex-direction: column;
-      align-items: center;
-      position: relative;
-    }
-
-    &--column {
-      position: relative;
-      flex-direction: row;
-      justify-content: flex-start;
-      padding-bottom: 5px;
-    }
-
-    &__wrapper {
-      @include flex;
-      justify-content: center;
-      align-items: center;
-      position: relative;
-      background-color: #fff;
-      border-radius: 50px;
-
-      &--column {
-        width: 20px;
-        height: 20px;
-
-        &--dot {
-          height: 20px;
-          width: 20px;
-        }
-      }
-
-      &--row {
-        width: 20px;
-        height: 20px;
-
-        &--dot {
-          width: 20px;
-          height: 20px;
-        }
-      }
-
-      &__circle {
-        width: 20px;
-        height: 20px;
-        /* #ifndef APP-NVUE */
-        box-sizing: border-box;
-        flex-shrink: 0;
-        /* #endif */
-        border-radius: 100px;
-        border-width: 1px;
-        border-color: $hy-tips-color;
-        border-style: solid;
-        @include flex(row);
-        align-items: center;
-        justify-content: center;
-        transition: background-color 0.3s;
-
-        &__text {
-          color: $hy-tips-color;
-          font-size: 11px;
-          @include flex(row);
-          align-items: center;
-          justify-content: center;
-          text-align: center;
-          line-height: 11px;
-        }
-      }
-
-      &__dot {
-        width: 10px;
-        height: 10px;
-        border-radius: 100px;
-        background-color: $hy-color-subtitle;
-      }
-    }
-
-    &__content {
-      @include flex;
-      flex: 1;
-
-      &--row {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      &--column {
-        flex-direction: column;
-        justify-content: flex-start;
-        margin-left: 6px;
-        min-height: 60px;
-      }
-    }
-
-    &__line {
-      position: absolute;
-      background: $hy-tips-color;
-
-      &--row {
-        top: 10px;
-        height: 1px;
-      }
-
-      &--column {
-        width: 1px;
-        left: 10px;
-      }
-    }
-  }
-}
+@import "./index.scss";
 </style>

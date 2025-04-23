@@ -1,0 +1,6 @@
+.hy-folding-panel {
+  &__main {
+    overflow: auto;
+    transition: height 0.5s ease;
+  }
+}

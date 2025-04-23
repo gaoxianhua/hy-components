@@ -3,9 +3,9 @@
 </template>
 
 <script setup lang="ts">
-import { computed, CSSProperties, toRefs } from "vue";
+import { computed, type CSSProperties, toRefs } from "vue";
 import defaultProps from "./props";
-import IProps from "./typing";
+import type IProps from "./typing";
 import { addUnit } from "../../utils";
 
 const props = withDefaults(defineProps<IProps>(), defaultProps);
@@ -21,7 +21,7 @@ const lineStyle = computed<CSSProperties>(() => {
     style.borderBottomWidth = "1px";
     style.borderBottomStyle = dashed.value ? "dashed" : "solid";
     style.width = addUnit(length.value);
-    if (hairline.value) style.transform = "scaleY(0.5)";
+    if (!hairline.value) style.borderBottomWidth = "1.5px";
   } else {
     // 如果是竖向线条，边框宽度为1px，再通过transform缩小一半，就是0.5px了
     style.borderLeftWidth = "1px";
@@ -36,9 +36,5 @@ const lineStyle = computed<CSSProperties>(() => {
 </script>
 
 <style lang="scss" scoped>
-.hy-line {
-  /* #ifndef APP-NVUE */
-  vertical-align: middle;
-  /* #endif */
-}
+@import "./index.scss";
 </style>

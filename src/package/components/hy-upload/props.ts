@@ -1,4 +1,4 @@
-import IProps from "./typing";
+import type IProps from "./typing";
 import { IconConfig } from "../../config";
 
 const defaultProps: IProps = {
@@ -23,7 +23,7 @@ const defaultProps: IProps = {
   fileList: [],
   uploadText: "",
   width: 80,
-  height: 80
+  height: 80,
 };
 
 export default defaultProps;

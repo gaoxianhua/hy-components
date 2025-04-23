@@ -1,0 +1,25 @@
+@use "../../libs/css/mixin.scss" as *;
+@use "../../theme.scss" as *;
+
+.hy-divider {
+  @include flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  &__line {
+    /* #ifndef APP-NVUE */
+    vertical-align: middle;
+    /* #endif */
+  }
+
+  &__text {
+    margin: 0 $hy-border-margin-padding-sm;
+  }
+
+  &__dot {
+    font-size: $hy-font-size-sm;
+    margin: 0 $hy-border-margin-padding-sm;
+    color: #c0c4cc;
+  }
+}

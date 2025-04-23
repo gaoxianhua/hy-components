@@ -26,8 +26,8 @@
           :style="[
             customStyle,
             {
-              height: record?.spread ? addUnit(contentHeight) : '0px'
-            }
+              height: record?.spread ? addUnit(contentHeight) : '0px',
+            },
           ]"
         >
           <slot :record="record?.content" />
@@ -59,10 +59,10 @@ watch(
     lists.value = newValue.map((item) => ({
       ...item,
       arrowDirection: "down",
-      spread: false
+      spread: false,
     }));
   },
-  { immediate: true }
+  { immediate: true },
 );
 
 const clickHandler = (temp: PanelVo, index: number) => {
@@ -85,10 +85,5 @@ const clickHandler = (temp: PanelVo, index: number) => {
 </script>
 
 <style lang="scss" scoped>
-.hy-folding-panel {
-  &__main {
-    overflow: auto;
-    transition: height 0.5s ease;
-  }
-}
+@import "./index.scss";
 </style>

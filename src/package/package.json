@@ -1,7 +1,7 @@
 {
   "name": "hy-app",
-  "version": "0.1.1",
-  "description": "华玥组件库",
+  "version": "0.1.2",
+  "description": "表单适配微信小程序bug修改",
   "main": "./index.ts",
   "private": false,
   "scripts": {},
@@ -17,6 +17,7 @@
     "config/",
     "libs/",
     "index.ts",
+    "index.scss",
     "theme.scss",
     "README.md"
   ],

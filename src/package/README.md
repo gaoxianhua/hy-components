@@ -1,5 +1,5 @@
 ## 使用文档地址
-[华玥组件库](https://gxh-component.vercel.app/)
+[华玥组件库](https://hy-component-docs.vercel.app/)
 
 ## 安装教程
 

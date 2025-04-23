@@ -1,4 +1,4 @@
-import IProps from "./typing";
+import type IProps from "./typing";
 import { ColorConfig } from "../../config";
 
 const defaultProps: IProps = {
@@ -6,7 +6,7 @@ const defaultProps: IProps = {
   indicatorBarWidth: 20,
   indicator: true,
   indicatorColor: "#f2f2f2",
-  indicatorActiveColor: ColorConfig.primary
+  indicatorActiveColor: ColorConfig.primary,
 };
 
 export default defaultProps;

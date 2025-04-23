@@ -1,12 +1,12 @@
 <template>
   <view
-    class="u-notice-bar"
+    class="hy-notice-bar"
     v-if="show"
     :style="[
       {
-        backgroundColor: bgColor
+        backgroundColor: bgColor,
       },
-      customStyle
+      customStyle,
     ]"
   >
     <template v-if="direction === 'column' || (direction === 'row' && step)">
@@ -72,11 +72,5 @@ const close = () => {
 </script>
 
 <style lang="scss" scoped>
-@import "../../libs/css/mixin.scss";
-
-.u-notice-bar {
-  overflow: hidden;
-  padding: 9px 12px;
-  flex: 1;
-}
+@import "./index.scss";
 </style>

@@ -1,0 +1,77 @@
+@use "../../theme.scss" as *;
+@use "../../libs/css/mixin.scss" as *;
+
+.hy-modal {
+  width: 650rpx;
+  border-radius: $hy-border-radius-base;
+  overflow: hidden;
+
+  &__title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    font-weight: bold;
+    color: $hy-color-title;
+    text-align: center;
+    padding-top: 25px;
+  }
+
+  &__content {
+    padding: $hy-border-margin-padding-lg;
+    @include flex;
+    justify-content: center;
+
+    &__text {
+      text-align: v-bind(contentTextAlign);
+      font-size: 15px;
+      color: $hy-text-color-grey;
+      flex: 1;
+    }
+  }
+
+  &__button-group {
+    border-top: $hy-border-line;
+    @include flex;
+
+    &--confirm-button {
+      flex-direction: column;
+      padding: 0 25px 15px;
+    }
+
+    &__wrapper {
+      flex: 1;
+      @include flex;
+      justify-content: center;
+      align-items: center;
+      height: 48px;
+
+      &--line {
+        background: $hy-text-color-light;
+        width: 1px;
+        height: 48px;
+      }
+
+      &--confirm,
+      &--only-cancel {
+        border-bottom-right-radius: $hy-border-radius-base;
+      }
+
+      &--cancel,
+      &--only-confirm {
+        border-bottom-left-radius: $hy-border-radius-base;
+      }
+
+      &--hover {
+        background-color: $hy-bg-color-grey;
+      }
+
+      &__text {
+        color: $hy-color-subtitle;
+        font-size: 16px;
+        text-align: center;
+      }
+    }
+  }
+}

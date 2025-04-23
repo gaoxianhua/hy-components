@@ -5,7 +5,7 @@
       class="hy-card__head"
       :style="[{ padding: addUnit(paddingHead || padding) }, headStyle]"
       :class="{
-        'hy-border-bottom': headBorderBottom
+        'hy-border-bottom': headBorderBottom,
       }"
       @tap="headClick"
     >
@@ -19,14 +19,14 @@
             :style="{
               height: addUnit(thumbWidth),
               width: addUnit(thumbWidth),
-              borderRadius: thumbCircle ? '50px' : '4px'
+              borderRadius: thumbCircle ? '50px' : '4px',
             }"
           ></image>
           <text
             class="hy-card__head--left__title"
             :style="{
               fontSize: addUnit(titleSize),
-              color: titleColor
+              color: titleColor,
             }"
           >
             {{ title }}
@@ -37,7 +37,7 @@
             class="hy-card__head__title__text"
             :style="{
               fontSize: addUnit(subTitleSize),
-              color: subTitleColor
+              color: subTitleColor,
             }"
           >
             {{ subTitle }}
@@ -59,10 +59,10 @@
       @tap="footClick"
       :style="[
         { padding: $slots.foot ? addUnit(paddingFoot || padding) : 0 },
-        footStyle
+        footStyle,
       ]"
       :class="{
-        'hy-border-top': footBorderTop
+        'hy-border-top': footBorderTop,
       }"
     >
       <slot name="footer" />
@@ -72,7 +72,7 @@
 
 <script setup lang="ts">
 import defaultProps from "./props";
-import IProps from "./typing";
+import type IProps from "./typing";
 import { addUnit } from "../../utils";
 import { computed, toRefs } from "vue";
 
@@ -89,19 +89,22 @@ const cardClass = computed(() => {
     (typeof borderRadius.value === "number"
       ? borderRadius.value
       : parseInt(borderRadius.value.replace(/px|rpx|vw|vh/g, "")) > 0) &&
-      "hy-card--border"
+      "hy-card--border",
   ].filter(Boolean);
 });
 const cardStyle = computed(() => {
-  return Object.assign(customStyle.value, {
-    borderRadius: addUnit(borderRadius.value),
-    margin: margin.value,
-    boxShadow: boxShadow.value
-      ? typeof boxShadow.value === "boolean"
-        ? "0 0 10rpx 4rpx rgba(0, 0, 0, 0.16)"
-        : boxShadow.value
-      : ""
-  });
+  return Object.assign(
+    {
+      borderRadius: addUnit(borderRadius.value),
+      margin: margin.value,
+      boxShadow: boxShadow.value
+        ? typeof boxShadow.value === "boolean"
+          ? "0 0 10rpx 4rpx rgba(0, 0, 0, 0.16)"
+          : boxShadow.value
+        : "",
+    },
+    customStyle.value,
+  );
 });
 
 const click = () => {
@@ -128,71 +131,5 @@ const footClick = () => {
 </script>
 
 <style lang="scss" scoped>
-@import "../../libs/css/mixin.scss";
-@import "../../theme.scss";
-
-.hy-card {
-  position: relative;
-  overflow: hidden;
-  font-size: 28rpx;
-  background-color: #ffffff;
-  box-sizing: border-box;
-
-  &-full {
-    // 如果是与屏幕之间不留空隙，应该设置左右边距为0
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-    width: 100%;
-  }
-
-  &--border:after {
-    border-radius: 16rpx;
-  }
-
-  &__head {
-    &--flex {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    &--left {
-      color: #303133ff;
-      display: flex;
-
-      &__thumb {
-        margin-right: 16rpx;
-      }
-
-      &__title {
-        max-width: 400rpx;
-        height: 20px;
-        @include line-feed;
-      }
-    }
-
-    &--right {
-      color: $hy-text-color-grey;
-      margin-left: 6rpx;
-    }
-  }
-
-  &__body {
-    color: $hy-bg-color;
-  }
-
-  &__foot {
-    color: $hy-text-color-grey;
-  }
-}
-.hy-border-bottom {
-  border-bottom: $hy-border-line;
-}
-
-.hy-border-top {
-  border-top: $hy-border-line;
-}
-.hy-border {
-  border: $hy-border-line;
-}
+@import "./index.scss";
 </style>

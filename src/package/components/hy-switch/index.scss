@@ -1,0 +1,46 @@
+@use "../../theme.scss" as *;
+@use "../../libs/css/mixin.scss" as *;
+
+.hy-switch {
+  @include flex(row);
+  /* #ifndef APP-NVUE */
+  box-sizing: border-box;
+  /* #endif */
+  position: relative;
+  background-color: #fff;
+  border-radius: $hy-border-radius-semicircle;
+  transition: background-color 0.4s;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  justify-content: flex-end;
+  align-items: center;
+  // 由于weex为阿里逗着玩的KPI项目，导致bug奇多，这必须要写这一行，
+  // 否则在iOS上，点击页面任意地方，都会触发switch的点击事件
+  overflow: hidden;
+
+  &__node {
+    @include flex(row);
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    border-radius: $hy-border-radius-semicircle;
+    box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.25);
+    transition-property: transform;
+    transition-duration: 0.4s;
+    transition-timing-function: cubic-bezier(0.3, 1.05, 0.4, 1.05);
+  }
+
+  &__bg {
+    position: absolute;
+    border-radius: $hy-border-radius-semicircle;
+    background-color: #ffffff;
+    transition-property: transform;
+    transition-duration: 0.4s;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    transition-timing-function: ease;
+  }
+
+  &--disabled {
+    opacity: 0.6;
+  }
+}

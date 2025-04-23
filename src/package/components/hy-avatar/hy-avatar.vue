@@ -169,49 +169,5 @@ const clickHandler = (e: Event) => {
 </script>
 
 <style lang="scss" scoped>
-@import "../../libs/css/mixin.scss";
-@import "../../theme.scss";
-
-.hy-avatar {
-  @include flex;
-  align-items: center;
-  justify-content: center;
-
-  &--circle {
-    border-radius: $hy-border-radius-circle;
-  }
-
-  &--square {
-    border-radius: $hy-border-margin-padding-sm;
-  }
-
-  &--small {
-    width: $hy-avatar-size-sm;
-    height: $hy-avatar-size-sm;
-  }
-
-  &--medium {
-    width: $hy-avatar-size-base;
-    height: $hy-avatar-size-base;
-  }
-
-  &--large {
-    width: $hy-avatar-size-lg;
-    height: $hy-avatar-size-lg;
-  }
-
-  &__image {
-    width: 100%;
-    height: 100%;
-
-    &--circle {
-      border-radius: $hy-border-radius-circle;
-      overflow: hidden;
-    }
-
-    &--square {
-      border-radius: $hy-border-margin-padding-sm;
-    }
-  }
-}
+@import "./index.scss";
 </style>

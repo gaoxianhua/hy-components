@@ -1,0 +1,64 @@
+@use "../../theme.scss" as *;
+@use "../../libs/css/mixin.scss" as *;
+
+.hy-tooltip {
+  position: relative;
+  @include flex;
+
+  &__wrapper {
+    @include flex;
+    justify-content: center;
+    /* #ifndef APP-NVUE */
+    white-space: nowrap;
+    /* #endif */
+
+    &__text {
+      font-size: 14px;
+    }
+
+    &__popup {
+      @include flex;
+      justify-content: center;
+
+      &__list {
+        background-color: #060607;
+        position: relative;
+        flex: 1;
+        border-radius: $hy-border-radius-sm;
+        padding: 0;
+        @include flex(row);
+        align-items: center;
+        overflow: hidden;
+
+        &__btn {
+          padding: $hy-border-margin-padding-base;
+
+          &--hover {
+            background-color: #58595b;
+          }
+
+          &__text {
+            line-height: 12px;
+            font-size: 13px;
+            color: #ffffff;
+          }
+        }
+      }
+
+      &__indicator {
+        position: absolute;
+        background-color: #060607;
+        width: 14px;
+        height: 14px;
+        bottom: -4px;
+        transform: rotate(45deg);
+        border-radius: 2px;
+        z-index: -1;
+
+        &--hover {
+          background-color: #58595b;
+        }
+      }
+    }
+  }
+}

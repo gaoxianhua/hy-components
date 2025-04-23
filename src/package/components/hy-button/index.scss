@@ -1,0 +1,116 @@
+@use "../../libs/css/mixin.scss" as *;
+@use "../../theme.scss" as *;
+
+.hy-button {
+  height: 40px;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  @include flex;
+  /* #ifndef APP-NVUE */
+  box-sizing: border-box;
+  /* #endif */
+  flex-direction: row;
+
+  &__text {
+    font-size: 15px;
+  }
+
+  &__loading-text {
+    font-size: 15px;
+    margin-left: 4px;
+  }
+
+  &--large {
+    /* #ifndef APP-NVUE */
+    width: 100%;
+    /* #endif */
+    height: 50px;
+    padding: 0 15px;
+  }
+
+  &--medium {
+    padding: 0 12px;
+    font-size: 14px;
+  }
+
+  &--small {
+    /* #ifndef APP-NVUE */
+    min-width: 60px;
+    /* #endif */
+    height: 30px;
+    padding: 0 8px;
+    font-size: 12px;
+  }
+
+  &--mini {
+    height: 22px;
+    font-size: 10px;
+    /* #ifndef APP-NVUE */
+    min-width: 50px;
+    /* #endif */
+    padding: 0 8px;
+  }
+
+  &--disabled {
+    opacity: 0.5;
+  }
+
+  &--info {
+    color: #323233;
+    background-color: #fff;
+    border: 1px solid #909399;
+  }
+
+  &--success {
+    color: #fff;
+    background-color: $hy-success;
+    border: 1px solid $hy-success;
+  }
+
+  &--primary {
+    color: #fff;
+    background-color: $hy-primary;
+    border: 1px solid $hy-primary;
+  }
+
+  &--error {
+    color: #fff;
+    background-color: $hy-error;
+    border: 1px solid $hy-error;
+  }
+
+  &--warning {
+    color: #fff;
+    background-color: $hy-warning;
+    border: 1px solid $hy-warning;
+  }
+
+  &--block {
+    @include flex;
+    width: 100%;
+  }
+
+  &--circle {
+    border-radius: 100px;
+  }
+
+  &--square {
+    border-radius: 3px;
+  }
+
+  &__icon {
+    min-width: 1em;
+    line-height: inherit !important;
+    vertical-align: top;
+  }
+
+  &--plain {
+    color: v-bind(textColor);
+    background-color: #fff;
+  }
+
+  &--hairline {
+    border-width: 0.5px;
+  }
+}

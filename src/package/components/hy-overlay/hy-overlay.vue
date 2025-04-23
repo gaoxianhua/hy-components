@@ -1,7 +1,7 @@
 <template>
   <HyTransition
     :show="show"
-    custom-class="u-overlay"
+    custom-class="hy-overlay"
     :duration="duration"
     :custom-style="overlayStyle"
     @click="clickHandler"
@@ -38,17 +38,5 @@ const clickHandler = () => {
 </script>
 
 <style lang="scss" scoped>
-$u-overlay-top: 0 !default;
-$u-overlay-left: 0 !default;
-$u-overlay-width: 100% !default;
-$u-overlay-height: 100% !default;
-$u-overlay-background-color: rgba(0, 0, 0, 0.7) !default;
-.u-overlay {
-  position: fixed;
-  top: $u-overlay-top;
-  left: $u-overlay-left;
-  width: $u-overlay-width;
-  height: $u-overlay-height;
-  background-color: $u-overlay-background-color;
-}
+@import "./index.scss";
 </style>

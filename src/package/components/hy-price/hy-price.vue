@@ -72,15 +72,5 @@ const handleClick = () => {
 </script>
 
 <style lang="scss" scoped>
-.hy-price {
-  font-size: 32rpx;
-  font-weight: 500;
-  margin-top: 5px;
-  &__prefix {
-    font-size: 24rpx;
-  }
-  &__decimal {
-    font-size: 24rpx;
-  }
-}
+@import "./index.scss";
 </style>

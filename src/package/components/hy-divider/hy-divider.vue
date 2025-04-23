@@ -1,29 +1,34 @@
 <template>
   <view class="hy-divider" :style="dividerStyle" @tap="clickHandler">
-    <view class="hy-divider__line" :style="[leftLineStyle, lineStyle]"></view>
-    <HyIcon
-      v-if="text === 'loading'"
-      :name="IconConfig.LOADING"
-      :color="textColor"
-      is-rotate
-    ></HyIcon>
+    <HyLine
+      :color="lineColor"
+      :customStyle="leftLineStyle"
+      :hairline="hairline"
+      :dashed="dashed"
+    ></HyLine>
+    <HyLoading :show="text === 'loading'" mode="spinner"></HyLoading>
     <text v-if="dot" class="hy-divider__dot">●</text>
     <text v-else-if="text" class="hy-divider__text" :style="textStyle">{{
       content
     }}</text>
-    <view class="hy-divider__line" :style="[rightLineStyle, lineStyle]"></view>
+    <HyLine
+      :color="lineColor"
+      :customStyle="rightLineStyle"
+      :hairline="hairline"
+      :dashed="dashed"
+    ></HyLine>
   </view>
 </template>
 
 <script setup lang="ts">
-import { computed, CSSProperties, toRefs } from "vue";
+import { computed, type CSSProperties, toRefs } from "vue";
 import defaultProps from "./props";
-import IProps from "./typing";
+import type IProps from "./typing";
 import { addUnit } from "../../utils";
-import { IconConfig } from "../../config";
 
 // 组件
-import HyIcon from "../hy-icon/hy-icon.vue";
+import HyLine from "../hy-line/hy-line.vue";
+import HyLoading from "../hy-loading/hy-loading.vue";
 
 const props = withDefaults(defineProps<IProps>(), defaultProps);
 const {
@@ -38,7 +43,7 @@ const {
   noMoreText,
   marginTop,
   marginBottom,
-  customStyle
+  customStyle,
 } = toRefs(props);
 const emit = defineEmits(["click"]);
 
@@ -87,21 +92,13 @@ const textStyle = computed<CSSProperties>(() => {
   style.color = textColor.value;
   return style;
 });
-/**
- * @description 线样式
- * */
-const lineStyle = computed<CSSProperties>(() => {
-  const style: CSSProperties = {
-    borderBottom: `1px ${dashed.value ? "dashed" : "solid"} ${lineColor.value}`
-  };
-  return style;
-});
+
 /**
  * @description 左边线条的的样式
  * */
 const leftLineStyle = computed<CSSProperties>(() => {
   const style: CSSProperties = {
-    marginRight: "20rpx"
+    marginRight: "20rpx",
   };
   // 如果是在左边，设置左边的宽度为固定值
   if (isLoad) {
@@ -118,7 +115,7 @@ const leftLineStyle = computed<CSSProperties>(() => {
  * */
 const rightLineStyle = computed<CSSProperties>(() => {
   const style: CSSProperties = {
-    marginLeft: "20rpx"
+    marginLeft: "20rpx",
   };
   // 如果是在右边，设置右边的宽度为固定值
   if (isLoad) {
@@ -136,29 +133,5 @@ const clickHandler = () => {
 </script>
 
 <style lang="scss" scoped>
-@import "../../libs/css/mixin.scss";
-@import "../../theme.scss";
-
-.hy-divider {
-  @include flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-
-  &__line {
-    /* #ifndef APP-NVUE */
-    vertical-align: middle;
-    /* #endif */
-  }
-
-  &__text {
-    margin: 0 $hy-border-margin-padding-sm;
-  }
-
-  &__dot {
-    font-size: $hy-font-size-sm;
-    margin: 0 $hy-border-margin-padding-sm;
-    color: #c0c4cc;
-  }
-}
+@import "./index.scss";
 </style>

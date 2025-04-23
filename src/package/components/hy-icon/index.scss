@@ -1,0 +1,93 @@
+@use "../../libs/css/mixin.scss" as *;
+@use "../../libs/css/iconfont.css" as *;
+@use "../../theme.scss" as *;
+
+/* #ifndef APP-NVUE */
+// 非nvue下加载字体
+@font-face {
+  font-family: "uicon-iconfont";
+  src: url("https://at.alicdn.com/t/font_2225171_8kdcwk4po24.ttf")
+  format("truetype");
+}
+
+/* #endif */
+
+.hy-icon {
+  /* #ifndef APP-NVUE */
+  display: flex;
+  /* #endif */
+  align-items: center;
+
+  &--left {
+    flex-direction: row-reverse;
+    align-items: center;
+  }
+
+  &--right {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  &--top {
+    flex-direction: column-reverse;
+    justify-content: center;
+  }
+
+  &--bottom {
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  &__icon {
+    position: relative;
+    @include flex;
+    align-items: center;
+
+    &--primary {
+      color: $hy-primary;
+    }
+
+    &--success {
+      color: $hy-success;
+    }
+
+    &--error {
+      color: $hy-error;
+    }
+
+    &--warning {
+      color: $hy-warning;
+    }
+
+    &--info {
+      color: $hy-info;
+    }
+  }
+
+  &__img {
+    /* #ifndef APP-NVUE */
+    height: auto;
+    will-change: transform;
+    /* #endif */
+  }
+
+  &__label {
+    @include line-feed();
+    overflow: hidden;
+    /* #ifndef APP-NVUE */
+    line-height: 1;
+    /* #endif */
+  }
+}
+.hy-rotate {
+  animation: hy-rotate 1s infinite linear;
+  @keyframes hy-rotate {
+    0% {
+      transform: rotate(0deg);
+    }
+
+    to {
+      transform: rotate(1turn);
+    }
+  }
+}

@@ -1,13 +1,13 @@
 <template>
-  <view class="u-tooltip" :style="customStyle">
+  <view class="hy-tooltip" :style="customStyle">
     <HyOverlay
       :show="showTooltip && tooltipTop !== -10000 && overlay"
       :customStyle="{ backgroundColor: 'rgba(0, 0, 0, 0)' }"
       @click="overlayClickHandler"
     ></HyOverlay>
-    <view class="u-tooltip__wrapper">
+    <view class="hy-tooltip__wrapper">
       <text
-        class="u-tooltip__wrapper__text"
+        class="hy-tooltip__wrapper__text"
         :id="textId"
         :ref="textId"
         :userSelect="false"
@@ -18,7 +18,7 @@
           backgroundColor:
             bgColor && showTooltip && tooltipTop !== -10000
               ? bgColor
-              : 'transparent'
+              : 'transparent',
         }"
         >{{ text }}</text
       >
@@ -30,36 +30,36 @@
           position: 'absolute',
           top: addUnit(tooltipTop),
           zIndex: zIndex,
-          ...tooltipStyle
+          ...tooltipStyle,
         }"
       >
         <view
-          class="u-tooltip__wrapper__popup"
+          class="hy-tooltip__wrapper__popup"
           :id="tooltipId"
           :ref="tooltipId"
         >
           <view
             v-if="showCopy || buttons.length"
-            class="u-tooltip__wrapper__popup__indicator"
-            hover-class="u-tooltip__wrapper__popup__indicator--hover"
+            class="hy-tooltip__wrapper__popup__indicator"
+            hover-class="hy-tooltip__wrapper__popup__indicator--hover"
             :style="[
               indicatorStyle,
               {
                 width: addUnit(indicatorWidth),
-                height: addUnit(indicatorWidth)
-              }
+                height: addUnit(indicatorWidth),
+              },
             ]"
           >
             <!-- 由于nvue不支持三角形绘制，这里就做一个四方形，再旋转45deg，得到露出的一个三角 -->
           </view>
-          <view class="u-tooltip__wrapper__popup__list">
+          <view class="hy-tooltip__wrapper__popup__list">
             <view
               v-if="showCopy"
-              class="u-tooltip__wrapper__popup__list__btn"
-              hover-class="u-tooltip__wrapper__popup__list__btn--hover"
+              class="hy-tooltip__wrapper__popup__list__btn"
+              hover-class="hy-tooltip__wrapper__popup__list__btn--hover"
               @tap="setClipboardData"
             >
-              <text class="u-tooltip__wrapper__popup__list__btn__text"
+              <text class="hy-tooltip__wrapper__popup__list__btn__text"
                 >复制</text
               >
             </view>
@@ -71,11 +71,11 @@
             ></HyLine>
             <block v-for="(item, index) in buttons" :key="index">
               <view
-                class="u-tooltip__wrapper__popup__list__btn"
-                hover-class="u-tooltip__wrapper__popup__list__btn--hover"
+                class="hy-tooltip__wrapper__popup__list__btn"
+                hover-class="hy-tooltip__wrapper__popup__list__btn--hover"
               >
                 <text
-                  class="u-tooltip__wrapper__popup__list__btn__text"
+                  class="hy-tooltip__wrapper__popup__list__btn__text"
                   @tap="btnClickHandler(index)"
                   >{{ item }}</text
                 >
@@ -117,17 +117,17 @@ const tooltipTop = ref<number>(-10000);
 // 气泡的位置信息
 const tooltipInfo = ref<UniApp.NodeInfo>({
   width: 0,
-  left: 0
+  left: 0,
 });
 const textInfo = ref<UniApp.NodeInfo>({
   width: 0,
   left: 0,
-  right: 0
+  right: 0,
 });
 // 三角形指示器的样式
 const indicatorStyle = ref<CSSProperties>({
   left: 0,
-  right: 0
+  right: 0,
 });
 // 气泡在可能超出屏幕边沿范围时，重新定位后，距离屏幕边沿的距离
 const screenGap = ref(12);
@@ -142,7 +142,7 @@ const propsChange = computed(() => {
 // 计算气泡和指示器的位置信息
 const tooltipStyle = computed(() => {
   const style: CSSProperties = {
-      transform: `translateY(${direction.value === "top" ? "-100%" : "100%"})`
+      transform: `translateY(${direction.value === "top" ? "-100%" : "100%"})`,
     },
     // #ifdef APP || H5 || MP-WEIXIN
     sysInfo = uni.getWindowInfo();
@@ -154,7 +154,7 @@ const tooltipStyle = computed(() => {
     indicatorStyle.value = {};
     style.left = `-${addUnit(textInfo.value.left! - screenGap.value)}`;
     indicatorStyle.value.left = addUnit(
-      textInfo.value.width! / 2 - Number(style.left) - indicatorWidth.value / 2
+      textInfo.value.width! / 2 - Number(style.left) - indicatorWidth.value / 2,
     );
   } else if (
     tooltipInfo.value.width! / 2 >
@@ -165,14 +165,16 @@ const tooltipStyle = computed(() => {
   ) {
     indicatorStyle.value = {};
     style.right = `-${addUnit(
-      sysInfo.windowWidth - textInfo.value.right! - screenGap.value
+      sysInfo.windowWidth - textInfo.value.right! - screenGap.value,
     )}`;
     indicatorStyle.value.right = addUnit(
-      textInfo.value.width! / 2 - Number(style.right) - indicatorWidth.value / 2
+      textInfo.value.width! / 2 -
+        Number(style.right) -
+        indicatorWidth.value / 2,
     );
   } else {
     const left = Math.abs(
-      textInfo.value.width! / 2 - tooltipInfo.value.width! / 2
+      textInfo.value.width! / 2 - tooltipInfo.value.width! / 2,
     );
     style.left =
       textInfo.value.width! > tooltipInfo.value.width!
@@ -249,84 +251,22 @@ const setClipboardData = () => {
     success: () => {
       showToast.value &&
         uni.showToast({
-          title: "复制成功"
+          title: "复制成功",
         });
     },
     fail: () => {
       showToast.value &&
         uni.showToast({
-          title: "复制失败"
+          title: "复制失败",
         });
     },
     complete: () => {
       showTooltip.value = false;
-    }
+    },
   });
 };
 </script>
 
 <style lang="scss" scoped>
-@import "../../libs/css/mixin.scss";
-
-.u-tooltip {
-  position: relative;
-  @include flex;
-
-  &__wrapper {
-    @include flex;
-    justify-content: center;
-    /* #ifndef APP-NVUE */
-    white-space: nowrap;
-    /* #endif */
-
-    &__text {
-      font-size: 14px;
-    }
-
-    &__popup {
-      @include flex;
-      justify-content: center;
-
-      &__list {
-        background-color: #060607;
-        position: relative;
-        flex: 1;
-        border-radius: 5px;
-        padding: 0px 0;
-        @include flex(row);
-        align-items: center;
-        overflow: hidden;
-
-        &__btn {
-          padding: 11px 13px;
-
-          &--hover {
-            background-color: #58595b;
-          }
-
-          &__text {
-            line-height: 12px;
-            font-size: 13px;
-            color: #ffffff;
-          }
-        }
-      }
-
-      &__indicator {
-        position: absolute;
-        background-color: #060607;
-        width: 14px;
-        height: 14px;
-        bottom: -4px;
-        transform: rotate(45deg);
-        border-radius: 2px;
-        z-index: -1;
-
-        &--hover {
-          background-color: #58595b;
-        }
-      }
-    }
-  }
-}
+@import "./index.scss";
 </style>

@@ -16,8 +16,8 @@
             :style="[
               {
                 width: addUnit(width),
-                height: addUnit(height)
-              }
+                height: addUnit(height),
+              },
             ]"
           />
           <view
@@ -107,8 +107,8 @@
           :style="[
             {
               width: addUnit(width),
-              height: addUnit(height)
-            }
+              height: addUnit(height),
+            },
           ]"
         >
           <HyIcon
@@ -128,7 +128,8 @@
 <script setup lang="ts">
 import { ref, toRefs, watch } from "vue";
 import defaultProps from "./props";
-import IProps, { FileVo } from "./typing";
+import type IProps from "./typing";
+import type { FileVo } from "./typing";
 import { addUnit, chooseFile } from "../../utils";
 import { IconConfig } from "../../config";
 // 组件
@@ -151,7 +152,6 @@ const {
   previewFullImage,
   deletable,
   useBeforeRead,
-  afterRead
 } = toRefs(props);
 const emit = defineEmits([
   "clickPreview",
@@ -159,7 +159,7 @@ const emit = defineEmits([
   "error",
   "delete",
   "afterRead",
-  "oversize"
+  "oversize",
 ]);
 
 const lists = ref<FileVo[]>([]);
@@ -172,8 +172,8 @@ const formatFileList = () => {
       // 如果item.url为本地选择的blob文件的话，无法判断其为video还是image，此处优先通过accept做判断处理
       isImage: accept.value === "image",
       isVideo: accept.value === "video",
-      deletable: item.deletable || deletable.value
-    })
+      deletable: item.deletable || deletable.value,
+    }),
   );
   isInCount.value = lists.value.length < maxCount.value;
 };
@@ -183,28 +183,28 @@ watch(
   () => {
     formatFileList();
   },
-  { immediate: true, deep: true }
+  { immediate: true, deep: true },
 );
 
 watch(
   () => deletable.value,
   () => {
     formatFileList();
-  }
+  },
 );
 
 watch(
   () => maxCount.value,
   () => {
     formatFileList();
-  }
+  },
 );
 
 watch(
   () => accept.value,
   () => {
     formatFileList();
-  }
+  },
 );
 
 const chooseFileFn = () => {
@@ -226,12 +226,12 @@ const chooseFileFn = () => {
         compressed: compressed.value,
         maxDuration: maxDuration.value,
         sizeType: sizeType.value,
-        camera: camera.value
+        camera: camera.value,
       },
       {
-        maxCount: maxCount.value - lists.value.length
-      }
-    )
+        maxCount: maxCount.value - lists.value.length,
+      },
+    ),
   )
     .then((res: any) => {
       onBeforeRead(multiple.value ? res : res[0]);
@@ -255,16 +255,16 @@ const onBeforeRead = (file: FileVo) => {
         Object.assign(
           Object.assign(
             {
-              file
+              file,
             },
-            getDetail()
+            getDetail(),
           ),
           {
             callback: (ok: any) => {
               ok ? resolve(ok) : reject();
-            }
-          }
-        )
+            },
+          },
+        ),
       );
     });
   }
@@ -278,7 +278,7 @@ const onBeforeRead = (file: FileVo) => {
 const getDetail = (index?: number) => {
   return {
     name: name.value,
-    index: index == null ? fileList.value.length : index
+    index: index == null ? fileList.value.length : index,
   };
 };
 const onAfterRead = (file: FileVo) => {
@@ -290,10 +290,10 @@ const onAfterRead = (file: FileVo) => {
       "oversize",
       Object.assign(
         {
-          file
+          file,
         },
-        getDetail()
-      )
+        getDetail(),
+      ),
     );
     return;
   }
@@ -304,10 +304,10 @@ const onAfterRead = (file: FileVo) => {
     "afterRead",
     Object.assign(
       {
-        file
+        file,
       },
-      getDetail()
-    )
+      getDetail(),
+    ),
   );
 };
 
@@ -320,8 +320,8 @@ const deleteItem = (index: number) => {
   emit(
     "delete",
     Object.assign(Object.assign({}, getDetail(index)), {
-      file: fileList.value[index]
-    })
+      file: fileList.value[index],
+    }),
   );
 };
 
@@ -351,7 +351,7 @@ const onPreviewImage = (previewItem: FileVo, index: number) => {
     current: current,
     fail() {
       uni.showToast({ title: "预览图片失败" });
-    }
+    },
   });
 };
 
@@ -368,8 +368,8 @@ const onPreviewVideo = (index: number) => {
     if (item.isVideo || (item.type && item.type === "video")) {
       sources.push(
         Object.assign(Object.assign({}, item), {
-          type: "video"
-        })
+          type: "video",
+        }),
       );
       if (i === index) {
         current = videoIndex;
@@ -386,7 +386,7 @@ const onPreviewVideo = (index: number) => {
     current: current,
     fail() {
       uni.showToast({ title: "预览视频失败" });
-    }
+    },
   });
   // #endif
 };
@@ -402,156 +402,11 @@ const onClickPreview = (item: FileVo, index: number) => {
   }
   emit(
     "clickPreview",
-    Object.assign(Object.assign({}, item), getDetail(index))
+    Object.assign(Object.assign({}, item), getDetail(index)),
   );
 };
 </script>
 
 <style lang="scss" scoped>
-@import "../../libs/css/mixin.scss";
-@import "../../theme.scss";
-$hy-upload-image-width: 80px !default;
-$hy-upload-text-font-size: 11px !default;
-
-.hy-upload {
-  @include flex(column);
-  flex: 1;
-
-  &__wrap {
-    @include flex;
-    flex-wrap: wrap;
-    flex: 1;
-
-    &__preview {
-      border-radius: 2px;
-      margin: 0 8px 8px 0;
-      position: relative;
-      overflow: hidden;
-      @include flex;
-
-      &__image {
-        width: $hy-upload-image-width;
-        height: $hy-upload-image-width;
-      }
-
-      &__other {
-        width: $hy-upload-image-width;
-        height: $hy-upload-image-width;
-        background-color: rgb(242, 242, 242);
-        flex: 1;
-        @include flex(column);
-        justify-content: center;
-        align-items: center;
-
-        &__text {
-          font-size: $hy-upload-text-font-size;
-          color: $hy-tips-color;
-          margin-top: 2px;
-        }
-      }
-    }
-  }
-
-  &__deletable {
-    position: absolute;
-    top: 0;
-    right: 0;
-    background-color: rgb(55, 55, 55);
-    height: 14px;
-    width: 14px;
-    @include flex;
-    border-bottom-left-radius: 100px;
-    align-items: center;
-    justify-content: center;
-    z-index: 9;
-
-    &__icon {
-      position: absolute;
-      transform: scale(0.7);
-      top: 0;
-      right: 0;
-    }
-  }
-
-  &__success {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    @include flex;
-    // 由于weex(nvue)为阿里巴巴的KPI(部门业绩考核)的laji产物，不支持css绘制三角形
-    // 所以在nvue下使用图片，非nvue下使用css实现
-    /* #ifndef APP-NVUE */
-    border-style: solid;
-    border-color: transparent $hy-success $hy-success transparent;
-    border-width: 9px;
-    align-items: center;
-    justify-content: center;
-    /* #endif */
-
-    &__icon {
-      /* #ifndef APP-NVUE */
-      position: absolute;
-      transform: scale(0.7);
-      bottom: -10px;
-      right: -10px;
-      /* #endif */
-      /* #ifdef APP-NVUE */
-      width: 16px;
-      height: 16px;
-      /* #endif */
-    }
-  }
-
-  &__button {
-    @include flex(column);
-    align-items: center;
-    justify-content: center;
-    width: $hy-upload-image-width;
-    height: $hy-upload-image-width;
-    background-color: rgb(244, 245, 247);
-    border-radius: 2px;
-    margin: 0 8px 8px 0;
-    /* #ifndef APP-NVUE */
-    box-sizing: border-box;
-    /* #endif */
-
-    &__text {
-      font-size: $hy-upload-text-font-size;
-      color: $hy-tips-color;
-      margin-top: 2px;
-    }
-
-    &--hover {
-      background-color: rgb(230, 231, 233);
-    }
-
-    &--disabled {
-      opacity: 0.5;
-    }
-  }
-}
-
-.material-sent {
-  width: 100%;
-  height: 100%;
-  background: rgba(245, 245, 245, 0.3);
-  backdrop-filter: blur(4px);
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  z-index: 10;
-
-  .select-tips {
-    width: 70%;
-    height: 10rpx;
-    margin-bottom: 12rpx;
-  }
-
-  .tips-text {
-    font-size: 12px;
-    color: #b99c65;
-  }
-}
+@import "./index.scss";
 </style>

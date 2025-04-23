@@ -47,7 +47,7 @@ const {
   navigateUrl,
   desSize,
   desColor,
-  customStyle
+  customStyle,
 } = toRefs(props);
 const emit = defineEmits(["click"]);
 
@@ -60,7 +60,7 @@ const emptyDescription = computed(() => {
  * */
 const emptyStyle = computed<CSSProperties>(() => {
   const style: CSSProperties = {
-    zIndex: zIndex.value
+    zIndex: zIndex.value,
   };
   return Object.assign(style, customStyle.value);
 });
@@ -71,7 +71,7 @@ const emptyStyle = computed<CSSProperties>(() => {
 const descriptionStyle = computed<CSSProperties>(() => {
   const style: CSSProperties = {
     fontSize: addUnit(desSize.value),
-    color: desColor.value
+    color: desColor.value,
   };
   return style;
 });
@@ -83,7 +83,7 @@ const imgStyle = computed<CSSProperties>(() => {
   return {
     width: addUnit(width.value),
     height: addUnit(height.value),
-    margin: imgMargin.value
+    margin: imgMargin.value,
   };
 });
 
@@ -94,29 +94,11 @@ const handleClick = () => {
   emit("click");
   if (navigateUrl.value) {
     uni.navigateTo({
-      url: navigateUrl.value
+      url: navigateUrl.value,
     });
   }
 };
 </script>
 <style scoped lang="scss">
-.hy-empty {
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  background: rgb(255, 255, 255);
-  &__description {
-    width: 70%;
-    text-align: center;
-  }
-
-  &__button {
-    margin-top: 80rpx;
-  }
-}
+@import "./index.scss";
 </style>

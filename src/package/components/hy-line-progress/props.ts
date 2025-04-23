@@ -1,4 +1,4 @@
-import IProps from "./typing";
+import type IProps from "./typing";
 import { ColorConfig } from "../../config";
 
 const defaultProps: IProps = {
@@ -6,7 +6,7 @@ const defaultProps: IProps = {
   inactiveColor: "#ececec",
   percentage: 0,
   showText: true,
-  height: 12
+  height: 12,
 };
 
 export default defaultProps;

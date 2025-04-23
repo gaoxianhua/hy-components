@@ -1,1 +1,2 @@
-@import "./libs/css/common.scss";
+@use "./libs/css/common.scss" as *;
+@use "./libs/css/mixin.scss" as *;

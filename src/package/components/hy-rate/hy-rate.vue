@@ -237,37 +237,5 @@ const getActiveIndex = (x: number, isClick = false) => {
 </script>
 
 <style lang="scss" scoped>
-@import "../../libs/css/mixin.scss";
-
-.hy-rate {
-  @include flex;
-  align-items: center;
-  margin: 0;
-  padding: 0;
-  /* #ifndef APP-NVUE */
-  touch-action: none;
-  /* #endif */
-
-  &__content {
-    @include flex;
-
-    &__item {
-      position: relative;
-
-      &__icon-wrap {
-        &--half {
-          position: absolute;
-          overflow: hidden;
-          top: 0;
-          left: 0;
-        }
-      }
-    }
-  }
-}
-.hy-icon {
-  /* #ifndef APP-NVUE */
-  box-sizing: border-box;
-  /* #endif */
-}
+@import "./index.scss";
 </style>

@@ -7,7 +7,7 @@
           isLongContent && status === 'close'
             ? addUnit(showHeight)
             : addUnit(contentHeight),
-        textIndent: textIndent
+        textIndent: textIndent,
       }"
     >
       <view
@@ -30,7 +30,7 @@
               color: color,
               fontSize: addUnit(fontSize),
               lineHeight: addUnit(fontSize),
-              marginRight: '5px'
+              marginRight: '5px',
             }"
             >{{ status === "close" ? closeText : openText }}</text
           >
@@ -106,29 +106,5 @@ const toggleReadMore = () => {
 </script>
 
 <style lang="scss" scoped>
-@import "../../libs/css/mixin.scss";
-@import "../../theme.scss";
-
-.hy-read-more {
-  &__content {
-    overflow: hidden;
-    color: $hy-color-paragraph;
-    font-size: 15px;
-    text-align: left;
-    transition: height 0.3s ease;
-  }
-
-  &__toggle {
-    @include flex;
-    justify-content: center;
-    position: relative;
-
-    &__text {
-      @include flex;
-      align-items: center;
-      justify-content: center;
-      margin-top: 5px;
-    }
-  }
-}
+@import "./index.scss";
 </style>

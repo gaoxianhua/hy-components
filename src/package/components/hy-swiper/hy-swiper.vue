@@ -218,58 +218,5 @@ const getItemType = computed(() => {
 </script>
 
 <style lang="scss" scoped>
-@import "../../libs/css/mixin.scss";
-@import "../../theme.scss";
-
-.hy-swiper__wrapper {
-  flex: 1;
-}
-.hy-swiper {
-  @include flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  overflow: hidden;
-
-  &__wrapper {
-    flex: 1;
-
-    &__item {
-      flex: 1;
-
-      &__wrapper {
-        @include flex;
-        position: relative;
-        overflow: hidden;
-        transition: transform 0.3s;
-        flex: 1;
-
-        &__image {
-          flex: 1;
-        }
-
-        &__video {
-          flex: 1;
-        }
-
-        &__title {
-          position: absolute;
-          background-color: rgba(0, 0, 0, 0.3);
-          bottom: 0;
-          left: 0;
-          right: 0;
-          font-size: 28rpx;
-          padding: $hy-border-margin-padding-sm $hy-border-margin-padding-lg;
-          color: #ffffff;
-          flex: 1;
-        }
-      }
-    }
-  }
-
-  &__indicator {
-    position: absolute;
-    bottom: $hy-border-margin-padding-sm;
-  }
-}
+@import "./index.scss";
 </style>

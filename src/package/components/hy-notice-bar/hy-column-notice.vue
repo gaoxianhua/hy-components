@@ -91,40 +91,5 @@ const close = () => {
 </script>
 
 <style lang="scss" scoped>
-@import "../../libs/css/mixin.scss";
-@import "../../theme.scss";
-
-.hy-notice {
-  @include flex;
-  align-items: center;
-  justify-content: space-between;
-
-  &__left-icon {
-    align-items: center;
-    margin-right: 5px;
-  }
-
-  &__right-icon {
-    margin-left: 5px;
-    align-items: center;
-  }
-
-  &__swiper {
-    height: 16px;
-    @include flex;
-    align-items: center;
-    flex: 1;
-
-    &__item {
-      @include flex;
-      align-items: center;
-      overflow: hidden;
-
-      &__text {
-        font-size: 14px;
-        color: $hy-warning;
-      }
-    }
-  }
-}
+@import "./index.scss";
 </style>

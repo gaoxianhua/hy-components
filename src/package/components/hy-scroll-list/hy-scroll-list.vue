@@ -1,9 +1,9 @@
 <template>
-  <view class="u-scroll-list" ref="u-scroll-list">
+  <view class="hy-scroll-list" ref="hy-scroll-list">
     <!-- #ifdef MP-WEIXIN || APP-VUE || H5 || MP-QQ -->
     <!-- 以上平台，支持wxs -->
     <scroll-view
-      class="u-scroll-list__scroll-view scroll-view-native"
+      class="hy-scroll-list__scroll-view scroll-view-native"
       scroll-x
       enable-flex
       @scroll="onScroll"
@@ -20,15 +20,15 @@
     </scroll-view>
     <!--	#endif		-->
     <view
-      class="u-scroll-list__indicator"
+      class="hy-scroll-list__indicator"
       v-if="indicator"
       :style="indicatorStyle"
     >
-      <view class="u-scroll-list__indicator__line" :style="lineStyle">
+      <view class="hy-scroll-list__indicator__line" :style="lineStyle">
         <view
-          class="u-scroll-list__indicator__line__bar"
+          class="hy-scroll-list__indicator__line__bar"
           :style="barStyle"
-          ref="u-scroll-list__indicator__line__bar"
+          ref="hy-scroll-list__indicator__line__bar"
         >
         </view>
       </view>
@@ -37,9 +37,9 @@
 </template>
 
 <script setup lang="ts">
-import { computed, CSSProperties, reactive, toRefs, ref, onMounted } from "vue";
+import { computed, type CSSProperties, toRefs, ref, onMounted } from "vue";
 import defaultProps from "./props";
-import IProps from "./typing";
+import type IProps from "./typing";
 import { addUnit, getRect, sleep } from "../../utils";
 
 const props = withDefaults(defineProps<IProps>(), defaultProps);
@@ -47,13 +47,13 @@ const {
   indicatorWidth,
   indicatorColor,
   indicatorBarWidth,
-  indicatorActiveColor
+  indicatorActiveColor,
 } = toRefs(props);
 const emit = defineEmits(["click", "left", "right"]);
 
 const scrollInfo = ref({
   scrollLeft: 0,
-  scrollWidth: 0
+  scrollWidth: 0,
 });
 const scrollWidth = ref(0);
 const barLeft = ref(0);
@@ -111,36 +111,5 @@ const onScrollToUpper = () => {
 </script>
 
 <style lang="scss" scoped>
-@import "../../libs/css/mixin.scss";
-.u-scroll-list {
-  padding-bottom: 10px;
-
-  &__scroll-view {
-    @include flex;
-    // 缺少会在enable-flex模式下高度异常
-    align-items: flex-start;
-    :deep(.uni-scroll-view-content) {
-      @include flex;
-    }
-  }
-
-  &__indicator {
-    @include flex;
-    justify-content: center;
-    margin-top: 15px;
-
-    &__line {
-      width: 60px;
-      height: 4px;
-      border-radius: 100px;
-      overflow: hidden;
-
-      &__bar {
-        width: 20px;
-        height: 4px;
-        border-radius: 100px;
-      }
-    }
-  }
-}
+@import "./index.scss";
 </style>

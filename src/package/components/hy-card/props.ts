@@ -1,4 +1,4 @@
-import IProps from "./typing";
+import type IProps from "./typing";
 
 const defaultProps: IProps = {
   full: false,
@@ -23,7 +23,7 @@ const defaultProps: IProps = {
   paddingFoot: "",
   showHead: true,
   showFoot: true,
-  boxShadow: true
+  boxShadow: true,
 };
 
 export default defaultProps;

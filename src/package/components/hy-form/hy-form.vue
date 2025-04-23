@@ -340,33 +340,5 @@ defineExpose({
 </script>
 
 <style lang="scss" scoped>
-@import "../../theme.scss";
-.hy-form {
-  &--item {
-    display: flex;
-    flex-direction: v-bind(labelPos);
-    //align-items: center;
-    margin-bottom: $hy-border-margin-padding-lg;
-    &__label {
-      padding: $hy-border-margin-padding-base 0;
-    }
-    &__container {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      &-content {
-        flex: 1;
-        display: flex;
-        align-items: center;
-        .flex {
-          flex: 1;
-        }
-      }
-      &-warning {
-        color: $hy-error;
-        font-size: $hy-font-size-hint;
-      }
-    }
-  }
-}
+@import "./index.scss";
 </style>

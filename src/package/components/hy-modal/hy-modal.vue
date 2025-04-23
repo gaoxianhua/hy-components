@@ -6,7 +6,7 @@
     :customStyle="{
       borderRadius: '6px',
       overflow: 'hidden',
-      marginTop: `-${addUnit(negativeTop)}`
+      marginTop: `-${addUnit(negativeTop)}`,
     }"
     :closeOnClickOverlay="closeOnClickOverlay"
     :safeAreaInsetBottom="false"
@@ -16,14 +16,14 @@
     <view
       class="hy-modal"
       :style="{
-        width: addUnit(width)
+        width: addUnit(width),
       }"
     >
       <view class="hy-modal__title" v-if="title">{{ title }}</view>
       <view
         class="hy-modal__content"
         :style="{
-          paddingTop: `${title ? 12 : 25}px`
+          paddingTop: `${title ? 12 : 25}px`,
         }"
       >
         <slot>
@@ -42,7 +42,7 @@
         <view
           class="hy-modal__button-group"
           :style="{
-            flexDirection: buttonReverse ? 'row-reverse' : 'row'
+            flexDirection: buttonReverse ? 'row-reverse' : 'row',
           }"
         >
           <view
@@ -52,7 +52,7 @@
             :class="[
               showCancelButton &&
                 !showConfirmButton &&
-                'hy-modal__button-group__wrapper--only-cancel'
+                'hy-modal__button-group__wrapper--only-cancel',
             ]"
             v-if="showCancelButton"
             @tap.stop="cancelHandler"
@@ -60,7 +60,7 @@
             <text
               class="hy-modal__button-group__wrapper__text"
               :style="{
-                color: cancelColor
+                color: cancelColor,
               }"
               >{{ cancelText }}</text
             >
@@ -76,7 +76,7 @@
             :class="[
               !showCancelButton &&
                 showConfirmButton &&
-                'hy-modal__button-group__wrapper--only-confirm'
+                'hy-modal__button-group__wrapper--only-confirm',
             ]"
             v-if="showConfirmButton"
             @tap="confirmHandler"
@@ -90,7 +90,7 @@
               v-else
               class="hy-modal__button-group__wrapper__text"
               :style="{
-                color: confirmColor
+                color: confirmColor,
               }"
               >{{ confirmText }}</text
             >
@@ -122,7 +122,7 @@ watch(
   () => show.value,
   (newValue) => {
     if (newValue && loading.value) loading.value = false;
-  }
+  },
 );
 
 /**
@@ -158,83 +158,5 @@ const clickHandler = () => {
 </script>
 
 <style lang="scss" scoped>
-@import "../../libs/css/mixin.scss";
-@import "../../theme.scss";
-
-$u-modal-border-radius: 6px;
-
-.hy-modal {
-  width: 650rpx;
-  border-radius: $hy-border-radius-base;
-  overflow: hidden;
-
-  &__title {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-size: 16px;
-    font-weight: bold;
-    color: $hy-color-title;
-    text-align: center;
-    padding-top: 25px;
-  }
-
-  &__content {
-    padding: 12px 25px 25px 25px;
-    @include flex;
-    justify-content: center;
-
-    &__text {
-      text-align: v-bind(contentTextAlign);
-      font-size: 15px;
-      color: $hy-text-color-grey;
-      flex: 1;
-    }
-  }
-
-  &__button-group {
-    border-top: $hy-border-line;
-    @include flex;
-
-    &--confirm-button {
-      flex-direction: column;
-      padding: 0 25px 15px 25px;
-    }
-
-    &__wrapper {
-      flex: 1;
-      @include flex;
-      justify-content: center;
-      align-items: center;
-      height: 48px;
-
-      &--line {
-        background: $hy-text-color-light;
-        width: 1px;
-        height: 48px;
-      }
-
-      &--confirm,
-      &--only-cancel {
-        border-bottom-right-radius: $hy-border-radius-base;
-      }
-
-      &--cancel,
-      &--only-confirm {
-        border-bottom-left-radius: $hy-border-radius-base;
-      }
-
-      &--hover {
-        background-color: $hy-bg-color-grey;
-      }
-
-      &__text {
-        color: $hy-color-subtitle;
-        font-size: 16px;
-        text-align: center;
-      }
-    }
-  }
-}
+@import "./index.scss";
 </style>

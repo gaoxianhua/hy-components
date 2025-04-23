@@ -151,6 +151,69 @@
             "navigationBarTitleText": "单选框",
             "enablePullDownRefresh": false
           }
+        },
+        {
+          "path": "slider/slider",
+          "style": {
+            "navigationBarTitleText": "滑块",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "switch/switch",
+          "style": {
+            "navigationBarTitleText": "开关",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "lineProgress/lineProgress",
+          "style": {
+            "navigationBarTitleText": "线形进度条",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "scrollList/scrollList",
+          "style": {
+            "navigationBarTitleText": "横向滚动列表",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "line/line",
+          "style": {
+            "navigationBarTitleText": "线条",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "card/card",
+          "style": {
+            "navigationBarTitleText": "卡片",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "overlay/overlay",
+          "style": {
+            "navigationBarTitleText": "遮罩层",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "grid/grid",
+          "style": {
+            "navigationBarTitleText": "宫格布局",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "divider/divider",
+          "style": {
+            "navigationBarTitleText": "分割线",
+            "enablePullDownRefresh": false
+          }
         }
       ]
     }

@@ -13,7 +13,7 @@
         :style="{
           height:
             isRange && showValue
-              ? addUnit(Number(blockSize) + 24)
+              ? addUnit(getPx(blockSize) + 24)
               : addUnit(blockSize),
         }"
       >
@@ -22,7 +22,7 @@
           class="hy-slider__base"
           :style="[
             {
-              height: height,
+              height: addUnit(height),
               backgroundColor: inactiveColor,
             },
           ]"
@@ -34,8 +34,8 @@
           :style="[
             barStyle,
             {
-              height: height,
-              marginTop: '-' + height,
+              height: addUnit(height),
+              marginTop: '-' + addUnit(height),
               backgroundColor: activeColor,
             },
           ]"
@@ -47,8 +47,8 @@
           :style="[
             barStyle0,
             {
-              height: height,
-              marginTop: '-' + height,
+              height: addUnit(height),
+              marginTop: '-' + addUnit(height),
               backgroundColor: inactiveColor,
             },
           ]"
@@ -58,7 +58,7 @@
           v-if="isRange && showValue"
           class="hy-slider__show-range-value"
           :style="{
-            left: blockLeft(barStyle?.width, blockSize),
+            left: blockLeft(barStyle0?.width, blockSize),
           }"
         >
           {{ rangeValue[0] }}
@@ -80,7 +80,7 @@
             @touchend="onTouchEnd($event, 0)"
             @touchcancel="onTouchEnd($event, 0)"
             :style="{
-              left: blockLeft(barStyle?.width, blockSize),
+              left: blockLeft(barStyle0?.width, blockSize),
             }"
           >
             <slot name="min" v-if="$slots.min || $slots.$min" />
@@ -158,7 +158,7 @@ import {
 } from "vue";
 import defaultProps from "./props";
 import type IProps from "./typing";
-import { addUnit, error, getRect, sleep } from "../../utils";
+import { addUnit, error, getRect, getPx } from "../../utils";
 
 const props = withDefaults(defineProps<IProps>(), defaultProps);
 const { modelValue, rangeValue, useNative, isRange, disabled, step, min, max } =
@@ -184,10 +184,7 @@ const blockLeft = computed(() => {
     blockWidth: string | number,
   ): string => {
     if (slideWidth) {
-      return addUnit(
-        parseInt(slideWidth.toString().replace("px", "")) +
-          Number(blockWidth) / 2,
-      );
+      return addUnit(getPx(slideWidth) + getPx(blockWidth) / 2);
     }
     return "0px";
   };
@@ -432,81 +429,5 @@ const format = (value: number, index = 1): number => {
 </script>
 
 <style lang="scss" scoped>
-@import "../../libs/css/mixin.scss";
-.hy-slider {
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-
-  &__native {
-    flex: 1;
-  }
-
-  &-inner {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    border-radius: 999px;
-    padding: 10px 18px;
-    justify-content: center;
-  }
-
-  &__show-value {
-    margin: 10px 18px 10px 0px;
-  }
-
-  &__show-range-value {
-    padding-top: 2px;
-    font-size: 12px;
-    line-height: 12px;
-    position: absolute;
-    bottom: 0;
-  }
-
-  &__base {
-    background-color: #ebedf0;
-  }
-
-  /* #ifndef APP-NVUE */
-  &-inner:before {
-    position: absolute;
-    right: 0;
-    left: 0;
-    content: "";
-    top: -8px;
-    bottom: -8px;
-    z-index: -1;
-  }
-  /* #endif */
-
-  &__gap {
-    position: relative;
-    border-radius: 999px;
-    transition: width 0.2s;
-    background-color: #1989fa;
-  }
-
-  &__button {
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
-    background-color: #fff;
-    transform: scale(0.9);
-    /* #ifdef H5 */
-    cursor: pointer;
-    /* #endif */
-  }
-
-  &__button-wrap {
-    position: absolute;
-    // transform: translate3d(50%, -50%, 0);
-  }
-
-  &--disabled {
-    opacity: 0.5;
-  }
-}
+@import "./index.scss";
 </style>

@@ -165,8 +165,8 @@ onMounted(() => {
  * */
 const init = () => {
   innerCurrent.value = list.value.findIndex(
-    (item: string | SubSectionListVo) => {
-      if (typeof item === "string") {
+    (item: string | number | SubSectionListVo) => {
+      if (typeof item === "string" || typeof item === "number") {
         return item === modelValue.value;
       } else {
         return item[fieldNames.value.value] === modelValue.value;
@@ -208,94 +208,5 @@ const clickHandler = (temp: string | SubSectionListVo, index: number) => {
 </script>
 
 <style lang="scss" scoped>
-@import "../../libs/css/mixin.scss";
-
-.hy-subsection {
-  @include flex;
-  position: relative;
-  overflow: hidden;
-  /* #ifndef APP-NVUE */
-  width: 100%;
-  box-sizing: border-box;
-  /* #endif */
-
-  &--button {
-    height: 35px;
-    background-color: rgb(238, 238, 239);
-    padding: 3px;
-    border-radius: 4px;
-    align-items: stretch;
-
-    &__bar {
-      background-color: #ffffff;
-      border-radius: 4px !important;
-    }
-  }
-
-  &--subsection {
-    height: 32px;
-  }
-
-  &__bar {
-    position: absolute;
-    /* #ifndef APP-NVUE */
-    transition-property: transform, color;
-    transition-duration: 0.3s;
-    transition-timing-function: ease-in-out;
-    /* #endif */
-
-    &--first {
-      border-top-left-radius: 4px;
-      border-bottom-left-radius: 4px;
-      border-top-right-radius: 0px;
-      border-bottom-right-radius: 0px;
-    }
-
-    &--center {
-      border-top-left-radius: 0px;
-      border-bottom-left-radius: 0px;
-      border-top-right-radius: 0px;
-      border-bottom-right-radius: 0px;
-    }
-
-    &--last {
-      border-top-left-radius: 0px;
-      border-bottom-left-radius: 0px;
-      border-top-right-radius: 4px;
-      border-bottom-right-radius: 4px;
-    }
-  }
-
-  &__item {
-    @include flex;
-    flex: 1;
-    justify-content: center;
-    align-items: center;
-    // vue环境下，需要设置相对定位，因为滑块为绝对定位，item需要在滑块的上面
-    position: relative;
-
-    &--no-border-right {
-      border-right-width: 0 !important;
-    }
-
-    &--first {
-      border-top-left-radius: 4px;
-      border-bottom-left-radius: 4px;
-    }
-
-    &--last {
-      border-top-right-radius: 4px;
-      border-bottom-right-radius: 4px;
-    }
-
-    &__text {
-      font-size: 12px;
-      line-height: 14px;
-      @include flex;
-      align-items: center;
-      transition-property: color;
-      transition-duration: 0.3s;
-    }
-  }
-}
+@import "./index.scss";
 </style>

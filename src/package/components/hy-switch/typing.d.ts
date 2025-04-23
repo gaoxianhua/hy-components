@@ -1,4 +1,5 @@
 import type { CSSProperties } from "vue";
+import { HyApp } from "@/package/typing/modules/common";
 
 export default interface IProps {
   /**
@@ -16,7 +17,7 @@ export default interface IProps {
   /**
    * @description 开关尺寸，单位px （默认 25 ）
    * */
-  size?: number;
+  size?: HyApp.SizeType | string | number;
   /**
    * @description 打开时的背景色 （默认 '#2979ff' ）
    * */
@@ -33,6 +34,18 @@ export default interface IProps {
    * @description 关闭选择器时通过change事件发出的值 （默认 false ）
    * */
   inactiveValue?: boolean;
+  /**
+   * @description 打开选择器时图标
+   * */
+  activeIcon?: string;
+  /**
+   * @description 关闭选择器时图标
+   * */
+  inactiveIcon?: string;
+  /**
+   * @description 图标颜色
+   * */
+  iconColor?: string;
   /**
    * @description 是否开启异步变更，开启后需要手动控制输入值 （默认 false ）
    * */

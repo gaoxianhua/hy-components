@@ -1,46 +1,46 @@
-import { CSSProperties } from "vue";
+import type { CSSProperties } from "vue";
 
 export interface FileVo {
   /**
    * @description 上传文件本地地址链接
    * */
-  url: string;
+  url?: string;
   /**
    * @description 上传文件类型
    * */
-  type: "image" | "video" | "file";
+  type?: "image" | "video" | "file";
   /**
    * @description 上传文件本地地址链接
    * */
-  thumb: string;
+  thumb?: string;
   /**
    * @description 文件大小
    * */
-  size: number;
+  size?: number;
   /**
    * @description 是否视频
    * */
-  isVideo: boolean;
+  isVideo?: boolean;
   /**
    * @description 是否图片
    * */
-  isImage: boolean;
+  isImage?: boolean;
   /**
    * @description 是否显示删除按钮
    * */
-  deletable: boolean;
+  deletable?: boolean;
   /**
    * @description 上传时候状态
    * */
-  status: "loading" | "failed" | "success";
+  status?: "loading" | "failed" | "success";
   /**
    * @description 提示信息
    * */
-  message: string;
+  message?: string;
   /**
    * @description 进度条
    * */
-  schedule: string | number;
+  schedule?: string | number;
 }
 
 export default interface IProps {

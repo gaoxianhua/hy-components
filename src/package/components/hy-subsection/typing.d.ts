@@ -3,15 +3,15 @@ import { HyApp } from "@/package/typing/modules/common";
 
 export interface SubSectionListVo extends HyApp.FieldNamesType {
   name: string;
-  value: string;
+  value: string | number;
 }
 
 export default interface IProps {
-  modelValue: string;
+  modelValue: string | number;
   /**
    * @description tab的数据
    * */
-  list: (string | SubSectionListVo)[];
+  list: (string | number | SubSectionListVo)[];
   /**
    * @description list的键值
    * */

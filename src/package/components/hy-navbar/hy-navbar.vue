@@ -4,7 +4,7 @@
       class="hy-navbar__placeholder"
       v-if="fixed && placeholder"
       :style="{
-        height: addUnit(getPx(height) + statusBarHeight)
+        height: addUnit(getPx(height) + statusBarHeight),
       }"
     ></view>
     <view
@@ -15,7 +15,7 @@
         :class="[border && 'hy-border-bottom', 'hy-navbar__content']"
         :style="{
           height: addUnit(height),
-          backgroundColor: bgColor
+          backgroundColor: bgColor,
         }"
       >
         <view
@@ -34,7 +34,7 @@
             <text
               v-if="leftText"
               :style="{
-                color: leftIconColor
+                color: leftIconColor,
               }"
               class="hy-navbar__content__left__text"
               >{{ leftText }}</text
@@ -48,9 +48,9 @@
               :style="[
                 {
                   width: addUnit(titleWidth),
-                  color: titleColor
+                  color: titleColor,
                 },
-                titleStyle
+                titleStyle,
               ]"
               >{{ title }}</text
             >
@@ -59,9 +59,9 @@
               :style="[
                 {
                   width: addUnit(titleWidth),
-                  color: titleColor
+                  color: titleColor,
                 },
-                titleStyle
+                titleStyle,
               ]"
               >{{ sub }}</text
             >
@@ -121,74 +121,5 @@ const rightClick = () => {
 </script>
 
 <style lang="scss" scoped>
-@import "../../libs/css/mixin.scss";
-@import "../../theme.scss";
-
-.hy-navbar {
-  &--fixed {
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: 0;
-    z-index: 11;
-  }
-
-  &__content {
-    @include flex(row);
-    align-items: center;
-    height: 44px;
-    background-color: #9acafc;
-    position: relative;
-    justify-content: center;
-
-    &__left,
-    &__right {
-      padding: 0 13px;
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      @include flex(row);
-      align-items: center;
-    }
-
-    &__left {
-      left: 0;
-
-      &--hover {
-        opacity: 0.7;
-      }
-
-      &__text {
-        font-size: 15px;
-        margin-left: 3px;
-      }
-    }
-
-    &__center {
-      display: flex;
-      flex-direction: column;
-      text-align: center;
-      &--title {
-        font-size: $hy-font-size-subtitle;
-        color: $hy-color-title;
-      }
-      &--sub {
-        font-size: $hy-font-size-hint;
-        color: $hy-color-hint;
-      }
-    }
-
-    &__right {
-      right: 0;
-
-      &__text {
-        font-size: 15px;
-        margin-left: 3px;
-      }
-    }
-  }
-}
-.hy-border-bottom {
-  border-bottom: $hy-border-line;
-}
+@import "./index.scss";
 </style>

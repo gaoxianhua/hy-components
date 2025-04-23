@@ -1,0 +1,25 @@
+@use "../../theme.scss" as *;
+@use "../../libs/css/mixin.scss" as *;
+
+.hy-read-more {
+  &__content {
+    overflow: hidden;
+    color: $hy-color-paragraph;
+    font-size: 15px;
+    text-align: left;
+    transition: height 0.3s ease;
+  }
+
+  &__toggle {
+    @include flex;
+    justify-content: center;
+    position: relative;
+
+    &__text {
+      @include flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 5px;
+    }
+  }
+}

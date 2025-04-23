@@ -80,15 +80,17 @@ $hy-avatar-size-lg: 120rpx;
 $hy-opacity-disabled: 0.3; // 组件禁用态的透明度
 
 /* 盒子的圆角 */
-$hy-border-radius-sm: 6rpx;
-$hy-border-radius-base: 12rpx;
-$hy-border-radius-lg: 20rpx;
+$hy-border-radius-no: 0;
+$hy-border-radius-sm: 8rpx;
+$hy-border-radius-base: 20rpx;
+$hy-border-radius-lg: 32rpx;
 $hy-border-radius-circle: 50%;
+$hy-border-radius-semicircle: 100px;
 /* 盒子阴影 */
 $hy-box-shadow: 0 0 10rpx 4rpx rgba(0, 0, 0, 0.16);
 /* 盒内盒外间距 */
 $hy-border-margin-padding-sm: 10rpx;
 $hy-border-margin-padding-base: 20rpx;
-$hy-border-margin-padding-lg: 25rpx;
+$hy-border-margin-padding-lg: 30rpx;
 /* 底部线条 */
 $hy-border-line: 1px solid #dadbde;

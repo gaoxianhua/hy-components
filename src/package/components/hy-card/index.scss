@@ -1,0 +1,67 @@
+@use "../../libs/css/mixin.scss" as *;
+@use "../../theme.scss" as *;
+
+.hy-card {
+  position: relative;
+  overflow: hidden;
+  font-size: 28rpx;
+  background-color: #ffffff;
+  box-sizing: border-box;
+
+  &-full {
+    // 如果是与屏幕之间不留空隙，应该设置左右边距为0
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    width: 100%;
+  }
+
+  &--border:after {
+    border-radius: 16rpx;
+  }
+
+  &__head {
+    &--flex {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    &--left {
+      color: #303133ff;
+      display: flex;
+
+      &__thumb {
+        margin-right: 16rpx;
+      }
+
+      &__title {
+        max-width: 400rpx;
+        height: 20px;
+        @include line-feed;
+      }
+    }
+
+    &--right {
+      color: $hy-text-color-grey;
+      margin-left: 6rpx;
+    }
+  }
+
+  &__body {
+    color: $hy-bg-color;
+  }
+
+  &__foot {
+    color: $hy-text-color-grey;
+  }
+}
+.hy-border-bottom {
+  border-bottom: $hy-border-line;
+}
+
+.hy-border-top {
+  border-top: $hy-border-line;
+}
+.hy-border {
+  border: $hy-border-line;
+}

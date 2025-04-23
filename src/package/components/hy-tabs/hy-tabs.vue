@@ -25,7 +25,7 @@
                 item.disabled && 'hy-tabs__wrapper__nav__item--disabled',
                 innerCurrent == index
                   ? 'hy-tabs__wrapper__nav__item-active'
-                  : ''
+                  : '',
               ]"
             >
               <slot
@@ -51,7 +51,8 @@
               <text
                 v-else
                 :class="[
-                  item.disabled && 'hy-tabs__wrapper__nav__item__text--disabled'
+                  item.disabled &&
+                    'hy-tabs__wrapper__nav__item__text--disabled',
                 ]"
                 class="hy-tabs__wrapper__nav__item__text"
                 :style="[textStyle(index)]"
@@ -94,7 +95,7 @@
                   (item?.badge && item?.badge?.inverted) || propsBadge?.inverted
                 "
                 :customStyle="{
-                  marginLeft: '4px'
+                  marginLeft: '4px',
                 }"
               ></HyBadge>
             </view>
@@ -109,8 +110,8 @@
                   transitionDuration: `${firstTime ? 0 : duration}ms`,
                   height: addUnit(lineHeight),
                   background: lineColor,
-                  backgroundSize: lineBgSize
-                }
+                  backgroundSize: lineBgSize,
+                },
               ]"
             >
             </view>
@@ -144,7 +145,7 @@ import {
   ref,
   watch,
   nextTick,
-  onMounted
+  onMounted,
 } from "vue";
 import defaultProps from "./props";
 import IProps, { TabsItemVo } from "./typing";
@@ -163,7 +164,7 @@ const scrollLeft = ref<number>(0);
 const scrollViewWidth = ref<number>(0);
 const lineOffsetLeft = ref<number>(0);
 const tabsRect = ref<UniApp.NodeInfo>({
-  left: 0
+  left: 0,
 });
 const innerCurrent = ref<number>(0);
 
@@ -178,11 +179,11 @@ watch(
       });
     }
   },
-  { immediate: true }
+  { immediate: true },
 );
 watch(
   () => list.value,
-  () => resize()
+  () => resize(),
 );
 
 const textStyle = computed(() => {
@@ -234,9 +235,9 @@ const clickHandler = (item: TabsItemVo, index: number) => {
     "click",
     {
       ...item,
-      index
+      index,
     },
-    index
+    index,
   );
   // 如果disabled状态，返回
   if (item.disabled) return;
@@ -249,7 +250,7 @@ const clickHandler = (item: TabsItemVo, index: number) => {
 const longPressHandler = (item: TabsItemVo, index: number) => {
   emit("longPress", {
     ...item,
-    index
+    index,
   });
 };
 const setScrollLeft = () => {
@@ -275,7 +276,7 @@ const setScrollLeft = () => {
   // 这里做一个限制，限制scrollLeft的最大值为整个scroll-view宽度减去tabs组件的宽度
   scrollLeft_1 = Math.min(
     scrollLeft_1,
-    scrollViewWidth.value - (tabsRect.value.width || 0)
+    scrollViewWidth.value - (tabsRect.value.width || 0),
   );
   scrollLeft.value = Math.max(0, scrollLeft_1);
 };
@@ -313,7 +314,7 @@ const resize = () => {
       // 获取了tabs的尺寸之后，设置滑块的位置
       setLineLeft();
       setScrollLeft();
-    }
+    },
   );
 };
 /**
@@ -330,7 +331,7 @@ const getTabsRect = () => {
 const getAllItemRect = () => {
   return new Promise((resolve) => {
     const promiseAllArr = list.value.map((item, index) =>
-      getRect(`.hy-tabs__wrapper__nav__item-${index}`)
+      getRect(`.hy-tabs__wrapper__nav__item-${index}`),
     );
     Promise.all(promiseAllArr).then((sizes) => resolve(sizes));
   });
@@ -350,67 +351,5 @@ const animationFinish = (e: any) => {
 </script>
 
 <style lang="scss" scoped>
-@import "../../libs/css/mixin.scss";
-@import "../../theme.scss";
-
-.hy-tabs {
-  &__wrapper {
-    @include flex;
-    align-items: center;
-
-    &__scroll-view-wrapper {
-      flex: 1;
-      /* #ifndef APP-NVUE */
-      overflow: auto hidden;
-      /* #endif */
-    }
-
-    &__scroll-view {
-      @include flex;
-      flex: 1;
-    }
-
-    &__nav {
-      @include flex;
-      position: relative;
-
-      &__item {
-        padding: 0 11px;
-        @include flex;
-        align-items: center;
-        justify-content: center;
-        /* #ifdef H5 */
-        cursor: pointer;
-        /* #endif */
-
-        &--disabled {
-          /* #ifdef H5 */
-          cursor: not-allowed;
-          /* #endif */
-        }
-
-        &__text {
-          font-size: 15px;
-          color: $hy-text-color-grey;
-          white-space: nowrap !important;
-
-          &--disabled {
-            color: $hy-color-disable-bg !important;
-          }
-        }
-      }
-
-      &__line {
-        height: 3px;
-        background: $hy-primary;
-        width: 30px;
-        position: absolute;
-        bottom: 2px;
-        border-radius: 100px;
-        transition-property: transform;
-        transition-duration: 300ms;
-      }
-    }
-  }
-}
+@import "./index.scss";
 </style>

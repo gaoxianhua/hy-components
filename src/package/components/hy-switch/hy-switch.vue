@@ -11,31 +11,32 @@
       :style="[nodeStyle]"
       ref="hy-switch__node"
     >
-      <HyIcon
-        v-if="loading"
-        :name="IconConfig.LOADING"
-        is-rotate
-        :color="modelValue ? activeColor : '#AAABAD'"
-        :size="size * 0.6"
-      ></HyIcon>
+      <hy-loading
+        :show="loading"
+        :size="switchSize * 0.6"
+        mode="circle"
+      ></hy-loading>
+      <view class="" v-if="!loading">
+        <slot>
+          <HyIcon
+            :name="modelValue ? activeIcon : inactiveIcon"
+            :size="switchSize * 0.6"
+            :color="iconColor"
+          ></HyIcon>
+        </slot>
+      </view>
     </view>
   </view>
 </template>
 
 <script setup lang="ts">
-import {
-  toRefs,
-  watch,
-  ref,
-  nextTick,
-  computed,
-  type CSSProperties,
-} from "vue";
-import { IconConfig } from "../../config";
+import { toRefs, watch, nextTick, computed, type CSSProperties } from "vue";
 import { addUnit, error } from "../../utils";
 import defaultProps from "./props";
 import type IProps from "./typing";
 
+// 组件
+import HyLoading from "../hy-loading/hy-loading.vue";
 import HyIcon from "../hy-icon/hy-icon.vue";
 
 const props = withDefaults(defineProps<IProps>(), defaultProps);
@@ -52,7 +53,6 @@ const {
   inactiveColor,
 } = toRefs(props);
 const emit = defineEmits(["update:modelValue", "change"]);
-const bgColor = ref("#ffffff");
 
 watch(
   () => modelValue.value,
@@ -64,14 +64,36 @@ watch(
   { immediate: true },
 );
 
+/**
+ * @description 是否打开
+ * */
 const isActive = computed(() => {
   return modelValue.value === activeValue.value;
 });
+
+/**
+ * @description 设置开关大小
+ * */
+const switchSize = computed((): number => {
+  const sz: AnyObject = {
+    small: 20,
+    medium: 25,
+    large: 30,
+  };
+
+  return typeof size.value === "number"
+    ? size.value
+    : sz[size.value] || Number(size.value);
+});
+
+/**
+ * @description 开关样式
+ * */
 const switchStyle = computed<CSSProperties>(() => {
   let style: CSSProperties = {};
   // 这里需要加2，是为了腾出边框的距离，否则圆点node会和外边框紧贴在一起
-  style.width = addUnit(size.value * 2 + 2);
-  style.height = addUnit(Number(size.value) + 2);
+  style.width = addUnit(switchSize.value * 2 + 2);
+  style.height = addUnit(switchSize.value + 2);
   // style.borderColor = this.value ? 'rgba(0, 0, 0, 0)' : 'rgba(0, 0, 0, 0.12)'
   // 如果自定义了“非激活”演示，name边框颜色设置为透明(跟非激活颜色一致)
   // 这里不能简单的设置为非激活的颜色，否则打开状态时，会有边框，所以需要透明
@@ -83,32 +105,47 @@ const switchStyle = computed<CSSProperties>(() => {
     : inactiveColor.value;
   return style;
 });
+
+/**
+ * @description 圆圈样式
+ * */
 const nodeStyle = computed<CSSProperties>(() => {
   let style: CSSProperties = {};
   // 如果自定义非激活颜色，将node圆点的尺寸减少两个像素，让其与外边框距离更大一点
-  style.width = addUnit(size.value - space.value);
-  style.height = addUnit(size.value - space.value);
+  style.width = addUnit(switchSize.value - space.value);
+  style.height = addUnit(switchSize.value - space.value);
   const translateX = isActive.value
     ? addUnit(space.value)
-    : addUnit(size.value);
+    : addUnit(switchSize.value);
   style.transform = `translateX(-${translateX})`;
   return style;
 });
+
+/**
+ * @description 背景样式
+ * */
 const bgStyle = computed<CSSProperties>(() => {
   let style: CSSProperties = {};
   // 这里配置一个多余的元素在HTML中，是为了让switch切换时，有更良好的背景色扩充体验(见实际效果)
-  style.width = addUnit(Number(size.value) * 2 - size.value / 2);
-  style.height = addUnit(size.value);
+  style.width = addUnit(switchSize.value * 2 - switchSize.value / 2);
+  style.height = addUnit(switchSize.value);
   style.backgroundColor = inactiveColor.value;
   // 打开时，让此元素收缩，否则反之
   style.transform = `scale(${isActive.value ? 0 : 1})`;
   return style;
 });
+
+/**
+ * @description 自定义颜色
+ * */
 const customInactiveColor = computed(() => {
   // 之所以需要判断是否自定义了“非激活”颜色，是为了让node圆点离外边框更宽一点的距离
   return inactiveColor.value !== "#fff" && inactiveColor.value !== "#ffffff";
 });
 
+/**
+ * @description 点击事件
+ * */
 const clickHandler = () => {
   if (!disabled.value && !loading.value) {
     const oldValue = isActive.value ? inactiveValue.value : activeValue.value;
@@ -124,52 +161,5 @@ const clickHandler = () => {
 </script>
 
 <style lang="scss" scoped>
-@import "../../libs/css/mixin.scss";
-
-.hy-switch {
-  @include flex(row);
-  /* #ifndef APP-NVUE */
-  box-sizing: border-box;
-  /* #endif */
-  position: relative;
-  background-color: #fff;
-  border-width: 1px;
-  border-radius: 100px;
-  transition: background-color 0.4s;
-  border-color: rgba(0, 0, 0, 0.12);
-  border-style: solid;
-  justify-content: flex-end;
-  align-items: center;
-  // 由于weex为阿里逗着玩的KPI项目，导致bug奇多，这必须要写这一行，
-  // 否则在iOS上，点击页面任意地方，都会触发switch的点击事件
-  overflow: hidden;
-
-  &__node {
-    @include flex(row);
-    align-items: center;
-    justify-content: center;
-    border-radius: 100px;
-    background-color: #fff;
-    border-radius: 100px;
-    box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.25);
-    transition-property: transform;
-    transition-duration: 0.4s;
-    transition-timing-function: cubic-bezier(0.3, 1.05, 0.4, 1.05);
-  }
-
-  &__bg {
-    position: absolute;
-    border-radius: 100px;
-    background-color: #ffffff;
-    transition-property: transform;
-    transition-duration: 0.4s;
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
-    transition-timing-function: ease;
-  }
-
-  &--disabled {
-    opacity: 0.6;
-  }
-}
+@import "./index.scss";
 </style>

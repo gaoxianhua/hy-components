@@ -82,5 +82,5 @@ export default interface IProps {
   /**
    * @description 布局方式，row-横向，column-纵向
    * */
-  placement?: HyApp.PermutationType;
+  placement?: HyApp.ShapeType;
 }

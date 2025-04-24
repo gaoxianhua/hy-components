@@ -1,4 +1,4 @@
-import IProps from "./typing";
+import type IProps from "./typing";
 import { IconConfig } from "../../config";
 
 const defaultProps: IProps = {
@@ -13,11 +13,11 @@ const defaultProps: IProps = {
   zIndex: 888,
   iconStyle: {
     color: "#909399",
-    fontSize: "19px"
+    fontSize: "19px",
   },
   customStyle: {
-    transform: "rotate(180deg)"
-  }
+    transform: "rotate(180deg)",
+  },
 };
 
 export default defaultProps;

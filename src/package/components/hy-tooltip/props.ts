@@ -1,4 +1,4 @@
-import IProps from "./typing";
+import type IProps from "./typing";
 
 const defaultProps: IProps = {
   text: "",
@@ -11,7 +11,7 @@ const defaultProps: IProps = {
   showCopy: true,
   buttons: [],
   overlay: true,
-  showToast: true
+  showToast: true,
 };
 
 export default defaultProps;

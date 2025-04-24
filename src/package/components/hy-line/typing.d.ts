@@ -12,7 +12,7 @@ export default interface IProps {
   /**
    * @description 线条的方向，row-横向，column-竖向 (默认 'row' )
    * */
-  direction?: HyApp.PermutationType;
+  direction?: HyApp.ShapeType;
   /**
    * @description 是否显示细线条 (默认 true )
    * */

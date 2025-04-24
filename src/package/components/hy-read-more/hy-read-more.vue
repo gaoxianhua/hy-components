@@ -48,9 +48,9 @@
 </template>
 
 <script setup lang="ts">
-import { computed, CSSProperties, toRefs, ref, onMounted } from "vue";
+import { computed, type CSSProperties, toRefs, ref, onMounted } from "vue";
 import defaultProps from "./props";
-import IProps from "./typing";
+import type IProps from "./typing";
 import { addUnit, getRect, guid, sleep } from "../../utils";
 import { IconConfig } from "../../config";
 

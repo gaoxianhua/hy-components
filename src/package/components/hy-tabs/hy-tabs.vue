@@ -140,7 +140,7 @@
 <script setup lang="ts">
 import {
   computed,
-  CSSProperties,
+  type CSSProperties,
   toRefs,
   ref,
   watch,
@@ -148,7 +148,8 @@ import {
   onMounted,
 } from "vue";
 import defaultProps from "./props";
-import IProps, { TabsItemVo } from "./typing";
+import type IProps from "./typing";
+import type { TabsItemVo } from "./typing";
 import { addUnit, getPx, getRect, sleep } from "../../utils";
 
 // 组件

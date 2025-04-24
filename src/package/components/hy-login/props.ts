@@ -1,4 +1,4 @@
-import IProps from "./typing";
+import type IProps from "./typing";
 
 const defaultProps: IProps = {
   logo: "",
@@ -16,7 +16,7 @@ const defaultProps: IProps = {
     min: 6,
     max: 20,
     message: "长度在6-20个字符之间",
-    trigger: ["blur", "change"]
+    trigger: ["blur", "change"],
   }),
   customPhoneValidator: () => ({
     // 自定义验证函数，见上说明
@@ -25,8 +25,8 @@ const defaultProps: IProps = {
       return /^[1][0-9]{10}$/.test(value);
     },
     message: "手机号码不正确",
-    trigger: ["change", "blur"]
-  })
+    trigger: ["change", "blur"],
+  }),
 };
 
 export default defaultProps;

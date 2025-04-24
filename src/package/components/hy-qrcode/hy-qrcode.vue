@@ -23,7 +23,7 @@
 <script setup lang="ts">
 import { getCurrentInstance, toRefs, ref, onMounted } from "vue";
 import defaultProps from "./props";
-import IProps from "./typing";
+import type IProps from "./typing";
 import QRCode from "./qrcode.js";
 import { addUnit } from "../../utils";
 import { IconConfig } from "../../config";

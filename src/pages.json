@@ -13,7 +13,7 @@
       "root": "pages/components",
       "pages": [
         {
-          "path": "Icon/Icon",
+          "path": "icon/icon",
           "style": {
             "navigationBarTitleText": "图标",
             "enablePullDownRefresh": false
@@ -212,6 +212,118 @@
           "path": "divider/divider",
           "style": {
             "navigationBarTitleText": "分割线",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "tooltip/tooltip",
+          "style": {
+            "navigationBarTitleText": "长按提示",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "warn/warn",
+          "style": {
+            "navigationBarTitleText": "警告提示",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "noticeBar/noticeBar",
+          "style": {
+            "navigationBarTitleText": "滚动通知",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "foldingPanel/foldingPanel",
+          "style": {
+            "navigationBarTitleText": "折叠面板",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "popup/popup",
+          "style": {
+            "navigationBarTitleText": "弹出层",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "modal/modal",
+          "style": {
+            "navigationBarTitleText": "模态框",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "readMore/readMore",
+          "style": {
+            "navigationBarTitleText": "展开阅读更多",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "navbar/navbar",
+          "style": {
+            "navigationBarTitleText": "顶部导航栏",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "backTop/backTop",
+          "style": {
+            "navigationBarTitleText": "返回顶部",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "tabs/tabs",
+          "style": {
+            "navigationBarTitleText": "tabs",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "subsection/subsection",
+          "style": {
+            "navigationBarTitleText": "分段器",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "steps/steps",
+          "style": {
+            "navigationBarTitleText": "步骤条",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "empty/empty",
+          "style": {
+            "navigationBarTitleText": "空状态",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "avatar/avatar",
+          "style": {
+            "navigationBarTitleText": "头像",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "transition/transition",
+          "style": {
+            "navigationBarTitleText": "动画",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "qrcode/qrcode",
+          "style": {
+            "navigationBarTitleText": "二维码",
             "enablePullDownRefresh": false
           }
         }

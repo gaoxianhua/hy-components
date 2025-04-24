@@ -4,7 +4,7 @@ export default interface IProps {
   /**
    * @description 头像路径，如加载失败，将会显示默认头像(不能为相对路径)
    * */
-  src: string;
+  src?: string;
   /**
    * @description 头像形状  （ circle (默认) | square）
    * */

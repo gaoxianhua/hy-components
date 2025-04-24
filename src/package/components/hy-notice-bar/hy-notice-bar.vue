@@ -44,9 +44,9 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, toRefs } from "vue";
 import defaultProps from "./props";
-import IProps from "./typing";
+import type IProps from "./typing";
 // 组件
 import HyRowNotice from "./hy-row-notice.vue";
 import HyColumnNotice from "./hy-column-notice.vue";
@@ -54,6 +54,7 @@ import HyColumnNotice from "./hy-column-notice.vue";
 const show = ref(true);
 
 const props = withDefaults(defineProps<IProps>(), defaultProps);
+const { mode, linkType, url } = toRefs(props);
 const emit = defineEmits(["click", "close"]);
 
 /**
@@ -61,6 +62,9 @@ const emit = defineEmits(["click", "close"]);
  * */
 const click = (index: number) => {
   emit("click", index);
+  if (url.value && linkType.value && mode.value === "link") {
+    (uni as any)[linkType.value]({ url: url.value });
+  }
 };
 /**
  * @description 点击关闭按钮

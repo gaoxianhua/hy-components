@@ -75,7 +75,7 @@ export default {
 <script lang="ts" setup>
 import {
   computed,
-  CSSProperties,
+  type CSSProperties,
   nextTick,
   onMounted,
   reactive,
@@ -86,7 +86,7 @@ import {
 } from "vue";
 import { addUnit, debounce, getPx, getRect } from "../../utils";
 import HyDivider from "../hy-divider/hy-divider.vue";
-import IProps from "./typing";
+import type IProps from "./typing";
 import defaultProps from "./props";
 
 const props = withDefaults(defineProps<IProps>(), defaultProps);

@@ -123,19 +123,16 @@ export function guid(len = 32, firstU = true, radix = null) {
   return uuid.join("");
 }
 
-export function sys() {
-  return uni.getSystemSetting();
-}
-export function getWindowInfo() {
-  let ret = {};
+/**
+ * @description 获取设备信息
+ * */
+export const getWindowInfo = (): UniNamespace.GetWindowInfoResult => {
+  let ret: UniNamespace.GetWindowInfoResult;
   // #ifdef APP || H5 || MP-WEIXIN
   ret = uni.getWindowInfo();
   // #endif
-  // #ifndef APP || H5 || MP-WEIXIN
-  ret = sys();
-  // #endif
   return ret;
-}
+};
 
 function pickExclude(obj, keys) {
   // 某些情况下，type可能会为

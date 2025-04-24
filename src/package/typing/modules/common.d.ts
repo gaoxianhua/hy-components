@@ -27,7 +27,7 @@ declare namespace HyApp {
   /**
    * @description 排列方式，row-横向，column-纵向
    * */
-  type PermutationType = "row" | "column";
+  type ShapeType = "row" | "column";
   /**
    * @description 布局方式；left-左，right-右，top-上，bottom-下，center-中
    * */
@@ -40,6 +40,7 @@ declare namespace HyApp {
    * @description 布局方式：top-上，bottom-下
    * */
   type TopBottomType = "top" | "bottom";
+  type ThemeVo = "light" | "dark";
   /**
    * @description 边框：surround-四周有边框，bottom-底部有边框，none-无边框
    * */

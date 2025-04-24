@@ -25,6 +25,7 @@ import HyInput from "./hy-input/hy-input.vue";
 import HyLine from "./hy-line/hy-line.vue";
 import HyLineProgress from "./hy-line-progress/hy-line-progress.vue";
 import HyList from "./hy-list/hy-list.vue";
+import HyLoading from "./hy-loading/hy-loading.vue";
 import YkLogin from "./hy-login/hy-login.vue";
 import HyModal from "./hy-modal/hy-modal.vue";
 import HyNavbar from "./hy-navbar/hy-navbar.vue";
@@ -42,6 +43,7 @@ import HyReadMore from "./hy-read-more/hy-read-more.vue";
 import HyScrollList from "./hy-scroll-list/hy-scroll-list.vue";
 import HySearch from "./hy-search/hy-search.vue";
 import HySlider from "./hy-slider/hy-slider.vue";
+import HyStatusBar from "./hy-status-bar/hy-status-bar.vue";
 import HySteps from "./hy-steps/hy-steps.vue";
 import HySubsection from "./hy-subsection/hy-subsection.vue";
 import HySwiper from "./hy-swiper/hy-swiper.vue";
@@ -77,6 +79,7 @@ const install = (Vue: any) => {
   Vue.component("HyLine", HyLine);
   Vue.component("HyLineProgress", HyLineProgress);
   Vue.component("HyList", HyList);
+  Vue.component("HyLoading", HyLoading);
   Vue.component("YkLogin", YkLogin);
   Vue.component("HyModal", HyModal);
   Vue.component("HyNavbar", HyNavbar);
@@ -93,6 +96,7 @@ const install = (Vue: any) => {
   Vue.component("HyScrollList", HyScrollList);
   Vue.component("HySearch", HySearch);
   Vue.component("HySlider", HySlider);
+  Vue.component("HyStatusBar", HyStatusBar);
   Vue.component("HySteps", HySteps);
   Vue.component("HySubsection", HySubsection);
   Vue.component("HySwiper", HySwiper);
@@ -132,6 +136,7 @@ export {
   HyLine,
   HyLineProgress,
   HyList,
+  HyLoading,
   YkLogin,
   HyModal,
   HyNavbar,
@@ -148,6 +153,7 @@ export {
   HyScrollList,
   HySearch,
   HySlider,
+  HyStatusBar,
   HySteps,
   HySubsection,
   HySwiper,
@@ -158,5 +164,5 @@ export {
   HyTooltip,
   HyTransition,
   HyUpload,
-  HyWarn
+  HyWarn,
 };

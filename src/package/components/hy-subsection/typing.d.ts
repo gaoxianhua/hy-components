@@ -1,17 +1,26 @@
 import type { CSSProperties } from "vue";
 import { HyApp } from "@/package/typing/modules/common";
 
-export interface SubSectionListVo extends HyApp.FieldNamesType {
+export interface SubSectionItemVo extends HyApp.FieldNamesType {
   name: string;
   value: string | number;
 }
 
+export type SubSectionVo = string | number | SubSectionItemVo;
+
 export default interface IProps {
+  /**
+   * @description 接收值
+   * */
   modelValue: string | number;
+  /**
+   * @description 默认值 (默认0)
+   * */
+  current?: number;
   /**
    * @description tab的数据
    * */
-  list: (string | number | SubSectionListVo)[];
+  list: SubSectionVo[];
   /**
    * @description list的键值
    * */

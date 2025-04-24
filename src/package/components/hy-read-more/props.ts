@@ -1,4 +1,4 @@
-import IProps from "./typing";
+import type IProps from "./typing";
 
 const defaultProps: IProps = {
   showHeight: 200,
@@ -13,8 +13,8 @@ const defaultProps: IProps = {
     backgroundImage:
       "linear-gradient(-180deg, rgba(255, 255, 255, 0) 0%, #fff 80%)",
     paddingTop: "100px",
-    marginTop: "-100px"
-  }
+    marginTop: "-100px",
+  },
 };
 
 export default defaultProps;

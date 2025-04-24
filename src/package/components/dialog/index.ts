@@ -1,6 +1,6 @@
 import { createApp } from "vue";
-import AlertDialogCom, { DialogParam } from "./TheDialog.vue";
-import { ResultParam } from "../../typing";
+import AlertDialogCom, { type DialogParam } from "./TheDialog.vue";
+import type { ResultParam } from "../../typing";
 
 export default class Dialog {
   private static mountNode: HTMLElement | null = null;

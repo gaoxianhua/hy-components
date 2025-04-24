@@ -1,4 +1,4 @@
-import IProps from "./typing";
+import type IProps from "./typing";
 
 const defaultProps: IProps = {
   show: true,
@@ -15,7 +15,7 @@ const defaultProps: IProps = {
   btnType: "primary",
   btnShape: "square",
   btnPlain: false,
-  navigateUrl: ""
+  navigateUrl: "",
 };
 
 export default defaultProps;

@@ -1,4 +1,7 @@
-import { CSSProperties } from "vue";
+import type { CSSProperties } from "vue";
+import { HyApp } from "@/package/typing/modules/common";
+
+export type NoticeBarModeVo = "closable" | "link" | "";
 
 export default interface IProps {
   /**
@@ -8,7 +11,7 @@ export default interface IProps {
   /**
    * @description 通告滚动模式，row-横向滚动，column-竖向滚动 ( 默认 'row' )
    * */
-  direction?: HyApp.PermutationType;
+  direction?: HyApp.ShapeType;
   /**
    * @description direction = row时，是否使用步进形式滚动  ( 默认 false )
    * */
@@ -20,7 +23,7 @@ export default interface IProps {
   /**
    * @description 通告模式，link-显示右箭头，closable-显示右侧关闭图标
    * */
-  mode?: "closable" | "link" | "";
+  mode?: NoticeBarModeVo;
   /**
    * @description 文字颜色，各图标也会使用文字颜色 ( 默认 '#f9ae3d' )
    * */
@@ -49,6 +52,14 @@ export default interface IProps {
    * @description 分布
    * */
   justifyContent?: HyApp.JustifyContentType;
+  /**
+   * @description 跳转类型
+   * */
+  linkType?: HyApp.NavigationType;
+  /**
+   * @description 跳转地址
+   * */
+  url?: string;
   /**
    * @description 定义需要用到的外部样式
    * */

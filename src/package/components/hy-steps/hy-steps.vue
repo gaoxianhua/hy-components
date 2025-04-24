@@ -11,6 +11,9 @@
           :class="[`hy-steps-item__line--${direction}`, 'hy-steps-item__line']"
           :style="lineStyle(item, i)"
         ></view>
+        <!--	线条	-->
+
+        <!-- 步骤状态 -->
         <view
           :class="[
             `hy-steps-item__wrapper--${direction}`,
@@ -19,12 +22,12 @@
           ]"
           :style="itemStyleInner"
         >
-          <slot name="icon" :error="item.error" :index="i">
+          <slot name="icon" :error="item?.error" :index="i">
             <view
               class="hy-steps-item__wrapper__dot"
               v-if="dot"
               :style="{
-                backgroundColor: statusColor(i, item.error),
+                backgroundColor: statusColor(i, item?.error),
               }"
             >
             </view>
@@ -76,42 +79,43 @@
             </view>
           </slot>
         </view>
+        <!-- 步骤状态 -->
 
-        <!-- 内容 -->
+        <!-- 内容区域 -->
         <view
           class="hy-steps-item__content"
           :class="[`hy-steps-item__content--${direction}`]"
           :style="[contentStyle]"
         >
           <slot name="content" :record="item" :index="i">
-            <template>
-              <slot name="title" :title="item.title" :index="i">
-                <text
-                  :style="{
-                    lineHeight: '20px',
-                    fontSize: current == i ? '14px' : '13px',
-                    color: i == current ? '#2c405a' : '#555555',
-                  }"
-                  >{{ item.title }}</text
-                >
-              </slot>
-              <slot name="desc" :desc="item.desc" :index="i">
-                <text :style="{ fontSize: '12px', color: '#999' }">{{
-                  item.desc
-                }}</text>
-              </slot>
-            </template>
+            <slot name="title" :title="item.title" :index="i">
+              <text
+                :style="{
+                  lineHeight: '20px',
+                  fontSize: current == i ? '14px' : '13px',
+                  color: i == current ? '#2c405a' : '#555555',
+                }"
+                >{{ item.title }}</text
+              >
+            </slot>
+            <slot name="desc" :desc="item.desc" :index="i">
+              <text :style="{ fontSize: '12px', color: '#999' }">{{
+                item.desc
+              }}</text>
+            </slot>
           </slot>
         </view>
+        <!-- 内容区域 -->
       </view>
     </template>
   </view>
 </template>
 
 <script setup lang="ts">
-import { computed, CSSProperties, toRefs, ref, onMounted } from "vue";
+import { computed, type CSSProperties, toRefs, ref, onMounted } from "vue";
 import defaultProps from "./props";
-import IProps, { StepListVo } from "./typing";
+import type IProps from "./typing";
+import type { StepListVo } from "./typing";
 import { addUnit, getRect } from "../../utils";
 import { ColorConfig, IconConfig } from "../../config";
 
@@ -122,7 +126,6 @@ const props = withDefaults(defineProps<IProps>(), defaultProps);
 const { current, direction, dot, inactiveColor, activeColor } = toRefs(props);
 const emit = defineEmits(["click", "update:current"]);
 
-const showLine = ref(false);
 const size = ref<UniApp.NodeInfo>({
   height: 0,
   width: 0,
@@ -171,7 +174,7 @@ const statusClass = computed(() => {
   };
 });
 const statusColor = computed(() => {
-  return (index: number, error: boolean) => {
+  return (index: number, error?: boolean) => {
     let colorTmp = "";
     switch (statusClass.value(index, error)) {
       case "finish":

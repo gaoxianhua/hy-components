@@ -29,9 +29,9 @@
 </template>
 
 <script setup lang="ts">
-import { computed, CSSProperties, toRefs } from "vue";
+import { computed, type CSSProperties, toRefs } from "vue";
 import defaultProps from "./props";
-import IProps from "./typing";
+import type IProps from "./typing";
 import { addUnit } from "../../utils";
 
 // 组件

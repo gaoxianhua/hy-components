@@ -1,4 +1,4 @@
-import IProps from "./typing";
+import type IProps from "./typing";
 
 const defaultProps: IProps = {
   list: [],
@@ -7,20 +7,20 @@ const defaultProps: IProps = {
   duration: 300,
   lineColor: "#3c9cff",
   activeStyle: {
-    color: "#303133"
+    color: "#303133",
   },
   inactiveStyle: {
-    color: "#606266"
+    color: "#606266",
   },
   lineWidth: 20,
   lineHeight: 3,
   lineBgSize: "cover",
   itemStyle: {
-    height: "44px"
+    height: "44px",
   },
   swiperHeight: "calc(100vh - 44px)",
   scrollable: true,
-  iconStyle: {}
+  iconStyle: {},
 };
 
 export default defaultProps;

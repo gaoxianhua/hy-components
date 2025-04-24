@@ -1,4 +1,4 @@
-import { App } from "vue";
+import type { App } from "vue";
 import { addUnit, bytesToSize, formatTime, random } from "../utils";
 export default function registerProperties(app: App) {
   app.config.globalProperties.$hy = {
@@ -32,6 +32,6 @@ export default function registerProperties(app: App) {
      * @param {Number} bytes 字节
      * @returns {String} 返回单位大小
      * */
-    bytesToSize: (bytes: number): string => bytesToSize(bytes)
+    bytesToSize: (bytes: number): string => bytesToSize(bytes),
   };
 }

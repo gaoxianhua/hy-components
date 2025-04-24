@@ -1,4 +1,4 @@
-import IProps from "./typing";
+import type IProps from "./typing";
 import { ColorConfig } from "../../config";
 
 const defaultProps: IProps = {
@@ -11,7 +11,7 @@ const defaultProps: IProps = {
   showVertical: true,
   disabled: false,
   size: "medium",
-  contentHeight: 120
+  contentHeight: 120,
 };
 
 export default defaultProps;

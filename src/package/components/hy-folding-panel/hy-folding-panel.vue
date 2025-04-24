@@ -41,7 +41,8 @@
 <script setup lang="ts">
 import { toRefs, ref, watch } from "vue";
 import defaultProps from "./props";
-import IProps, { PanelVo } from "./typing";
+import type IProps from "./typing";
+import type { PanelVo } from "./typing";
 
 import HyCell from "../hy-cell/hy-cell.vue";
 import HyLine from "../hy-line/hy-line.vue";
@@ -69,7 +70,8 @@ const clickHandler = (temp: PanelVo, index: number) => {
   // if (temp?.disabled && temp?.animating) return;
   lists.value = list.value.map((item, i) => {
     if (accordion.value) {
-      item.spread = i === index;
+      // 判断是否是收起来
+      item.spread = i === index ? !item.spread : false;
     } else {
       if (i === index) {
         item.spread = !item.spread;

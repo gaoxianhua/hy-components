@@ -62,7 +62,7 @@ export default interface IProps {
   /**
    * @description 确认按钮的样式,如设置，将不会显示取消按钮
    * */
-  confirmButtonShape?: HyApp.ShapeType;
+  confirmButtonShape?: HyApp.ShapeType | "";
   /**
    * @description 文案对齐方式
    * */

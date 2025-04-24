@@ -3,6 +3,7 @@ import { ColorConfig } from "../../config";
 
 const defaultProps: IProps = {
   modelValue: "",
+  current: 0,
   list: [],
   fieldNames: {
     label: "name",

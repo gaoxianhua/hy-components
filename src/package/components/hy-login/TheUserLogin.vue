@@ -150,19 +150,19 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, computed, onMounted, onUnmounted } from "vue";
+import { ref, reactive, onMounted } from "vue";
 import { onHide } from "@dcloudio/uni-app";
 import { storeToRefs } from "pinia";
 import { useUserInfo } from "../../store";
 import { decryptData, encryptData } from "../../utils";
+import type { FormColumnsType, FormTypeEnum } from "../../typing";
+import { IconConfig } from "../../config";
 
 // 组件
 import HyCheckbox from "../hy-checkbox/hy-checkbox.vue";
 import HyForm from "../hy-form/hy-form.vue";
 import HyInput from "../hy-input/hy-input.vue";
 import HyIcon from "../hy-icon/hy-icon.vue";
-import { FormColumnsType, FormTypeEnum } from "../../typing";
-import { IconConfig } from "../../config";
 
 interface IProps {
   themeColor: string;
@@ -185,7 +185,7 @@ const props = withDefaults(defineProps<IProps>(), {
   customUserValidator: () => ({}),
   customPwdValidator: () => ({}),
   userNumValidator: () => ({}),
-  pwdNumValidator: () => ({})
+  pwdNumValidator: () => ({}),
 });
 const emit = defineEmits(["handleHistory", "handleCheckbox"]);
 const userInfoStore = useUserInfo();
@@ -196,14 +196,14 @@ const userColumns = reactive([
     field: "user",
     label: "",
     type: FormTypeEnum.CUSTOM,
-    rules: [props.customUserValidator, props.userNumValidator]
+    rules: [props.customUserValidator, props.userNumValidator],
   },
   {
     field: "pwd",
     label: "",
     type: FormTypeEnum.CUSTOM,
-    rules: [props.customUserValidator, props.pwdNumValidator]
-  }
+    rules: [props.customUserValidator, props.pwdNumValidator],
+  },
 ]);
 const rememberList = reactive([{ label: "记住密码", value: 1 }]);
 const showPwd = ref<boolean>(false);
@@ -216,21 +216,21 @@ const userRules = reactive({
       required: true,
       message: "请先输入账号",
       // 可以单个或者同时写两个触发验证方式
-      trigger: ["blur", "change"]
+      trigger: ["blur", "change"],
     },
     props.customUserValidator,
-    props.userNumValidator
+    props.userNumValidator,
   ],
   pwd: [
     {
       required: true,
       message: "请输入密码",
       // 可以单个或者同时写两个触发验证方式
-      trigger: ["blur", "change"]
+      trigger: ["blur", "change"],
     },
     props.pwdNumValidator,
-    props.customPwdValidator
-  ]
+    props.customPwdValidator,
+  ],
 });
 const rememberPassword = ref([0]);
 const account = uni.getStorageSync(`${props.prefix}_account`);
@@ -271,7 +271,7 @@ onHide(() => {
     // 数组前面加数据
     choiceList.value.unshift({
       user: userName,
-      pwd: password
+      pwd: password,
     });
     // 数组最多只放三个账号
     if (choiceList.value.length >= 5) {
@@ -279,7 +279,7 @@ onHide(() => {
     }
     uni.setStorageSync(
       `${props.prefix}_choiceList`,
-      encryptData(choiceList.value)
+      encryptData(choiceList.value),
     );
   }
 });
@@ -329,7 +329,7 @@ const extensionFun = (index: number, username: string) => {
       choiceList.value.splice(i, 1);
       uni.setStorageSync(
         `${props.prefix}_choiceList`,
-        encryptData(choiceList.value)
+        encryptData(choiceList.value),
       );
       break;
     default:
@@ -349,7 +349,7 @@ const handleBlur = (event: string, temp: FormColumnsType) => {
 };
 
 defineExpose({
-  loginFn
+  loginFn,
 });
 </script>
 

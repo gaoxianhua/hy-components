@@ -1,4 +1,4 @@
-import IProps from "./typing";
+import type IProps from "./typing";
 import { IconConfig } from "../../config";
 
 const defaultProps: IProps = {
@@ -13,7 +13,9 @@ const defaultProps: IProps = {
   fontSize: 14,
   duration: 2000,
   disableTouch: true,
-  justifyContent: "flex-start"
+  justifyContent: "flex-start",
+  linkType: "navigateTo",
+  url: "",
 };
 
 export default defaultProps;

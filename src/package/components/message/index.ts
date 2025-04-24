@@ -1,5 +1,5 @@
 import { createVNode, render } from "vue";
-import Dialog, { DialogParam } from "./TheMessage.vue";
+import Dialog, { type DialogParam } from "./TheMessage.vue";
 
 let instance: any = null;
 
@@ -24,10 +24,10 @@ const openParams = (options: DialogParam, icon: string) => {
   instance.component.exposed.open(
     Object.assign(
       {
-        icon
+        icon,
       },
-      options
-    )
+      options,
+    ),
   );
 };
 
@@ -48,7 +48,7 @@ const DialogService = {
     if (instance) {
       instance.component.exposed.close();
     }
-  }
+  },
 };
 
 export default DialogService;

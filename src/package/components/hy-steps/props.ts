@@ -1,4 +1,4 @@
-import IProps from "./typing";
+import type IProps from "./typing";
 
 const defaultProps: IProps = {
   list: [],
@@ -9,7 +9,7 @@ const defaultProps: IProps = {
   activeIcon: "",
   inactiveIcon: "",
   dot: false,
-  iconSize: 17
+  iconSize: 17,
 };
 
 export default defaultProps;

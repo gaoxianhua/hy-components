@@ -1,4 +1,4 @@
-import { CSSProperties } from "vue";
+import type { CSSProperties } from "vue";
 import BadgeProps from "../hy-badge/typing";
 export interface TabsItemVo extends AnyObject {
   /**

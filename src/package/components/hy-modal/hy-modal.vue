@@ -104,7 +104,7 @@
 <script setup lang="ts">
 import { ref, toRefs, watch } from "vue";
 import defaultProps from "./props";
-import IProps from "./typing";
+import type IProps from "./typing";
 import { addUnit } from "../../utils";
 import { IconConfig } from "../../config";
 

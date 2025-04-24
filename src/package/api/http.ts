@@ -1,7 +1,7 @@
-import {
+import type {
   HttpRequestConfig,
   HttpInterceptorManager,
-  HttpResponse
+  HttpResponse,
 } from "../typing";
 import { objectToUrlParams } from "../utils";
 
@@ -17,7 +17,7 @@ export default class Http {
     header: {},
     method: "POST",
     responseType: "text",
-    timeout: 10000
+    timeout: 10000,
   };
 
   /**
@@ -40,7 +40,7 @@ export default class Http {
      */
     response: (
       success: (response: HttpResponse) => any,
-      fail: (error: HttpResponse) => any
+      fail: (error: HttpResponse) => any,
     ) => {
       if (success) {
         this.responseSuccess = success;
@@ -48,7 +48,7 @@ export default class Http {
       if (fail) {
         this.responseFail = fail;
       }
-    }
+    },
   };
 
   /**
@@ -99,7 +99,7 @@ export default class Http {
         },
         fail: (error: UniNamespace.GeneralCallbackResult) => {
           reject(this.responseFail(error));
-        }
+        },
       });
     });
   }
@@ -115,7 +115,7 @@ export default class Http {
       url: url,
       method: "POST",
       data: params,
-      ...options
+      ...options,
     });
   }
 
@@ -132,7 +132,7 @@ export default class Http {
     return this.request({
       url: url,
       method: "GET",
-      ...options
+      ...options,
     });
   }
 }

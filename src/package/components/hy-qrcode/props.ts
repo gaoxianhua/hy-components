@@ -1,4 +1,4 @@
-import IProps from "./typing";
+import type IProps from "./typing";
 
 const defaultProps: IProps = {
   cid: "hy-qrcode-canvas" + Math.random().toString(),
@@ -14,7 +14,7 @@ const defaultProps: IProps = {
   iconSize: 40,
   showLoading: true,
   loadingText: "二维码生成中",
-  allowPreview: false
+  allowPreview: false,
 };
 
 export default defaultProps;

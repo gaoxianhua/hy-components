@@ -7,10 +7,8 @@
         height: addUnit(getPx(height) + statusBarHeight),
       }"
     ></view>
-    <view
-      :class="[fixed && 'hy-navbar--fixed']"
-      :style="{ paddingTop: addUnit(safeAreaInsets?.top) }"
-    >
+    <view :class="[fixed && 'hy-navbar--fixed']">
+      <HyStatusBar v-if="safeAreaInsetTop" :bgColor="bgColor"></HyStatusBar>
       <view
         :class="[border && 'hy-border-bottom', 'hy-navbar__content']"
         :style="{
@@ -86,17 +84,20 @@
 
 <script setup lang="ts">
 import defaultProps from "./props";
-import IProps from "./typing";
-import { addUnit, getPx } from "../../utils";
+import type IProps from "./typing";
+import { addUnit, getPx, getWindowInfo } from "../../utils";
 
 // 组件
 import HyIcon from "../hy-icon/hy-icon.vue";
+import HyStatusBar from "../hy-status-bar/hy-status-bar.vue";
+import { toRefs } from "vue";
 
 const props = withDefaults(defineProps<IProps>(), defaultProps);
+const { autoBack } = toRefs(props);
 const emit = defineEmits(["leftClick", "rightClick"]);
 
-const { safeAreaInsets } = uni.getSystemSetting();
-const { statusBarHeight } = uni.getWindowInfo();
+// 获取状态栏高度
+const { statusBarHeight } = getWindowInfo();
 
 /**
  * @description 点击左侧区域
@@ -104,12 +105,8 @@ const { statusBarHeight } = uni.getWindowInfo();
 const leftClick = () => {
   // 如果配置了autoBack，自动返回上一页
   emit("leftClick");
-  if (config.interceptor.navbarLeftClick != null) {
-    config.interceptor.navbarLeftClick();
-  } else {
-    if (this.autoBack) {
-      uni.navigateBack();
-    }
+  if (autoBack.value) {
+    uni.navigateBack();
   }
 };
 /**

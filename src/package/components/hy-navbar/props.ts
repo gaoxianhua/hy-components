@@ -1,4 +1,4 @@
-import IProps from "./typing";
+import type IProps from "./typing";
 import { IconConfig } from "../../config";
 
 const defaultProps: IProps = {
@@ -18,7 +18,7 @@ const defaultProps: IProps = {
   height: "44px",
   leftIconSize: 20,
   leftIconColor: "",
-  autoBack: false
+  autoBack: false,
 };
 
 export default defaultProps;

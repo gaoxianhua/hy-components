@@ -1,4 +1,4 @@
-import IProps from "./typing";
+import type IProps from "./typing";
 
 const defaultProps: IProps = {
   list: [],
@@ -12,7 +12,7 @@ const defaultProps: IProps = {
   line: 1,
   keyField: "id",
   load: "loadMore",
-  showDivider: true
+  showDivider: true,
 };
 
 export default defaultProps;

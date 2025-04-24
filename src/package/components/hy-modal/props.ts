@@ -1,4 +1,4 @@
-import IProps from "./typing";
+import type IProps from "./typing";
 import { ColorConfig } from "../../config";
 
 const defaultProps: IProps = {
@@ -18,7 +18,7 @@ const defaultProps: IProps = {
   negativeTop: 0,
   width: "650rpx",
   confirmButtonShape: "",
-  contentTextAlign: "left"
+  contentTextAlign: "left",
 };
 
 export default defaultProps;

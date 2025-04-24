@@ -10,9 +10,9 @@
 </template>
 
 <script setup lang="ts">
-import { computed, CSSProperties, toRefs } from "vue";
-import defaultProps from "../hy-list/props";
-import IProps from "../hy-list/typing";
+import { computed, type CSSProperties, toRefs } from "vue";
+import defaultProps from "./props";
+import type IProps from "./typing";
 // 组件
 import HyTransition from "../hy-transition/hy-transition.vue";
 import HyIcon from "../hy-icon/hy-icon.vue";
@@ -52,5 +52,5 @@ const backToTop = () => {
 </script>
 
 <style lang="scss" scoped>
-@use "./index.scss";
+@import "./index.scss";
 </style>

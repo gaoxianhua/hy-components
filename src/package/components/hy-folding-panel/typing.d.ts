@@ -1,5 +1,5 @@
-import { CSSProperties } from "vue";
-import { CellContentVo } from "../hy-cell/typing";
+import type { CSSProperties } from "vue";
+import type { CellContentVo } from "../hy-cell/typing";
 
 export interface PanelVo extends CellContentVo {
   /**

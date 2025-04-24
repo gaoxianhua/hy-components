@@ -15,7 +15,7 @@ import {
   addStyle,
   deepMerge,
   addUnit,
-  getWindowInfo
+  getWindowInfo,
 } from "../../libs/function/index";
 /**
  * SafeBottom 底部安全区
@@ -33,7 +33,7 @@ export default {
   data() {
     return {
       safeAreaBottomHeight: 0,
-      isNvue: false
+      isNvue: false,
     };
   },
   computed: {
@@ -44,21 +44,17 @@ export default {
       style.height = addUnit(getWindowInfo().safeAreaInsets.bottom, "px");
       // #endif
       return deepMerge(style, addStyle(this.customStyle));
-    }
+    },
   },
   mounted() {
     // #ifdef APP-NVUE
     // 标识为是否nvue
     this.isNvue = true;
     // #endif
-  }
+  },
 };
 </script>
 
 <style lang="scss" scoped>
-.u-safe-bottom {
-  /* #ifndef APP-NVUE */
-  width: 100%;
-  /* #endif */
-}
+@import "./index.scss";
 </style>

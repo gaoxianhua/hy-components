@@ -59,12 +59,12 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, toRefs, computed, watch } from "vue";
+import { ref, computed, watch } from "vue";
 import { storeToRefs } from "pinia";
 import { encryptData } from "../../utils";
 import { useUserInfo } from "../../store";
 import defaultProps from "./props";
-import IProps from "./typing";
+import type IProps from "./typing";
 
 // 组件
 import TheUserLogin from "./TheUserLogin.vue";
@@ -113,11 +113,11 @@ const selectModel = (temp: number) => {
 };
 const tabs = ref([
   {
-    name: "账号登录"
+    name: "账号登录",
   },
   {
-    name: "验证码登录"
-  }
+    name: "验证码登录",
+  },
 ]);
 const currentTab = ref(0);
 const userLoginRef = ref<typeof TheUserLogin>(null);
@@ -136,7 +136,7 @@ watch(
       }
     }).value;
   },
-  { immediate: true, deep: true }
+  { immediate: true, deep: true },
 );
 
 /**
@@ -156,15 +156,15 @@ const loginFn = async () => {
           encryptData({
             rememberPsw: rememberPsw.value,
             userName: user,
-            password: pwd
-          })
+            password: pwd,
+          }),
         );
       } else {
         // 如果没有选记住密码就移除之前保存的
         uni.removeStorageSync(`${props.prefix}_account`);
         uni.setStorageSync(
           `${props.prefix}_account`,
-          encryptData({ rememberPsw: rememberPsw.value })
+          encryptData({ rememberPsw: rememberPsw.value }),
         );
       }
       emit("login", { user, pwd });

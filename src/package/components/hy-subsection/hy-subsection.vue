@@ -6,7 +6,7 @@
   >
     <view ref="hy-subsection__bar" :style="barStyle" :class="barClass"></view>
     <view
-      :class="wrapperClass"
+      :class="wrapperClass(index)"
       :ref="`hy-subsection__item--${index}`"
       :style="itemStyle"
       @tap="clickHandler(item, index)"
@@ -25,12 +25,13 @@ import { computed, toRefs, ref, onMounted, watch } from "vue";
 import type { CSSProperties } from "vue";
 import defaultProps from "./props";
 import type IProps from "./typing";
-import type { SubSectionListVo } from "./typing";
+import type { SubSectionVo } from "./typing";
 import { addUnit, getRect, guid } from "../../utils";
 
 const props = withDefaults(defineProps<IProps>(), defaultProps);
 const {
   modelValue,
+  current,
   list,
   mode,
   activeColor,
@@ -50,12 +51,6 @@ const itemRect = ref<UniApp.NodeInfo>({
 const innerCurrent = ref<number>(0);
 const guidClass = guid();
 
-watch(
-  () => modelValue.value,
-  (newVal: string) => {},
-  { immediate: true },
-);
-
 /**
  * @description 容器样式
  * */
@@ -71,15 +66,16 @@ const wrapperStyle = computed<CSSProperties>(() => {
  * @description 容器类名
  * */
 const wrapperClass = computed(() => {
-  return [
-    "hy-subsection__item",
-    "cursor-pointer",
-    `hy-subsection__item--${innerCurrent.value}__${guidClass}`,
-    innerCurrent.value < list.value.length - 1 &&
-      "hy-subsection__item--no-border-right",
-    innerCurrent.value === 0 && "hy-subsection__item--first",
-    innerCurrent.value === list.value.length - 1 && "hy-subsection__item--last",
-  ];
+  return (index: number) => {
+    return [
+      "hy-subsection__item",
+      "cursor-pointer",
+      `hy-subsection__item--${innerCurrent.value}__${guidClass}`,
+      index < list.value.length - 1 && "hy-subsection__item--no-border-right",
+      index === 0 && "hy-subsection__item--first",
+      index === list.value.length - 1 && "hy-subsection__item--last",
+    ];
+  };
 });
 /**
  * @description 滑块的样式
@@ -123,17 +119,15 @@ const barClass = computed(() => {
 /**
  * @description 分段器item的样式
  * */
-const itemStyle = computed(() => {
-  return (): CSSProperties => {
-    const style: CSSProperties = {};
-    if (mode.value === "subsection") {
-      // 设置border的样式
-      style.borderColor = activeColor.value;
-      style.borderWidth = "1px";
-      style.borderStyle = "solid";
-    }
-    return style;
-  };
+const itemStyle = computed<CSSProperties>(() => {
+  const style: CSSProperties = {};
+  if (mode.value === "subsection") {
+    // 设置border的样式
+    style.borderColor = activeColor.value;
+    style.borderWidth = "1px";
+    style.borderStyle = "solid";
+  }
+  return style;
 });
 /**
  * @description 分段器文字颜色
@@ -164,15 +158,17 @@ onMounted(() => {
  * @description 初始化
  * */
 const init = () => {
-  innerCurrent.value = list.value.findIndex(
-    (item: string | number | SubSectionListVo) => {
-      if (typeof item === "string" || typeof item === "number") {
-        return item === modelValue.value;
-      } else {
-        return item[fieldNames.value.value] === modelValue.value;
-      }
-    },
-  );
+  innerCurrent.value = list.value.findIndex((item: SubSectionVo) => {
+    if (typeof item === "string" || typeof item === "number") {
+      return item === modelValue.value;
+    } else {
+      return item[fieldNames.value.value] === modelValue.value;
+    }
+  });
+
+  // 设置默认值当没有找的时候导致样式问题
+  innerCurrent.value =
+    innerCurrent.value === -1 ? current.value : innerCurrent.value;
 
   // TODO： 多个数组在一起计算宽度， 宽度不一样会有问题，所以必须加guidClass随机数
   getRect(`.hy-subsection__item--0__${guidClass}`).then((size) => {
@@ -183,21 +179,21 @@ const init = () => {
 /**
  * @description 判断值
  * */
-const getValue = (item: string | SubSectionListVo) => {
+const getValue = (item: SubSectionVo) => {
   return typeof item === "object" ? item[fieldNames.value.value] : item;
 };
 
 /**
  * @description 判断展示文本
  * */
-const getName = (item: string | SubSectionListVo) => {
+const getName = (item: SubSectionVo) => {
   return typeof item === "object" ? item[fieldNames.value.label] : item;
 };
 
 /**
  * @description 点击事件
  * */
-const clickHandler = (temp: string | SubSectionListVo, index: number) => {
+const clickHandler = (temp: SubSectionVo, index: number) => {
   // 值改变才触发
   if (innerCurrent.value !== index) {
     emit("change", index);

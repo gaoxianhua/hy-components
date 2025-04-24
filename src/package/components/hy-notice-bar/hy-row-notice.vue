@@ -41,8 +41,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch, toRefs, computed, CSSProperties } from "vue";
-import IProps from "./typing";
+import { ref, watch, toRefs, computed, type CSSProperties } from "vue";
+import type IProps from "./typing";
 import defaultProps from "./props";
 import { addUnit, getRect, sleep } from "../../utils";
 import { IconConfig } from "../../config";
@@ -60,7 +60,7 @@ const initValue = ref<string>("");
 watch(
   () => text.value,
   async (newValue) => {
-    if (Array.isArray(newValue)) initValue.value = newValue.join("，");
+    initValue.value = Array.isArray(newValue) ? newValue.join("") : newValue;
     let boxWidth = 0,
       textWidth = 0;
     // 进行一定的延时

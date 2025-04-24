@@ -1,5 +1,4 @@
-import { CSSProperties } from "vue";
-import { IconConfig } from "../../config";
+import type { CSSProperties } from "vue";
 
 export default interface IProps {
   /**
@@ -21,7 +20,7 @@ export default interface IProps {
   /**
    * @description 滚动距离 （默认 0 ）
    * */
-  scrollTop?: number;
+  scrollTop: number;
   /**
    * @description 距离顶部多少距离显示，单位px （默认 400 ）
    * */

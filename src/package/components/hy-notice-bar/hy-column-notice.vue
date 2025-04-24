@@ -48,12 +48,13 @@
 </template>
 
 <script setup lang="ts">
-import { CSSProperties, toRefs, computed, ref } from "vue";
-import IProps from "./typing";
+import { type CSSProperties, toRefs, computed, ref, watch } from "vue";
+import type IProps from "./typing";
 import defaultProps from "./props";
-import { addUnit } from "../../utils";
+import { addUnit, error } from "../../utils";
 import { IconConfig } from "../../config";
 
+// 组件
 import HyIcon from "../hy-icon/hy-icon.vue";
 
 const props = withDefaults(defineProps<IProps>(), defaultProps);
@@ -61,6 +62,12 @@ const { text, fontSize, color } = toRefs(props);
 const emit = defineEmits(["click", "close"]);
 
 const index = ref(0);
+
+watch(
+  () => text.value,
+  (newVal) => !Array.isArray(newVal) && error("传入值必须是数组"),
+  { immediate: true },
+);
 
 /**
  * @description 文字内容的样式

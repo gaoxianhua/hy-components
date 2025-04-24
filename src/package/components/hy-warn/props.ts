@@ -1,4 +1,4 @@
-import IProps from "./typing";
+import type IProps from "./typing";
 
 const defaultProps: IProps = {
   title: "",
@@ -6,9 +6,9 @@ const defaultProps: IProps = {
   description: "",
   closable: false,
   showIcon: false,
-  effect: "light",
+  theme: "light",
   center: false,
-  fontSize: 14
+  fontSize: 14,
 };
 
 export default defaultProps;

@@ -2,7 +2,7 @@
   <HyTransition mode="fade" :show="show">
     <view
       class="hy-alert"
-      :class="[`hy-alert--${type}--${effect}`]"
+      :class="[`hy-alert--${type}--${theme}`]"
       @tap.stop="clickHandler"
       :style="[customStyle]"
     >
@@ -27,7 +27,7 @@
             },
           ]"
           :class="[
-            effect === 'dark'
+            theme === 'dark'
               ? 'hy-alert__text--dark'
               : `hy-alert__text--${type}--light`,
           ]"
@@ -43,7 +43,7 @@
             },
           ]"
           :class="[
-            effect === 'dark'
+            theme === 'dark'
               ? 'hy-alert__text--dark'
               : `hy-alert__text--${type}--light`,
           ]"
@@ -60,7 +60,7 @@
 <script setup lang="ts">
 import { computed, ref, toRefs } from "vue";
 import defaultProps from "./props";
-import IProps from "./typing";
+import type IProps from "./typing";
 import { addUnit } from "../../utils";
 import { IconConfig } from "../../config";
 
@@ -69,7 +69,7 @@ import HyTransition from "../hy-transition/hy-transition.vue";
 import HyIcon from "../hy-icon/hy-icon.vue";
 
 const props = withDefaults(defineProps<IProps>(), defaultProps);
-const { type, effect } = toRefs(props);
+const { type, theme } = toRefs(props);
 const emit = defineEmits(["click", "close"]);
 
 const show = ref<boolean>(true);
@@ -78,7 +78,7 @@ const show = ref<boolean>(true);
  * @description icon颜色
  * */
 const iconColor = computed(() => {
-  return effect.value === "light" ? type.value : "#fff";
+  return theme.value === "light" ? type.value : "#fff";
 });
 /**
  * @description 不同主题对应不同的图标

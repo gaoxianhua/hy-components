@@ -1,4 +1,5 @@
-import { CSSProperties } from "vue";
+import type { CSSProperties } from "vue";
+import { HyApp, type ThemeVo } from "@/package/typing/modules/common";
 
 export default interface IProps {
   /**
@@ -22,9 +23,9 @@ export default interface IProps {
    * */
   showIcon?: boolean;
   /**
-   * @description 多图时，图片缩放裁剪的模式  （默认 'light' ）
+   * @description 显示的暗色或者亮色  （默认 'light' ）
    * */
-  effect?: "light" | "dark";
+  theme?: HyApp.ThemeVo;
   /**
    * @description 文字是否居中  （默认 false ）
    * */

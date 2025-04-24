@@ -23,3 +23,8 @@
   border-radius: $hy-border-radius-base;
   padding: $hy-border-margin-padding-lg;
 }
+
+.hy-grid {
+  display: grid;
+  gap: 10px;
+}

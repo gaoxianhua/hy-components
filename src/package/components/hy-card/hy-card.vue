@@ -5,7 +5,7 @@
       class="hy-card__head"
       :style="[{ padding: addUnit(paddingHead || padding) }, headStyle]"
       :class="{
-        'hy-border-bottom': headBorderBottom,
+        'hy-border__bottom': headBorderBottom,
       }"
       @tap="headClick"
     >

@@ -7,7 +7,7 @@
         :style="checkboxStyle"
         :class="[
           `hy-checkbox-label--${iconPlacement}`,
-          borderBottom && placement === 'column' && 'hy-border-bottom',
+          borderBottom && placement === 'column' && 'hy-border__bottom',
         ]"
       >
         <view

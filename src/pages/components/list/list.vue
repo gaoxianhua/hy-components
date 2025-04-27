@@ -122,7 +122,7 @@ const queryData = () => {
 </script>
 
 <style scoped lang="scss">
-@import "hfyk-app/theme.scss";
+@import "hy-app/theme.scss";
 .container {
   &-bottom {
     padding: 15rpx;

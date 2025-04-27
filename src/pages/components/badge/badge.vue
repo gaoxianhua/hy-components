@@ -42,11 +42,7 @@
     <view class="hy-flex">
       <view class="relative">
         <hy-badge :value="12" absolute :offset="[-8, 50]"></hy-badge>
-        <hy-avatar
-          size="large"
-          shape="square"
-          src="https://img0.baidu.com/it/u=3196617431,1263013381&fm=253"
-        ></hy-avatar>
+        <hy-avatar size="large" shape="square" :src="config.avatar"></hy-avatar>
       </view>
     </view>
   </view>
@@ -55,6 +51,7 @@
 <script setup lang="ts">
 import HyBadge from "@/package/components/hy-badge/hy-badge.vue";
 import HyAvatar from "@/package/components/hy-avatar/hy-avatar.vue";
+import { config } from "@/config/config";
 </script>
 
 <style scoped lang="scss">

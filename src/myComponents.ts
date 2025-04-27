@@ -4,9 +4,9 @@ const myComponentsResolver: Resolver = (name: string) => {
   if (name.startsWith("Hy")) {
     return {
       name,
-      from: "hfyk-app"
+      from: "hy-app",
     };
   }
 };
 
-export default myComponentsResolver
+export default myComponentsResolver;

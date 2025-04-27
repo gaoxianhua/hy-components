@@ -326,6 +326,27 @@
             "navigationBarTitleText": "二维码",
             "enablePullDownRefresh": false
           }
+        },
+        {
+          "path": "loading/loading",
+          "style": {
+            "navigationBarTitleText": "加载",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "calendar/calendar",
+          "style": {
+            "navigationBarTitleText": "日历",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "swipeAction/swipeAction",
+          "style": {
+            "navigationBarTitleText": "滑动单元格",
+            "enablePullDownRefresh": false
+          }
         }
       ]
     }
@@ -338,7 +359,7 @@
   },
   "easycom": {
     "custom": {
-      //        "^hy-(.*)": "hfyk-app/components/hy-$1/hy-$1.vue",
+      //        "^hy-(.*)": "hy-app/components/hy-$1/hy-$1.vue",
       "^up-(.*)": "uview-plus/components/u-$1/u-$1.vue"
     }
   }

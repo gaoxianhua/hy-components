@@ -24,11 +24,11 @@ export default interface IProps {
   /**
    * @description 加载图标的大小，单位px （默认 24 ）
    * */
-  size?: number;
+  size?: number | string;
   /**
    * @description 文字大小（默认 15 ）
    * */
-  textSize?: number;
+  textSize?: number | string;
   /**
    * @description 文字内容
    * */

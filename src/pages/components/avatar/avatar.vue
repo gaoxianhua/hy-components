@@ -1,11 +1,7 @@
 <template>
   <view>
     <view class="hy-title">基础使用</view>
-    <hy-avatar
-      src="https://pic1.imgdb.cn/item/67628833d0e0a243d4e5d22b.webp"
-      :size="size"
-      :shape="shape"
-    ></hy-avatar>
+    <hy-avatar :src="config.avatar" :size="size" :shape="shape"></hy-avatar>
 
     <view class="hy-title">文字头像</view>
     <view class="hy-flex">
@@ -20,9 +16,6 @@
 
       <view class="hy-title">头像大小</view>
       <hy-subsection :list="list_2" v-model="size"></hy-subsection>
-
-      <view class="hy-title">右侧icon方向</view>
-      <hy-subsection :list="list_3" v-model="arrowDirection"></hy-subsection>
     </view>
   </view>
 </template>
@@ -31,6 +24,7 @@
 import HyAvatar from "@/package/components/hy-avatar/hy-avatar.vue";
 import HySubsection from "../../../package/components/hy-subsection/hy-subsection.vue";
 import { reactive, ref } from "vue";
+import { config } from "@/config/config";
 
 const size = ref<HyApp.SizeType>("medium");
 const shape = ref<HyApp.ShapeType>("circle");

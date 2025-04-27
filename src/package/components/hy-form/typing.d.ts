@@ -23,7 +23,15 @@ export default interface IProps {
    * center - 中间对齐
    * right - 右对齐
    * */
-  labelAlign?: HyApp.LeftRightType | "center";
+  labelAlign?: HyApp.CenterType;
+  /**
+   * @description 显示冒号符号
+   * */
+  symbol?: boolean;
+  /**
+   * @description 显示底部下划线
+   * */
+  borderBottom?: boolean;
   /**
    * @description 当行内容高度
    * */

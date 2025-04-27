@@ -14,5 +14,4 @@ onHide(() => {
 @import "uview-plus/index.scss";
 @import "~@/static/css/common.scss";
 @import "~@/package/index.scss";
-@import "@/package/libs/css/iconfont.css";
 </style>

@@ -10,7 +10,7 @@
     <view :class="[fixed && 'hy-navbar--fixed']">
       <HyStatusBar v-if="safeAreaInsetTop" :bgColor="bgColor"></HyStatusBar>
       <view
-        :class="[border && 'hy-border-bottom', 'hy-navbar__content']"
+        :class="[border && 'hy-border__bottom', 'hy-navbar__content']"
         :style="{
           height: addUnit(height),
           backgroundColor: bgColor,

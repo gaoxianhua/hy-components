@@ -28,7 +28,7 @@
         <view
           v-for="(item, index) in array12"
           :key="index"
-          class="u-loading-icon__dot"
+          class="hy-loading-icon__dot"
         >
         </view>
         <!-- #endif -->

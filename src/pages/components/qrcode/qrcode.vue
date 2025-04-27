@@ -1,10 +1,14 @@
 <template>
   <view>
     <view class="hy-title">基础使用</view>
-    <hy-qrcode text="https://gxh151.top/h5"></hy-qrcode>
+    <hy-qrcode cid="qrcode_1" text="https://gxh151.top/h5"></hy-qrcode>
 
     <view class="hy-title">带logo</view>
-    <hy-qrcode text="https://gxh151.top/h5" :icon="config.image"></hy-qrcode>
+    <hy-qrcode
+      cid="qrcode_2"
+      text="https://gxh151.top/h"
+      :icon="config.avatar"
+    ></hy-qrcode>
   </view>
 </template>
 

@@ -10,35 +10,39 @@ export const colorGradient = (
   step: number = 10,
 ): any[] => {
   const startRGB = hexToRgb(startColor, false); // 转换为rgb数组模式
-  const startR = startRGB[0];
-  const startG = startRGB[1];
-  const startB = startRGB[2];
 
   const endRGB = hexToRgb(endColor, false);
 
-  if (typeof startRGB === "string" || typeof endRGB === "string") return;
-  const endR = endRGB[0];
-  const endG = endRGB[1];
-  const endB = endRGB[2];
+  if (typeof startRGB !== "string" && typeof endRGB !== "string") {
+    const startR = startRGB[0];
+    const startG = startRGB[1];
+    const startB = startRGB[2];
 
-  const sR = (endR - startR) / step; // 总差值
-  const sG = (endG - startG) / step;
-  const sB = (endB - startB) / step;
-  const colorArr = [];
-  for (let i = 0; i < step; i++) {
-    // 计算每一步的hex值
-    let hex = rgbToHex(
-      `rgb(${Math.round(sR * i + startR)},${Math.round(sG * i + startG)},${Math.round(
-        sB * i + startB,
-      )})`,
-    );
-    // 确保第一个颜色值为startColor的值
-    if (i === 0) hex = rgbToHex(startColor);
-    // 确保最后一个颜色值为endColor的值
-    if (i === step - 1) hex = rgbToHex(endColor);
-    colorArr.push(hex);
+    const endR = endRGB[0];
+    const endG = endRGB[1];
+    const endB = endRGB[2];
+
+    const sR = (endR - startR) / step; // 总差值
+    const sG = (endG - startG) / step;
+    const sB = (endB - startB) / step;
+    const colorArr = [];
+    for (let i = 0; i < step; i++) {
+      // 计算每一步的hex值
+      let hex = rgbToHex(
+        `rgb(${Math.round(sR * i + startR)},${Math.round(sG * i + startG)},${Math.round(
+          sB * i + startB,
+        )})`,
+      );
+      // 确保第一个颜色值为startColor的值
+      if (i === 0) hex = rgbToHex(startColor);
+      // 确保最后一个颜色值为endColor的值
+      if (i === step - 1) hex = rgbToHex(endColor);
+      colorArr.push(hex);
+    }
+    return colorArr;
   }
-  return colorArr;
+
+  return [];
 };
 
 // 将hex表示方式转换为rgb表示方式(这里返回rgb数组模式)
@@ -71,7 +75,7 @@ export function hexToRgb(sColor: string, str = true): string | number[] {
 }
 
 // 将rgb表示方式转换为hex表示方式
-export function rgbToHex(rgb) {
+export function rgbToHex(rgb: string) {
   const _this = rgb;
   const reg = /^#([0-9a-fA-f]{3}|[0-9a-fA-f]{6})$/;
   if (/^(rgb|RGB)/.test(_this)) {

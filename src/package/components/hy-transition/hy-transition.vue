@@ -3,7 +3,7 @@
     v-if="hasInit"
     class="hy-transition"
     ref="u-transition"
-    @tap="clickHandler"
+    @tap.stop="clickHandler"
     :class="classes"
     :style="[mergeStyle]"
   >
@@ -128,7 +128,9 @@ const mergeStyle = computed(() => {
   };
 });
 
-// 组件被点击发出事件
+/**
+ * @description 组件被点击发出事件
+ * */
 const clickHandler = () => {
   emit("click");
 };

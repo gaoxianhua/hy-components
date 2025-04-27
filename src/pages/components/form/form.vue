@@ -4,6 +4,8 @@
     :columns="columns"
     :form-data="formData"
     labelWidth="90"
+    border="none"
+    border-bottom
   >
     <template #custom="{ record, errorStyle }">
       <HyInput
@@ -12,14 +14,14 @@
       ></HyInput>
     </template>
   </HyForm>
-  <HyButton @click="handleSubmit">提交</HyButton>
+  <HyButton type="primary" @click="handleSubmit">提交</HyButton>
 </template>
 
 <script setup lang="ts">
-import { FormTypeEnum } from "hfyk-app";
-import type { FormColumnsType } from "hfyk-app";
-import HyForm from "hy-app/components/hy-form/hy-form.vue";
-import HyInput from "hy-app/components/hy-input/hy-input.vue";
+import { FormTypeEnum } from "hy-app";
+import type { FormColumnsType } from "hy-app";
+import HyForm from "@/package/components/hy-form/hy-form.vue";
+import HyInput from "@/package/components/hy-input/hy-input.vue";
 import HyButton from "hy-app/components/hy-button/hy-button.vue";
 import { reactive, ref } from "vue";
 
@@ -172,6 +174,7 @@ const columns: FormColumnsType[] = reactive([
 const handleSubmit = () => {
   formRef.value.handleSubmit().then((res) => {
     console.log(res);
+    uni.showToast({ title: "提交成功" });
   });
 };
 </script>

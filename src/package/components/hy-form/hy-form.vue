@@ -1,12 +1,16 @@
 <template>
   <view class="hy-form">
-    <view class="hy-form--item" v-for="item in columns" :key="item.field">
+    <view
+      :class="['hy-form--item', borderBottom && 'hy-border__bottom']"
+      v-for="item in columns"
+      :key="item.field"
+    >
       <view v-if="item.label" class="hy-form--item__label" :style="labelStyle">
         <text
           v-if="isRequired(item.rules)"
           style="color: red; font-size: 20px; line-height: 10px"
           >*</text
-        >{{ item.label }} <text>：</text>
+        >{{ item.label }} <text v-if="symbol">：</text>
       </view>
       <view class="hy-form--item__container">
         <view class="hy-form--item__container-content">
@@ -161,7 +165,8 @@ import { computed, type CSSProperties, reactive, toRefs } from "vue";
 import type IProps from "./typing";
 import defaultProps from "./props";
 import { addUnit, error } from "../../utils";
-import type { FormColumnsType, RulesVo, FormTypeEnum } from "../../typing";
+import type { FormColumnsType, RulesVo } from "../../typing";
+import { FormTypeEnum } from "../../typing";
 
 // 组件
 import HyInput from "../hy-input/hy-input.vue";
@@ -175,8 +180,14 @@ import HyAddressPicker from "../hy-address-picker/hy-address-picker.vue";
 import HyTransition from "../hy-transition/hy-transition.vue";
 
 const props = withDefaults(defineProps<IProps>(), defaultProps);
-const { formData, columns, labelWidth, labelAlign, labelPosition } =
-  toRefs(props);
+const {
+  formData,
+  columns,
+  labelWidth,
+  labelAlign,
+  labelPosition,
+  borderBottom,
+} = toRefs(props);
 const emit = defineEmits(["click"]);
 
 const labelPos = labelPosition.value === "top" ? "column" : "row";

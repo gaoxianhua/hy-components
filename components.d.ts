@@ -8,12 +8,11 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
-    HyButton: typeof import('hfyk-app')['HyButton']
-    HyCell: typeof import('hfyk-app')['HyCell']
-    HyGrid: typeof import('hfyk-app')['HyGrid']
-    HyInput: typeof import('hfyk-app')['HyInput']
-    HyOverlay: typeof import('hfyk-app')['HyOverlay']
-    HySlider: typeof import('hfyk-app')['HySlider']
-    HyTransition: typeof import('hfyk-app')['HyTransition']
+    HyButton: typeof import('hy-app')['HyButton']
+    HyCell: typeof import('hy-app')['HyCell']
+    HyGrid: typeof import('hy-app')['HyGrid']
+    HyInput: typeof import('hy-app')['HyInput']
+    HySlider: typeof import('hy-app')['HySlider']
+    HyTransition: typeof import('hy-app')['HyTransition']
   }
 }

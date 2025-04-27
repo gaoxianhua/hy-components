@@ -170,7 +170,7 @@ const inputClass = computed((): string => {
     (classes = classes.concat(["hy-border", "hy-input--radius"]));
   classes.push(`hy-input--${shape}`);
   border === "bottom" &&
-    (classes = classes.concat(["hy-border-bottom", "hy-input--no-radius"]));
+    (classes = classes.concat(["hy-border__bottom", "hy-input--no-radius"]));
   return classes.join(" ");
 });
 

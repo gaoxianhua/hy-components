@@ -36,6 +36,7 @@ declare namespace HyApp {
    * @description 布局方式：left-左，right-右
    * */
   type LeftRightType = "left" | "right";
+  type CenterType = "left" | "right" | "center";
   /**
    * @description 布局方式：top-上，bottom-下
    * */

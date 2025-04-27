@@ -2,12 +2,6 @@
 @use "../../theme.scss" as *;
 
 .hy-grid {
-  /* #ifdef APP-NVUE */
-  position: relative;
-  box-sizing: border-box;
-  overflow: hidden;
-  display: block;
-  /* #endif */
   justify-content: center;
   @include flex;
   flex-wrap: wrap;

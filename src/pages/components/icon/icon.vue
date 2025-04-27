@@ -2,11 +2,7 @@
   <view class="icon">
     <view class="hy-title">图标图片(带圆角)</view>
     <view class="hy-flex">
-      <hy-icon
-        name="https://q9.itc.cn/q_70/images03/20250211/6ee1b8e0f4704083ba715986c8c3795f.jpeg"
-        size="80"
-        round="5px"
-      />
+      <hy-icon :name="config.avatar" size="80" round="5px" />
     </view>
 
     <view class="hy-title">图标文字位置</view>
@@ -33,15 +29,17 @@
     </view>
 
     <view class="hy-title">图标集</view>
-    <hy-grid :list="icons"></hy-grid>
+    <view class="hy-container">
+      <hy-grid :list="icons"></hy-grid>
+    </view>
   </view>
 </template>
 
 <script setup lang="ts">
 import { reactive } from "vue";
-import HyGrid from "@/package/components/hy-grid/hy-grid.vue";
 import HyIcon from "@/package/components/hy-icon/hy-icon.vue";
-import { IconConfig } from "hfyk-app";
+import { IconConfig } from "hy-app";
+import { config } from "@/config/config";
 
 // 图标集合
 const icons = reactive([

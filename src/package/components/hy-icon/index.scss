@@ -1,16 +1,7 @@
 @use "../../libs/css/mixin.scss" as *;
-@use "../../libs/css/iconfont.css" as *;
+@use "../../libs/font/iconfont.css" as *;
 @use "../../theme.scss" as *;
 
-/* #ifndef APP-NVUE */
-// 非nvue下加载字体
-@font-face {
-  font-family: "uicon-iconfont";
-  src: url("https://at.alicdn.com/t/font_2225171_8kdcwk4po24.ttf")
-  format("truetype");
-}
-
-/* #endif */
 
 .hy-icon {
   /* #ifndef APP-NVUE */

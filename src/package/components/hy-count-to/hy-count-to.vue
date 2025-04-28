@@ -13,7 +13,7 @@
 <script setup lang="ts">
 import type IProps from "./typing";
 import defaultProps from "./props";
-import { computed, onMounted, ref, toRefs, watch } from "vue";
+import { computed, onMounted, onUnmounted, ref, toRefs, watch } from "vue";
 import { addUnit, isNumber } from "../../utils";
 
 const props = withDefaults(defineProps<IProps>(), defaultProps);

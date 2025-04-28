@@ -236,7 +236,6 @@ const buttonClickHandler = (
  * @description 关闭时执行
  * */
 const closeHandler = (index: number) => {
-  console.log(index);
   swipeActionList.value = swipeActionList.value.map((item, i) => ({
     ...item,
     status: i === index ? "close" : "open",

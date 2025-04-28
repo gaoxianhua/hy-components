@@ -2,16 +2,6 @@
 import { inject } from "vue";
 
 /**
- * 是否视频格式
- * @param {String} value
- */
-export function isVideo(value: string): boolean {
-  const VIDEO_REGEXP =
-    /\.(mp4|mpg|mpeg|dat|asf|avi|rm|rmvb|mov|wmv|flv|mkv|m3u8)/i;
-  return VIDEO_REGEXP.test(value);
-}
-
-/**
  * 生成bem规则类名
  * 由于微信小程序，H5，nvue之间绑定class的差异，无法通过:class="[bem()]"的形式进行同用
  * 故采用如下折中做法，最后返回的是数组（一般平台）或字符串（支付宝和字节跳动平台），类似['a', 'b', 'c']或'a b c'的形式

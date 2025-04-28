@@ -1,5 +1,3 @@
-import { ref } from "vue";
-
 export const list_1 = [
   {
     title: "icon 图标",
@@ -7,7 +5,7 @@ export const list_1 = [
   },
   {
     title: "Image 图片",
-    url: "pages/components/image/Index",
+    url: "/pages/components/image/image",
   },
   {
     title: "Button 按钮",
@@ -212,6 +210,14 @@ export const list_5 = [
 ];
 
 export const list_6 = [
+  {
+    title: "CountTo 数字滚动",
+    url: "/pages/components/countTo/countTo",
+  },
+  {
+    title: "CountDown 倒计时",
+    url: "/pages/components/countDown/countDown",
+  },
   {
     title: "Parse 富文本",
     url: "/pages/components/parse/parse",

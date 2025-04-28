@@ -1,6 +1,7 @@
 import Base64 from "./base64";
 import { getCurrentInstance } from "vue";
 import type { CSSProperties } from "vue";
+import { isNumber } from "./index";
 let base64: any = new Base64();
 
 /**
@@ -57,10 +58,6 @@ const addUnit = (
   // 用内置验证规则中的number判断是否为数值
   return isNumber(value) ? `${value}${unit}` : value;
 };
-function isNumber(value: string) {
-  // 检查是否是数值类型或可以被解析为数值的字符串
-  return !isNaN(parseFloat(value)) && isFinite(Number(value));
-}
 
 /**
  * @description 日期的月或日补零操作
@@ -412,7 +409,7 @@ const getRect = (
 function getPx(value: string | number, unit: true): string;
 function getPx(value: string | number, unit?: false): number;
 function getPx(value: string | number, unit: boolean = false): string | number {
-  if (typeof value === "number") {
+  if (isNumber(value) || typeof value === "number") {
     return unit ? `${value}px` : Number(value);
   }
   // 如果带有rpx，先取出其数值部分，再转为px值
@@ -420,8 +417,11 @@ function getPx(value: string | number, unit: boolean = false): string | number {
     return unit
       ? `${uni.rpx2px(parseInt(value))}px`
       : Number(uni.rpx2px(parseInt(value)));
+  } else if (/(px)$/.test(value)) {
+    return unit ? value : Number(value.replace("px", ""));
+  } else {
+    return unit ? `${parseInt(value)}px` : Number(value);
   }
-  return unit ? `${parseInt(value)}px` : parseInt(value);
 }
 
 /**

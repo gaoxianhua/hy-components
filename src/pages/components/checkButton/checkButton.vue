@@ -1,14 +1,16 @@
 <template>
   <view>
     <view class="hy-title">复选按钮</view>
-    <hy-check-button
-      v-model="value_1"
-      :columns="columns"
-      :type="type"
-      :shape="shape"
-      :size="size"
-      selectType="checkbox"
-    ></hy-check-button>
+    <view class="hy-grid">
+      <hy-check-button
+        v-model="value_1"
+        :columns="columns"
+        :type="type"
+        :shape="shape"
+        :size="size"
+        selectType="checkbox"
+      ></hy-check-button>
+    </view>
 
     <view class="hy-title">单选按钮</view>
     <hy-check-button

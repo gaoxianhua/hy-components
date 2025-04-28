@@ -69,5 +69,10 @@ const onCheckbox = ({ name }: { name: number }) => {
 </script>
 
 <style lang="scss" scoped>
-@import "./index.scss";
+//@import "./index.scss";
+.hy-check-button {
+  display: grid;
+  grid-template-columns: v-bind(col);
+  gap: v-bind(gap);
+}
 </style>

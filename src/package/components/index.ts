@@ -21,6 +21,7 @@ import HyFoldingPanel from "./hy-folding-panel/hy-folding-panel.vue";
 import HyForm from "./hy-form/hy-form.vue";
 import HyGrid from "./hy-grid/hy-grid.vue";
 import HyIcon from "./hy-icon/hy-icon.vue";
+import HyImage from "./hy-image/hy-image.vue";
 import HyInput from "./hy-input/hy-input.vue";
 import HyLine from "./hy-line/hy-line.vue";
 import HyLineProgress from "./hy-line-progress/hy-line-progress.vue";
@@ -75,6 +76,7 @@ const install = (Vue: any) => {
   Vue.component("HyForm", HyForm);
   Vue.component("HyGrid", HyGrid);
   Vue.component("HyIcon", HyIcon);
+  Vue.component("HyImage", HyImage);
   Vue.component("HyInput", HyInput);
   Vue.component("HyLine", HyLine);
   Vue.component("HyLineProgress", HyLineProgress);
@@ -132,6 +134,7 @@ export {
   HyForm,
   HyGrid,
   HyIcon,
+  HyImage,
   HyInput,
   HyLine,
   HyLineProgress,

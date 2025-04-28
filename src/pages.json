@@ -347,6 +347,27 @@
             "navigationBarTitleText": "滑动单元格",
             "enablePullDownRefresh": false
           }
+        },
+        {
+          "path": "image/image",
+          "style": {
+            "navigationBarTitleText": "图片",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "countDown/countDown",
+          "style": {
+            "navigationBarTitleText": "倒计时",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "countTo/countTo",
+          "style": {
+            "navigationBarTitleText": "数字滚动",
+            "enablePullDownRefresh": false
+          }
         }
       ]
     }

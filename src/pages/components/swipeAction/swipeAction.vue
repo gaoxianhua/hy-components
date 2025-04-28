@@ -1,54 +1,10 @@
 <template>
   <view>
-    <hy-swipe-action :options="options1">
-      <template #content>
-        <div
-          style="padding: 15px; background: #fff; border-bottom: 1px solid #eee"
-        >
-          这是列表项内容
-        </div>
-      </template>
-      <template #actions>
-        <div style="padding: 15px">
-          <button
-            @click="handleDelete"
-            style="
-              background: #f44336;
-              border: none;
-              color: white;
-              padding: 5px 10px;
-              border-radius: 3px;
-              margin-left: 10px;
-            "
-          >
-            删除
-          </button>
-          <button
-            @click="handleEdit"
-            style="
-              background: #f44336;
-              border: none;
-              color: white;
-              padding: 5px 10px;
-              border-radius: 3px;
-              margin-left: 10px;
-            "
-          >
-            编辑
-          </button>
-        </div>
+    <hy-swipe-action :options="options1" :list="list">
+      <template #default="{ record }">
+        <view class="u-demo-block__title"> {{ record.title }}</view>
       </template>
     </hy-swipe-action>
-
-    <up-swipe-action>
-      <up-swipe-action-item v-model:show="show" :options="options1">
-        <view class="swipe-action up-border-top up-border-bottom">
-          <view class="swipe-action__content">
-            <text class="swipe-action__content__text">基础使用</text>
-          </view>
-        </view>
-      </up-swipe-action-item>
-    </up-swipe-action>
   </view>
 </template>
 
@@ -60,9 +16,27 @@ const show = ref(false);
 // 使用 reactive 创建响应式对象
 const options1 = reactive([
   {
+    text: "收藏",
+    style: {
+      backgroundColor: "#3c9cff",
+    },
+  },
+  {
     text: "删除",
+    style: {
+      backgroundColor: "#f56c6c",
+    },
   },
 ]);
+
+const list = [
+  {
+    title: "你会",
+  },
+  {
+    title: "第二天数据",
+  },
+];
 </script>
 
 <style scoped lang="scss">
@@ -71,7 +45,7 @@ const options1 = reactive([
 }
 
 .u-demo-block__title {
-  padding: 10px 0 2px 15px;
+  padding: 20px;
 }
 
 .swipe-action {

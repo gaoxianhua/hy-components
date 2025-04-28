@@ -1,15 +1,16 @@
 import type IProps from "./typing";
 
 const defaultProps: IProps = {
+  list: [],
   show: false,
-  closeOnClick: true,
   name: "",
+  key: "id",
   disabled: false,
   threshold: 20,
   autoClose: true,
-  options: ["删除"],
+  options: [{ text: "删除" }],
   duration: 300,
-  openItem: false,
+  closeOnClick: true,
 };
 
 export default defaultProps;

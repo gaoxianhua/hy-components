@@ -1,6 +1,6 @@
 <template>
   <text
-    class="u-count-num"
+    class="hy-count-num"
     :style="{
       fontSize: addUnit(fontSize),
       fontWeight: bold ? 'bold' : 'normal',
@@ -209,10 +209,5 @@ defineExpose({
 </script>
 
 <style scoped lang="scss">
-.u-count-num {
-  /* #ifndef APP-NVUE */
-  display: inline-flex;
-  /* #endif */
-  text-align: center;
-}
+@import "./index.scss";
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <view>
+  <view class="hy-page">
     <view class="hy-title">边角形状</view>
     <view class="hy-flex">
       <hy-badge :value="123" shape="circle"></hy-badge>

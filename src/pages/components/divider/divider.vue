@@ -1,5 +1,5 @@
 <template>
-  <view>
+  <view class="hy-page">
     <view class="hy-title">基本使用</view>
     <view class="hy-container">
       <hy-divider text="月落"></hy-divider>

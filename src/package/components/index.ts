@@ -14,9 +14,12 @@ import HyCard from "./hy-card/hy-card.vue";
 import HyCell from "./hy-cell/hy-cell.vue";
 import HyCheckButton from "./hy-check-button/hy-check-button.vue";
 import HyCheckbox from "./hy-checkbox/hy-checkbox.vue";
+import HyCountDown from "./hy-count-down/hy-count-down.vue";
+import HyCountTo from "./hy-count-to/hy-count-to.vue";
 import HyDatetimePicker from "./hy-datetime-picker/hy-datetime-picker.vue";
 import HyDivider from "./hy-divider/hy-divider.vue";
 import YkEmpty from "./hy-empty/hy-empty.vue";
+import YkFloatButton from "./hy-float-button/hy-float-button.vue";
 import HyFoldingPanel from "./hy-folding-panel/hy-folding-panel.vue";
 import HyForm from "./hy-form/hy-form.vue";
 import HyGrid from "./hy-grid/hy-grid.vue";
@@ -69,9 +72,12 @@ const install = (Vue: any) => {
   Vue.component("HyCell", HyCell);
   Vue.component("HyCheckButton", HyCheckButton);
   Vue.component("HyCheckbox", HyCheckbox);
+  Vue.component("HyCountDown", HyCountDown);
+  Vue.component("HyCountTo", HyCountTo);
   Vue.component("HyDatetimePicker", HyDatetimePicker);
   Vue.component("HyDivider", HyDivider);
   Vue.component("YkEmpty", YkEmpty);
+  Vue.component("YkFloatButton", YkFloatButton);
   Vue.component("HyFoldingPanel", HyFoldingPanel);
   Vue.component("HyForm", HyForm);
   Vue.component("HyGrid", HyGrid);
@@ -127,9 +133,12 @@ export {
   HyCell,
   HyCheckButton,
   HyCheckbox,
+  HyCountDown,
+  HyCountTo,
   HyDatetimePicker,
   HyDivider,
   YkEmpty,
+  YkFloatButton,
   HyFoldingPanel,
   HyForm,
   HyGrid,

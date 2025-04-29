@@ -27,7 +27,7 @@ declare namespace HyApp {
   /**
    * @description 排列方式，row-横向，column-纵向
    * */
-  type ShapeType = "row" | "column";
+  type DirectionType = "row" | "column";
   /**
    * @description 布局方式；left-左，right-右，top-上，bottom-下，center-中
    * */

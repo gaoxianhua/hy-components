@@ -26,7 +26,7 @@ export default interface IProps {
   /**
    * @description row-横向，column-竖向 (默认 'row' )
    * */
-  direction?: HyApp.ShapeType;
+  direction?: HyApp.DirectionType;
   /**
    * @description 激活状态颜色 (默认 '#3c9cff' )
    * */

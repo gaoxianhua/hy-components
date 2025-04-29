@@ -1,5 +1,5 @@
 <template>
-  <view>
+  <view class="hy-page">
     <view class="hy-title">完整时间</view>
     <view class="hy-container">
       <hy-datetime-picker v-model="value_1" has-input></hy-datetime-picker>

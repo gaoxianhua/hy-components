@@ -1,5 +1,5 @@
 <template>
-  <view>
+  <view class="hy-page">
     <view class="hy-title">基本使用</view>
     <hy-count-down :time="30 * 60 * 60 * 1000"></hy-count-down>
 

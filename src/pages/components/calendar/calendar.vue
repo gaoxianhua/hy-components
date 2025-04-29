@@ -1,5 +1,5 @@
 <template>
-  <view>
+  <view class="hy-page">
     <hy-cell :list="list" @click="onClick"></hy-cell>
     <HyCalendar
       :show="show1"

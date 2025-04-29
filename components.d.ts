@@ -14,6 +14,7 @@ declare module 'vue' {
     HyIcon: typeof import('hy-app')['HyIcon']
     HyInput: typeof import('hy-app')['HyInput']
     HySlider: typeof import('hy-app')['HySlider']
+    HySwitch: typeof import('hy-app')['HySwitch']
     HyTransition: typeof import('hy-app')['HyTransition']
   }
 }

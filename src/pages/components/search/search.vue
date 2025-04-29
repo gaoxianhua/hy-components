@@ -1,5 +1,5 @@
 <template>
-  <view>
+  <view class="hy-page">
     <view class="hy-title">出现动画</view>
     <view class="hy-container">
       <hy-search

@@ -1,5 +1,5 @@
 <template>
-  <view>
+  <view class="hy-page">
     <view class="hy-container">
       <hy-cell title="基础使用" :list="list" @click="onClick"></hy-cell>
     </view>

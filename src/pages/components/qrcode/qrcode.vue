@@ -1,5 +1,5 @@
 <template>
-  <view>
+  <view class="hy-page">
     <view class="hy-title">基础使用</view>
     <hy-qrcode cid="qrcode_1" text="https://gxh151.top/h5"></hy-qrcode>
 

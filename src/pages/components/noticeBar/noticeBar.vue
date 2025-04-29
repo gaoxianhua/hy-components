@@ -1,5 +1,5 @@
 <template>
-  <view>
+  <view class="hy-page">
     <view class="hy-title">基础使用</view>
     <view class="hy-container hy-grid">
       <hy-notice-bar
@@ -42,7 +42,7 @@ import HySlider from "@/package/components/hy-slider/hy-slider.vue";
 import { reactive, ref } from "vue";
 import type { NoticeBarModeVo } from "@/package/components/hy-notice-bar/typing";
 
-const direction = ref<HyApp.ShapeType>("row");
+const direction = ref<HyApp.DirectionType>("row");
 const mode = ref<NoticeBarModeVo>("");
 const justifyContent = ref<HyApp.JustifyContentType>("flex-start");
 const step = ref(false);

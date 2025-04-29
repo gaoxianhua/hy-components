@@ -1,5 +1,4 @@
 import type { CSSProperties } from "vue";
-import { HyApp } from "@/package/typing/modules/common";
 
 export type NoticeBarModeVo = "closable" | "link" | "";
 
@@ -11,7 +10,7 @@ export default interface IProps {
   /**
    * @description 通告滚动模式，row-横向滚动，column-竖向滚动 ( 默认 'row' )
    * */
-  direction?: HyApp.ShapeType;
+  direction?: HyApp.DirectionType;
   /**
    * @description direction = row时，是否使用步进形式滚动  ( 默认 false )
    * */

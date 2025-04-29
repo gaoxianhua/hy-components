@@ -1,5 +1,5 @@
 <template>
-  <view>
+  <view class="hy-page">
     <hy-folding-panel
       :list="columns"
       title="水果摊"

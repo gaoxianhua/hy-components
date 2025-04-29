@@ -1,7 +1,7 @@
 <template>
-  <view class="u-count-down">
+  <view class="hy-count-down">
     <slot :record="timeData">
-      <text class="u-count-down__text">{{ formattedTime }}</text>
+      <text class="hy-count-down__text">{{ formattedTime }}</text>
     </slot>
   </view>
 </template>
@@ -146,10 +146,5 @@ defineExpose({
 </script>
 
 <style scoped lang="scss">
-.u-count-down {
-  &__text {
-    font-size: 15px;
-    line-height: 22px;
-  }
-}
+@import "./index.scss";
 </style>

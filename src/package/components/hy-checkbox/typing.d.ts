@@ -1,6 +1,5 @@
 import type { CSSProperties } from "vue";
 import type { CheckboxColumnsVo, IFieldNames } from "../hy-check-button/typing";
-import { HyApp } from "@/package/typing/modules/common";
 
 export default interface IProps {
   /**
@@ -70,5 +69,5 @@ export default interface IProps {
   /**
    * @description 排列方式，row-横向，column-纵向
    * */
-  placement?: HyApp.ShapeType;
+  placement?: HyApp.DirectionType;
 }

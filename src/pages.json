@@ -368,6 +368,13 @@
             "navigationBarTitleText": "数字滚动",
             "enablePullDownRefresh": false
           }
+        },
+        {
+          "path": "floatButton/floatButton",
+          "style": {
+            "navigationBarTitleText": "悬浮按钮",
+            "enablePullDownRefresh": false
+          }
         }
       ]
     }

@@ -137,6 +137,10 @@ export const list_3 = [
     title: "Divider 分割线",
     url: "/pages/components/divider/divider",
   },
+  {
+    title: "FloatButton 悬浮按钮",
+    url: "/pages/components/floatButton/floatButton",
+  },
 ];
 
 export const list_4 = [

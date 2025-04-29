@@ -1,20 +1,22 @@
 <template>
-  <HyForm
-    ref="formRef"
-    :columns="columns"
-    :form-data="formData"
-    labelWidth="90"
-    border="none"
-    border-bottom
-  >
-    <template #custom="{ record, errorStyle }">
-      <HyInput
-        v-model="formData[record.field]"
-        :custom-style="errorStyle"
-      ></HyInput>
-    </template>
-  </HyForm>
-  <HyButton type="primary" @click="handleSubmit">提交</HyButton>
+  <view class="hy-page">
+    <HyForm
+      ref="formRef"
+      :columns="columns"
+      :form-data="formData"
+      labelWidth="90"
+      border="none"
+      border-bottom
+    >
+      <template #custom="{ record, errorStyle }">
+        <HyInput
+          v-model="formData[record.field]"
+          :custom-style="errorStyle"
+        ></HyInput>
+      </template>
+    </HyForm>
+    <HyButton type="primary" @click="handleSubmit">提交</HyButton>
+  </view>
 </template>
 
 <script setup lang="ts">

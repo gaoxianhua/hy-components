@@ -1,5 +1,5 @@
 <template>
-  <view>
+  <view class="hy-page">
     <hy-cell
       title="设置cell"
       :list="list"

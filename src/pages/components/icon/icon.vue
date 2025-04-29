@@ -1,5 +1,5 @@
 <template>
-  <view class="icon">
+  <view class="hy-page">
     <view class="hy-title">图标图片(带圆角)</view>
     <view class="hy-flex">
       <hy-icon :name="config.avatar" size="80" round="5px" />

@@ -1,5 +1,5 @@
 <template>
-  <view>
+  <view class="hy-page">
     <view class="hy-title">基本使用</view>
     <view class="hy-container">
       <hy-button type="primary" @click="show = !show">打开遮罩框</hy-button>

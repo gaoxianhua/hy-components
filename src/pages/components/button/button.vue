@@ -1,5 +1,5 @@
 <template>
-  <view>
+  <view class="hy-page">
     <view class="hy-title">按钮颜色</view>
     <view class="hy-container">
       <hy-button type="info" text="默认按钮"></hy-button>

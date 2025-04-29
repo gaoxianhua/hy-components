@@ -1,5 +1,5 @@
 <template>
-  <view style="height: 10000px">
+  <view style="height: 10000px" class="hy-page">
     <hy-back-top
       :scrollTop="scrollTop"
       :mode="mode"

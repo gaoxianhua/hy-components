@@ -1,5 +1,5 @@
 <template>
-  <view>
+  <view class="hy-page">
     <view class="hy-title">复选按钮</view>
     <view class="hy-grid">
       <hy-check-button

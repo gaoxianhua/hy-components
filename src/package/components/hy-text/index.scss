@@ -1,0 +1,70 @@
+@use "../../libs/css/mixin.scss" as *;
+@use "../../theme.scss" as *;
+
+.hy-text {
+  @include flex(row);
+  align-items: center;
+  flex-wrap: nowrap;
+
+  &__price {
+    font-size: 14px;
+    color: $hy-text-color-grey;
+  }
+
+  &__value {
+    font-size: 14px;
+    @include flex;
+    color: $hy-text-color;
+    flex-wrap: wrap;
+    // flex: 1;
+    text-overflow: ellipsis;
+    align-items: center;
+
+    /*链接*/
+    &--link {
+      text-decoration: underline;
+      color: $hy-primary;
+    }
+
+    /*超出出现省略号*/
+    &--lines {
+      @include line-feed(v-bind(lines));
+    }
+
+    &--primary {
+      color: $hy-primary;
+    }
+
+    &--warning {
+      color: $hy-warning;
+    }
+
+    &--success {
+      color: $hy-success;
+    }
+
+    &--info {
+      color: $hy-info;
+    }
+
+    &--error {
+      color: $hy-error;
+    }
+
+    &--main {
+      color: $hy-text-color;
+    }
+
+    &--content {
+      color: $hy-text-color-grey;
+    }
+
+    &--tips {
+      color: $hy-tips-color;
+    }
+
+    &--light {
+      color: $hy-text-color-light;
+    }
+  }
+}

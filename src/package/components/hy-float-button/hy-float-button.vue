@@ -109,6 +109,9 @@ const getFloatBtnSize = computed(() => {
   }
 });
 
+/**
+ * @description 悬浮按钮样式
+ * */
 const FloatButtonStyle = computed(() => {
   const style: CSSProperties = {
     bottom: addUnit(bottom.value),
@@ -165,8 +168,9 @@ const menusStyle = computed(() => {
 
 onMounted(() => {
   const { windowWidth } = getWindowInfo();
-  getRect(`#${soleId}`).then((rect: UniApp.NodeInfo) => {
-    if (rect?.left && rect.left > windowWidth / 2) showLeft.value = true;
+  getRect(`#${soleId}`).then((rect) => {
+    const { left } = rect as UniApp.NodeInfo;
+    if (left && left > windowWidth / 2) showLeft.value = true;
   });
 });
 
@@ -183,6 +187,7 @@ const handleClick = () => {
  * */
 const handleMenuItemClick = (temp: MenusType, index: number) => {
   emit("clickItem", temp, index);
+  open.value = false;
   if (typeof temp !== "string" && temp?.url) {
     uni.navigateTo({
       url: temp.url,
@@ -192,71 +197,5 @@ const handleMenuItemClick = (temp: MenusType, index: number) => {
 </script>
 
 <style scoped lang="scss">
-@import "../../theme.scss";
-@import "../../libs/css/mixin.scss";
-.hy-float-button {
-  position: relative;
-  opacity: v-bind(opacity);
-  &__circle {
-    border-radius: $hy-border-radius-semicircle;
-  }
-
-  &__square {
-    border-radius: $hy-border-radius-sm;
-  }
-
-  &__shadow {
-    box-shadow: $hy-box-shadow;
-  }
-
-  &__animation {
-    animation: floatAnimation 2s ease-in-out infinite;
-    @keyframes floatAnimation {
-      0%,
-      100% {
-        transform: translateY(0); /* 初始位置 */
-      }
-      50% {
-        transform: translateY(-20px); /* 上浮20像素 */
-      }
-    }
-  }
-
-  &__container {
-    border-radius: 50%;
-    width: 100%;
-    height: 100%;
-    @include flex(column);
-    justify-content: center;
-    align-items: center;
-    rotate: v-bind(rotate);
-    transition: 0.4s ease;
-  }
-
-  &__menus {
-    position: absolute;
-    z-index: -1;
-    overflow: hidden;
-    @include flex(v-bind(direction));
-    max-height: 250px;
-    box-sizing: border-box;
-    &--item {
-      font-size: 28rpx;
-      box-sizing: border-box;
-      white-space: nowrap;
-      overflow: hidden;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    &--circle {
-      border-radius: $hy-border-radius-semicircle;
-    }
-
-    &--square {
-      border-radius: $hy-border-radius-sm;
-    }
-  }
-}
+@import "./index.scss";
 </style>

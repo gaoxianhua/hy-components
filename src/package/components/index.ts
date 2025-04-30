@@ -18,6 +18,8 @@ import HyCountDown from "./hy-count-down/hy-count-down.vue";
 import HyCountTo from "./hy-count-to/hy-count-to.vue";
 import HyDatetimePicker from "./hy-datetime-picker/hy-datetime-picker.vue";
 import HyDivider from "./hy-divider/hy-divider.vue";
+import HyDropdown from "./hy-dropdown/hy-dropdown.vue";
+import HyDropdownItem from "./hy-dropdown-item/hy-dropdown-item.vue";
 import YkEmpty from "./hy-empty/hy-empty.vue";
 import YkFloatButton from "./hy-float-button/hy-float-button.vue";
 import HyFoldingPanel from "./hy-folding-panel/hy-folding-panel.vue";
@@ -76,6 +78,8 @@ const install = (Vue: any) => {
   Vue.component("HyCountTo", HyCountTo);
   Vue.component("HyDatetimePicker", HyDatetimePicker);
   Vue.component("HyDivider", HyDivider);
+  Vue.component("HyDropdown", HyDropdown);
+  Vue.component("HyDropdownItem", HyDropdownItem);
   Vue.component("YkEmpty", YkEmpty);
   Vue.component("YkFloatButton", YkFloatButton);
   Vue.component("HyFoldingPanel", HyFoldingPanel);
@@ -137,6 +141,8 @@ export {
   HyCountTo,
   HyDatetimePicker,
   HyDivider,
+  HyDropdown,
+  HyDropdownItem,
   YkEmpty,
   YkFloatButton,
   HyFoldingPanel,

@@ -14,4 +14,8 @@ onHide(() => {
 @import "uview-plus/index.scss";
 @import "~@/static/css/common.scss";
 @import "~@/package/index.scss";
+view {
+  padding: 0;
+  margin: 0;
+}
 </style>

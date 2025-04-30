@@ -12,6 +12,10 @@ export const list_1 = [
     url: "/pages/components/button/button",
   },
   {
+    title: "Text 文本",
+    url: "/pages/components/text/text",
+  },
+  {
     title: "Cell 单元格",
     url: "/pages/components/cell/cell",
   },
@@ -180,8 +184,8 @@ export const list_4 = [
 
 export const list_5 = [
   {
-    title: "Modal 模态框",
-    url: "/pages/components/modal/modal",
+    title: "Dropdown 下拉菜单",
+    url: "/pages/components/dropdown/dropdown",
   },
   {
     title: "Modal 模态框",

@@ -375,6 +375,20 @@
             "navigationBarTitleText": "悬浮按钮",
             "enablePullDownRefresh": false
           }
+        },
+        {
+          "path": "dropdown/dropdown",
+          "style": {
+            "navigationBarTitleText": "下拉菜单",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "text/text",
+          "style": {
+            "navigationBarTitleText": "文本",
+            "enablePullDownRefresh": false
+          }
         }
       ]
     }
@@ -382,7 +396,7 @@
   "globalStyle": {
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "uni-app",
-    "navigationBarBackgroundColor": "#F8F8F8",
+    "navigationBarBackgroundColor": "#FFFFFF",
     "backgroundColor": "#F8F8F8"
   },
   "easycom": {

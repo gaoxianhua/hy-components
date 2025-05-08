@@ -14,7 +14,7 @@
         class="hy-qrcode__loading"
         :style="{ width: addUnit(size), height: addUnit(size) }"
       >
-        <HyIcon :name="IconConfig.LOADING" is-rotate></HyIcon>
+        <HyLoading></HyLoading>
       </view>
     </view>
   </view>
@@ -25,9 +25,12 @@ import { getCurrentInstance, toRefs, ref, onMounted } from "vue";
 import defaultProps from "./props";
 import type IProps from "./typing";
 import QRCode from "./qrcode.js";
-import { addUnit } from "../../utils";
+import { addUnit, error } from "../../utils";
 import { IconConfig } from "../../config";
+
+// 组件
 import HyIcon from "../hy-icon/hy-icon.vue";
+import HyLoading from "../hy-loading/hy-loading.vue";
 
 const props = withDefaults(defineProps<IProps>(), defaultProps);
 const { text, allowPreview } = toRefs(props);
@@ -39,12 +42,13 @@ const qrcode = ref("");
 const result = ref("");
 
 onMounted(() => {
+  console.log(111);
   initQrCode();
 });
 
 const initQrCode = () => {
   if (text.value) {
-    loading.value;
+    loading.value = true;
     qrcode.value = new QRCode({
       context: instance, // 上下文环境
       canvasId: props.cid, // canvas-id
@@ -65,11 +69,7 @@ const initQrCode = () => {
       },
     });
   } else {
-    uni.showToast({
-      title: "二维码内容不能为空",
-      icon: "none",
-      duration: 2000,
-    });
+    error("二维码内容不能为空");
   }
 };
 

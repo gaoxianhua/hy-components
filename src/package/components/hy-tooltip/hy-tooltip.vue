@@ -100,8 +100,7 @@ import {
   type CSSProperties,
   toRefs,
   ref,
-  reactive,
-  onMounted,
+  onMounted, getCurrentInstance,
 } from "vue";
 import defaultProps from "./props";
 import type IProps from "./typing";
@@ -117,6 +116,7 @@ const { showToast, copyText, text, showCopy, buttons, direction } =
   toRefs(props);
 const emit = defineEmits(["click"]);
 
+const instance = getCurrentInstance();
 const showTooltip = ref<boolean>(true);
 const textId = ref(guid());
 const tooltipId = ref(guid());
@@ -235,12 +235,12 @@ const getElRect = () => {
   showTooltip.value = true;
   tooltipTop.value = -10000;
   sleep(500).then(() => {
-    getRect(`#${tooltipId.value}`).then((size) => {
+    getRect(`#${tooltipId.value}`, false, instance).then((size) => {
       tooltipInfo.value = size as UniApp.NodeInfo;
       // 获取气泡尺寸之后，将其隐藏，为了让下次切换气泡显示与隐藏时，有淡入淡出的效果
       showTooltip.value = false;
     });
-    getRect(`#${textId.value}`).then((size) => {
+    getRect(`#${textId.value}`, false, instance).then((size) => {
       textInfo.value = size as UniApp.NodeInfo;
     });
   });

@@ -8,19 +8,7 @@ export default interface IProps {
   /**
    * @description 使用的动画模式（默认：fade）
    * */
-  mode?:
-    | "fade"
-    | "fade-up"
-    | "fade-down"
-    | "fade-left"
-    | "fade-right"
-    | "fade-zoom"
-    | "slide-up"
-    | "slide-down"
-    | "slide-left"
-    | "slide-right"
-    | "zoom-in"
-    | "zoom-out";
+  mode?: HyApp.TransitionMode;
   /**
    * @description 动画的执行时间，单位ms
    * */

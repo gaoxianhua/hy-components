@@ -18,12 +18,12 @@
   <!-- 下拉弹窗 -->
   <HyOverlay
     :show="isOpen"
-    :style="{ top: `${dropPopupTop}px` }"
+    :custom-style="{ top: addUnit(dropPopupTop) }"
     @click="closePopupFn"
   >
     <view
       class="hy-dropdown-item__main"
-      :style="{ top: `${dropPopupTop}px`, height: dropHeight }"
+      :style="{ top: addUnit(dropPopupTop), height: addUnit(dropHeight) }"
     >
       <view class="hy-dropdown-item__main--container" :class="customClass">
         <!-- 插槽 -->
@@ -57,7 +57,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, inject, ref, onMounted, watch, useSlots, toRefs } from "vue";
+import {computed, inject, ref, onMounted, watch, useSlots, toRefs, getCurrentInstance} from "vue";
 import defaultProps from "./props";
 import type IProps from "./typing";
 import type FatherIProps from "../hy-dropdown/typing";
@@ -77,12 +77,13 @@ const slots = useSlots();
 const hasSlot = computed(() => {
   return Object.keys(slots).length > 0;
 });
+const instance = getCurrentInstance();
 //父的props值
 const dropdownProps: FatherIProps | undefined = inject("dropdownProps");
 const { titleSize, menuIcon, menuIconSize, inactiveColor } =
   dropdownProps as FatherIProps;
 //当前打开的dropItem项（标签名）
-const currentDropItem: string | undefined = inject("currentDropItem");
+const currentDropItem: any = inject("currentDropItem");
 //当前文字/箭头颜色
 const currentColor = computed(() => {
   return isOpen.value ? dropdownProps?.activeColor : inactiveColor;
@@ -107,7 +108,7 @@ onMounted(() => {
  * @description 计算下拉弹窗区域距离页面顶部距离
  * */
 const getDropPopupTop = () => {
-  getRect(".hy-dropdown-item__header").then((rect) => {
+  getRect(".hy-dropdown-item__header", false, instance).then((rect) => {
     const { bottom } = rect as UniApp.NodeInfo;
     // #ifdef H5
     //H5需要加上导航栏高度，固定44px
@@ -136,7 +137,7 @@ watch(isOpen, (v) => {
  * @desc 防止点击展开后在点击下一个，导致上一个没有关闭bug
  * */
 watch(
-  () => currentDropItem.value,
+  () => currentDropItem?.value,
   (newVal) => {
     //关闭其他条件的下拉弹窗
     if (newVal !== props.title) {

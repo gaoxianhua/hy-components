@@ -11,7 +11,7 @@ import defaultProps from "./props";
 import { addUnit } from "@/package";
 
 const props = withDefaults(defineProps<IProps>(), defaultProps);
-const { height, borderBottom, titleSize } = toRefs(props);
+const { height, borderBottom } = toRefs(props);
 
 //样式设置
 const dropdownStyle = computed(() => {

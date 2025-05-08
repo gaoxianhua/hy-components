@@ -9,13 +9,17 @@
 </template>
 
 <script setup lang="ts">
-import { computed, reactive, ref } from "vue";
+import { computed, type CSSProperties, reactive, ref } from "vue";
 import type { CellContentVo } from "hy-app/components/hy-cell/typing";
 import { getWindowInfo } from "@/package";
 
+// 组件
+import HyCell from "@/package/components/hy-cell/hy-cell.vue";
+import HyTransition from "@/package/components/hy-transition/hy-transition.vue";
+
 const show = ref(false);
-const mode = ref("");
-const style = computed(() => {
+const mode = ref<HyApp.TransitionMode>("fade");
+const style = computed((): CSSProperties => {
   return {
     position: "fixed",
     top: `${getWindowInfo().windowHeight / 2 - 50}px`,

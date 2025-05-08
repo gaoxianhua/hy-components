@@ -112,7 +112,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, type CSSProperties, toRefs, ref, onMounted } from "vue";
+import {computed, type CSSProperties, toRefs, ref, onMounted, getCurrentInstance} from "vue";
 import defaultProps from "./props";
 import type IProps from "./typing";
 import type { StepListVo } from "./typing";
@@ -130,6 +130,7 @@ const size = ref<UniApp.NodeInfo>({
   height: 0,
   width: 0,
 });
+const instance = getCurrentInstance();
 
 const lineStyle = computed(() => {
   return (temp: StepListVo, index: number): CSSProperties => {
@@ -213,7 +214,7 @@ onMounted(() => {
 
 // 获取组件的尺寸，用于设置横线的位置
 const getStepsItemRect = () => {
-  getRect(".hy-steps-item").then((rect) => {
+  getRect(".hy-steps-item", false, instance).then((rect) => {
     size.value = rect as UniApp.NodeInfo;
   });
 };

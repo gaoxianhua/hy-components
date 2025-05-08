@@ -86,6 +86,19 @@ declare namespace HyApp {
    * */
   type RotateType = "left" | "up" | "down";
   type FileType = "video" | "media" | "all" | "file" | "image";
+  type TransitionMode =
+    | "fade"
+    | "fade-up"
+    | "fade-down"
+    | "fade-left"
+    | "fade-right"
+    | "fade-zoom"
+    | "slide-up"
+    | "slide-down"
+    | "slide-left"
+    | "slide-right"
+    | "zoom-in"
+    | "zoom-out";
   interface IFieldNames {
     /**
      * @description 自定义columns的文本键

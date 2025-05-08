@@ -3,10 +3,11 @@
     <HyLine
       :color="lineColor"
       :customStyle="leftLineStyle"
+      :style="leftLineStyle"
       :hairline="hairline"
       :dashed="dashed"
     ></HyLine>
-    <HyLoading :show="text === 'loading'" mode="spinner"></HyLoading>
+    <HyLoading :show="text === 'loading'" size="18" mode="spinner"></HyLoading>
     <text v-if="dot" class="hy-divider__dot">●</text>
     <text v-else-if="text" class="hy-divider__text" :style="textStyle">{{
       content
@@ -14,6 +15,7 @@
     <HyLine
       :color="lineColor"
       :customStyle="rightLineStyle"
+      :style="rightLineStyle"
       :hairline="hairline"
       :dashed="dashed"
     ></HyLine>

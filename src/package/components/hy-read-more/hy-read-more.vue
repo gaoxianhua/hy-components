@@ -48,7 +48,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, type CSSProperties, toRefs, ref, onMounted } from "vue";
+import {computed, type CSSProperties, toRefs, ref, onMounted, getCurrentInstance} from "vue";
 import defaultProps from "./props";
 import type IProps from "./typing";
 import { addUnit, getRect, guid, sleep } from "../../utils";
@@ -79,9 +79,10 @@ onMounted(() => {
  * @description 获取内容的高度
  * */
 const getContentHeight = async () => {
+  const instance = getCurrentInstance();
   // 延时一定时间再获取节点
   await sleep(30);
-  getRect("." + elId.value).then((res: any) => {
+  getRect("." + elId.value, false, instance).then((res: any) => {
     contentHeight.value = res.height || 0;
     // 判断高度，如果真实内容高度大于占位高度，则显示收起与展开的控制按钮
     if (res.height && res.height > showHeight.value / 2) {

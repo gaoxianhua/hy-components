@@ -77,5 +77,9 @@ const childClick = (name: string | Record<string, any>) => {
 </script>
 
 <style lang="scss" scoped>
+.hy-grid {
+  grid-gap: v-bind(gap);
+  grid-template-columns: repeat(v-bind(col), 1fr);
+}
 @import "./index.scss";
 </style>

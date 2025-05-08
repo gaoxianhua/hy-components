@@ -93,7 +93,7 @@ import HyStatusBar from "../hy-status-bar/hy-status-bar.vue";
 import { toRefs } from "vue";
 
 const props = withDefaults(defineProps<IProps>(), defaultProps);
-const { autoBack } = toRefs(props);
+const { autoBack, fixed } = toRefs(props);
 const emit = defineEmits(["leftClick", "rightClick"]);
 
 // 获取状态栏高度

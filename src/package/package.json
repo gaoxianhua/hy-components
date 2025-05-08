@@ -1,7 +1,7 @@
 {
   "name": "hy-app",
-  "version": "0.1.2",
-  "description": "表单适配微信小程序bug修改",
+  "version": "0.1.3",
+  "description": "修复微信小程序bug",
   "main": "./index.ts",
   "private": false,
   "scripts": {},

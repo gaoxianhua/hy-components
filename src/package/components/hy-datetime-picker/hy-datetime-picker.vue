@@ -8,7 +8,7 @@
       <slot name="trigger" :value="inputValue">
         <HyInput
           :placeholder="placeholder"
-          :readonly="!!showByClickInput"
+          :readonly="true"
           v-model="inputValue"
           :disabled="disabled"
           :disabledColor="disabledColor"

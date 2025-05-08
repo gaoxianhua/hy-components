@@ -1,5 +1,4 @@
 import Base64 from "./base64";
-import { getCurrentInstance } from "vue";
 import type { CSSProperties } from "vue";
 import { isNumber } from "./index";
 let base64: any = new Base64();
@@ -364,13 +363,13 @@ const range = (min = 0, max = 0, value = 0) => {
   return Math.max(min, Math.min(max, Number(value)));
 };
 let instance: any;
-// #ifndef H5
-instance = getCurrentInstance();
-// #endif
 /**
  * 查询节点信息
  * 目前此方法在支付宝小程序中无法获取组件跟接点的尺寸，为支付宝的bug(2020-07-21)
  * 解决办法为在组件根部再套一个没有任何作用的view元素
+ * @param selector 元素类名或id
+ * @param all 是否获取多个相同元素数值
+ * @param ins 在微信小程序里，因为utils文件里面获取不到instance值所以必须通过ins这个传过来
  */
 const getRect = (
   selector: string,
@@ -379,8 +378,8 @@ const getRect = (
 ): Promise<UniApp.NodeInfo | UniApp.NodeInfo[]> => {
   return new Promise((resolve) => {
     // TODO: 在微信小程序里，因为utils文件里面获取不到instance值所以必须通过ins这个传过来
-    // #ifndef H5
-    instance = instance || ins;
+    // #ifdef MP-WEIXIN
+    instance = ins;
     // #endif
     // #ifndef APP-NVUE
     uni

@@ -21,7 +21,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, toRefs, ref, onMounted, watch } from "vue";
+import {computed, toRefs, ref, onMounted, watch, getCurrentInstance} from "vue";
 import type { CSSProperties } from "vue";
 import defaultProps from "./props";
 import type IProps from "./typing";
@@ -43,6 +43,7 @@ const {
 } = toRefs(props);
 const emit = defineEmits(["change", "update:modelValue"]);
 
+const instance = getCurrentInstance();
 // 组件尺寸
 const itemRect = ref<UniApp.NodeInfo>({
   width: 0,
@@ -171,7 +172,7 @@ const init = () => {
     innerCurrent.value === -1 ? current.value : innerCurrent.value;
 
   // TODO： 多个数组在一起计算宽度， 宽度不一样会有问题，所以必须加guidClass随机数
-  getRect(`.hy-subsection__item--0__${guidClass}`).then((size) => {
+  getRect(`.hy-subsection__item--0__${guidClass}`, false, instance).then((size) => {
     itemRect.value = size as UniApp.NodeInfo;
   });
 };

@@ -8,7 +8,7 @@
       <slot name="trigger" :value="inputValue">
         <HyInput
           :placeholder="placeholder"
-          :readonly="!!showByClickInput"
+          :readonly="true"
           v-model="inputValue"
           :disabled="disabled"
           :shape="shape"
@@ -76,7 +76,7 @@ const emit = defineEmits([
 
 // 原来的日期选择器不方便，这里增加一个hasInput选项支持类似element的自带输入框的功能。
 const inputValue = ref<string>(""); // 表单显示值
-const showByClickInput = ref<boolean>(false); // 是否在hasInput模式下显示日期选择弹唱
+const showByClickInput = ref<boolean>(false); // 是否在hasInput模式下显示日期选择
 const columns = ref<any[]>([]);
 const uPickerRef = ref<InstanceType<typeof HyPicker> | null>();
 const defaultIndex = ref<number[]>([]);

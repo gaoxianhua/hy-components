@@ -24,7 +24,7 @@
 <script setup lang="ts">
 import {
   computed,
-  type CSSProperties,
+  type CSSProperties, getCurrentInstance,
   onMounted,
   ref,
   toRefs,
@@ -37,6 +37,7 @@ import { addUnit, getRect, range, sleep } from "../../utils";
 const props = withDefaults(defineProps<IProps>(), defaultProps);
 const { percentage, activeColor, height } = toRefs(props);
 
+const instance = getCurrentInstance();
 const lineWidth = ref<string | number>(0);
 
 watch(
@@ -68,7 +69,7 @@ const init = async () => {
 const getProgressWidth = () => {
   return new Promise((resolve) => {
     // #ifndef APP-NVUE
-    resolve(getRect(".hy-line-progress__background"));
+    resolve(getRect(".hy-line-progress__background", false, instance));
     // #endif
   });
 };

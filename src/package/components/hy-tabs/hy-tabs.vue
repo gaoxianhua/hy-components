@@ -145,7 +145,7 @@ import {
   ref,
   watch,
   nextTick,
-  onMounted,
+  onMounted, getCurrentInstance,
 } from "vue";
 import defaultProps from "./props";
 import type IProps from "./typing";
@@ -160,6 +160,7 @@ const props = withDefaults(defineProps<IProps>(), defaultProps);
 const { list, current, activeStyle, lineWidth, inactiveStyle } = toRefs(props);
 const emit = defineEmits(["click", "longPress", "update:current", "change"]);
 
+const instance = getCurrentInstance();
 const firstTime = ref<boolean>(true);
 const scrollLeft = ref<number>(0);
 const scrollViewWidth = ref<number>(0);
@@ -323,7 +324,7 @@ const resize = () => {
  * */
 const getTabsRect = () => {
   return new Promise((resolve) => {
-    getRect(".hy-tabs__wrapper__scroll-view").then((size) => resolve(size));
+    getRect(".hy-tabs__wrapper__scroll-view", false, instance).then((size) => resolve(size));
   });
 };
 /**
@@ -332,7 +333,7 @@ const getTabsRect = () => {
 const getAllItemRect = () => {
   return new Promise((resolve) => {
     const promiseAllArr = list.value.map((item, index) =>
-      getRect(`.hy-tabs__wrapper__nav__item-${index}`),
+      getRect(`.hy-tabs__wrapper__nav__item-${index}`, false, instance),
     );
     Promise.all(promiseAllArr).then((sizes) => resolve(sizes));
   });

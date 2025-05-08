@@ -150,7 +150,7 @@
 <script setup lang="ts">
 import {
   computed,
-  type CSSProperties,
+  type CSSProperties, getCurrentInstance,
   onMounted,
   ref,
   toRefs,
@@ -177,6 +177,7 @@ const sliderRect = ref<UniNamespace.NodeInfo>({
   left: 0,
   width: 0,
 });
+const instance = getCurrentInstance();
 
 const blockLeft = computed(() => {
   return (
@@ -214,7 +215,7 @@ onMounted(async () => {
   if (!useNative.value) {
     // #ifndef APP-NVUE
     sliderRect.value = (await getRect(
-      ".hy-slider__base",
+      ".hy-slider__base", false, instance
     )) as UniNamespace.NodeInfo;
     // console.log('sliderRect', sliderRect.value)
     if (sliderRect.value.width == 0) {

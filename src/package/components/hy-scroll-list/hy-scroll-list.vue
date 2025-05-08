@@ -37,7 +37,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, type CSSProperties, toRefs, ref, onMounted } from "vue";
+import {computed, type CSSProperties, toRefs, ref, onMounted, getCurrentInstance} from "vue";
 import defaultProps from "./props";
 import type IProps from "./typing";
 import { addUnit, getRect, sleep } from "../../utils";
@@ -51,6 +51,7 @@ const {
 } = toRefs(props);
 const emit = defineEmits(["click", "left", "right"]);
 
+const instance = getCurrentInstance();
 const scrollInfo = ref({
   scrollLeft: 0,
   scrollWidth: 0,
@@ -86,7 +87,7 @@ const initWidth = async () => {
   // 延时一定时间，以获取dom尺寸
   await sleep(30);
   // #ifndef APP-NVUE
-  getRect(".u-scroll-list").then((size) => {
+  getRect(".hy-scroll-list", false, instance).then((size) => {
     scrollWidth.value = (size as UniApp.NodeInfo).width!;
   });
   // #endif
